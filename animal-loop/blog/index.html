@@ -645,7 +645,8 @@
       .al-cast .worlds { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; }
       .al-cast .w { border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; background: #FFFBF1; box-shadow: 0 5px 0 var(--edge), inset 0 0 0 2px var(--edge); }
       .al-cast .w-top { background: var(--sky); padding: 18px 18px 0; display: flex; flex-direction: column; gap: 12px; }
-      .al-cast .w-top .banner { width: 100%; max-width: 260px; height: auto; display: block; }
+      .al-cast .w-top h3 { margin: 0; display: flex; flex-direction: column; gap: 2px; font-size: 28px; line-height: 1.05; font-weight: 900; letter-spacing: -0.5px; color: var(--ink); }
+      .al-cast .w-top h3 small { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; opacity: .75; }
       .al-cast .w-top .shot { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; border-radius: 14px 14px 0 0; }
       .al-cast .w-body { padding: 16px 18px 20px; display: flex; flex-direction: column; gap: 10px; }
       .al-cast .part { display: grid; grid-template-columns: 74px 1fr; gap: 10px; align-items: baseline; font-size: 15px; line-height: 1.4; color: #3A2F55; }
@@ -682,7 +683,7 @@
     <div class="worlds">
       <section class="w" style="--sky: #F5D29E; --edge: #D9A86A; --ink: #7A3E1E; --tint: #FBE8CC" aria-label="Dune Flats">
         <div class="w-top">
-          <img class="banner" src="../assets/duo/world-dune.webp" alt="Dune Flats, world 1" loading="lazy">
+          <h3><small>World 1</small>Dune Flats</h3>
           <img class="shot" src="../assets/screens/desert-day.webp" alt="A Dune Flats track at midday" loading="lazy">
         </div>
         <div class="w-body">
@@ -696,7 +697,7 @@
 
       <section class="w" style="--sky: #8FD3D6; --edge: #3E9AA2; --ink: #1A5F66; --tint: #D8F0F0" aria-label="Coral Shallows">
         <div class="w-top">
-          <img class="banner" src="../assets/duo/world-coral.webp" alt="Coral Shallows, world 2" loading="lazy">
+          <h3><small>World 2</small>Coral Shallows</h3>
           <img class="shot" src="../assets/screens/water-trefoil.webp" alt="A trefoil track in Coral Shallows" loading="lazy">
         </div>
         <div class="w-body">
@@ -710,7 +711,7 @@
 
       <section class="w" style="--sky: #A9CF8A; --edge: #5E9446; --ink: #2F5E22; --tint: #E0EFD3" aria-label="Fern Hollow">
         <div class="w-top">
-          <img class="banner" src="../assets/duo/world-fern.webp" alt="Fern Hollow, world 3" loading="lazy">
+          <h3><small>World 3</small>Fern Hollow</h3>
           <img class="shot" src="../assets/screens/forest-mushroom.webp" alt="The Mushroom track in Fern Hollow" loading="lazy">
         </div>
         <div class="w-body">

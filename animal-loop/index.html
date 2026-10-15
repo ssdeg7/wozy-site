@@ -81,7 +81,9 @@
   .worlds { width: 100%; max-width: 1120px; margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .world { border-radius: 28px; padding: 22px 22px 0; display: flex; flex-direction: column; gap: 14px; overflow: hidden; }
   .world.dune { background: #EBC891; } .world.coral { background: #39B8BE; } .world.fern { background: #5DA83B; }
-  .world .banner { width: 100%; border-radius: 14px; display: block; }
+  .world h3 { margin: 0; display: flex; flex-direction: column; gap: 2px; font-size: 30px; line-height: 1.05; font-weight: 900; letter-spacing: -0.5px; color: var(--navy); }
+  .world h3 small { font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; opacity: .7; }
+  .world.coral h3, .world.fern h3 { color: #fff; }
   .world p { margin: 0; font-size: 17px; line-height: 1.5; color: var(--navy); font-weight: 700; }
   .world.coral p, .world.fern p { color: #fff; }
   .world .shot { margin: 10px auto -70px; width: 74%; aspect-ratio: 1206 / 2622; border-radius: 26px; overflow: hidden; box-shadow: 0 0 0 6px var(--navy), 0 18px 36px rgba(43,31,77,0.25); }
@@ -230,17 +232,17 @@
   </div>
   <div class="worlds">
     <div class="world-wrap"><div class="world dune">
-      <img class="banner" src="assets/duo/world-dune.webp" alt="Dune Flats, world 1, 27 stars">
+      <h3><small>World 1</small>Dune Flats</h3>
       <p>Desert roads past the pyramids, with switch gates that flip which way a tap turns you.</p>
       <div class="shot"><img src="assets/screens/desert-figure8.webp" alt="A figure-8 track in Dune Flats"></div>
     </div></div>
     <div class="world-wrap"><div class="world coral">
-      <img class="banner" src="assets/duo/world-coral.webp" alt="Coral Shallows, world 2, 27 stars">
+      <h3><small>World 2</small>Coral Shallows</h3>
       <p>Sandbars over turquoise water, with bridges and knots that loop back under themselves.</p>
       <div class="shot"><img src="assets/screens/water-trefoil.webp" alt="A trefoil knot track in Coral Shallows"></div>
     </div></div>
     <div class="world-wrap"><div class="world fern">
-      <img class="banner" src="assets/duo/world-fern.webp" alt="Fern Hollow, world 3, 27 stars">
+      <h3><small>World 3</small>Fern Hollow</h3>
       <p>Forest trails with sticky mud patches and moles that dig you a shortcut.</p>
       <div class="shot"><img src="assets/screens/forest-mushroom.webp" alt="The Mushroom track in Fern Hollow"></div>
     </div></div>
