@@ -633,12 +633,94 @@
     </ul>
   </div>
 
-  <figure style="width: 100%; max-width: 1040px; margin: 16px 0; display: flex; flex-direction: column; gap: 16px">
-    <div style="width: 100%; aspect-ratio: 21 / 8; min-height: 200px; border-radius: 28px; background: repeating-linear-gradient(135deg, rgba(43,31,77,0.08) 0 10px, rgba(43,31,77,0.03) 10px 20px); box-shadow: inset 0 0 0 1.5px rgba(43,31,77,0.16); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 24px; box-sizing: border-box; text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #6B6180"><span style="font-weight: 600; color: #2B1F4D">Character lineup</span><span>all 18 animals in their balls, top-down, on a curved track</span></div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
-      <div style="aspect-ratio: 4 / 3; border-radius: 22px; background: repeating-linear-gradient(135deg, rgba(166,88,47,0.16) 0 8px, rgba(166,88,47,0.05) 8px 16px); box-shadow: inset 0 0 0 1.5px rgba(166,88,47,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #7A3E1E; text-align: center"><span style="font-weight: 600">Cactus</span><span>Dune Flats</span></div>
-      <div style="aspect-ratio: 4 / 3; border-radius: 22px; background: repeating-linear-gradient(135deg, rgba(31,122,130,0.16) 0 8px, rgba(31,122,130,0.05) 8px 16px); box-shadow: inset 0 0 0 1.5px rgba(31,122,130,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #1A5F66; text-align: center"><span style="font-weight: 600">Coral rock</span><span>Coral Shallows</span></div>
-      <div style="aspect-ratio: 4 / 3; border-radius: 22px; background: repeating-linear-gradient(135deg, rgba(63,122,46,0.16) 0 8px, rgba(63,122,46,0.05) 8px 16px); box-shadow: inset 0 0 0 1.5px rgba(63,122,46,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #2F5E22; text-align: center"><span style="font-weight: 600">Fern</span><span>Fern Hollow</span></div>
+  <figure class="al-cast" style="width: 100%; max-width: 1040px; margin: 16px 0; display: flex; flex-direction: column; gap: 20px">
+    <style>
+      .al-cast .lineup { position: relative; border-radius: 28px; overflow: hidden; padding: 34px 18px 26px; background: radial-gradient(120% 90% at 50% 120%, #F8C6B6 0%, #C996C8 45%, #8E80D8 100%); box-shadow: 0 6px 0 rgba(43,31,77,0.18); }
+      .al-cast .lineup::before { content: ""; position: absolute; left: -10%; right: -10%; top: 46%; height: 150px; border-radius: 50%; border-top: 46px solid rgba(247,237,209,0.85); border-bottom: 0; }
+      .al-cast .lineup ul { position: relative; list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 0; }
+      .al-cast .lineup li { width: 92px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+      .al-cast .lineup img { width: 92px; height: 92px; display: block; filter: drop-shadow(0 6px 4px rgba(43,31,77,0.25)); transition: transform .2s ease; }
+      .al-cast .lineup li:hover img { transform: translateY(-6px) rotate(-8deg); }
+      .al-cast .lineup span { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: #2B1F4D; background: rgba(247,237,209,0.9); padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
+      .al-cast .worlds { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; }
+      .al-cast .w { border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; background: #FFFBF1; box-shadow: 0 5px 0 var(--edge), inset 0 0 0 2px var(--edge); }
+      .al-cast .w-top { background: var(--sky); padding: 18px 18px 0; display: flex; flex-direction: column; gap: 12px; }
+      .al-cast .w-top .banner { width: 100%; max-width: 260px; height: auto; display: block; }
+      .al-cast .w-top .shot { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; border-radius: 14px 14px 0 0; }
+      .al-cast .w-body { padding: 16px 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+      .al-cast .part { display: grid; grid-template-columns: 74px 1fr; gap: 10px; align-items: baseline; font-size: 15px; line-height: 1.4; color: #3A2F55; }
+      .al-cast .part b { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; font-weight: 600; color: var(--ink); text-transform: uppercase; }
+      .al-cast .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+      .al-cast .chip { font-size: 13.5px; font-weight: 700; color: var(--ink); background: var(--tint); border-radius: 99px; padding: 3px 10px; }
+      .al-cast .rival { margin-top: 4px; display: flex; align-items: center; gap: 10px; padding: 8px 12px 8px 8px; border-radius: 16px; background: var(--tint); }
+      .al-cast .rival img { width: 48px; height: 48px; }
+      .al-cast .rival div { font-size: 14px; line-height: 1.35; color: #3A2F55; }
+      .al-cast .rival strong { display: block; color: var(--ink); font-size: 15px; }
+      @media (max-width: 560px) { .al-cast .lineup li { width: 74px; } .al-cast .lineup img { width: 74px; height: 74px; } }
+    </style>
+
+    <div class="lineup" role="img" aria-label="The Animal Loop racers, each rolling in its own ball">
+      <ul>
+        <li><img src="../assets/racers/hedgehog.webp" alt="" loading="lazy"><span>Hedgehog</span></li>
+        <li><img src="../assets/racers/hamster.webp" alt="" loading="lazy"><span>Hamster</span></li>
+        <li><img src="../assets/racers/armadillo.webp" alt="" loading="lazy"><span>Armadillo</span></li>
+        <li><img src="../assets/racers/puffer.webp" alt="" loading="lazy"><span>Puffer</span></li>
+        <li><img src="../assets/racers/ladybug.webp" alt="" loading="lazy"><span>Ladybug</span></li>
+        <li><img src="../assets/racers/chipmunk.webp" alt="" loading="lazy"><span>Chipmunk</span></li>
+        <li><img src="../assets/racers/mole.webp" alt="" loading="lazy"><span>Mole</span></li>
+        <li><img src="../assets/racers/tortoise.webp" alt="" loading="lazy"><span>Tortoise</span></li>
+        <li><img src="../assets/racers/frog.webp" alt="" loading="lazy"><span>Frog</span></li>
+        <li><img src="../assets/racers/owl.webp" alt="" loading="lazy"><span>Owl</span></li>
+        <li><img src="../assets/racers/redpanda.webp" alt="" loading="lazy"><span>Red Panda</span></li>
+        <li><img src="../assets/racers/otter.webp" alt="" loading="lazy"><span>Otter</span></li>
+        <li><img src="../assets/racers/koala.webp" alt="" loading="lazy"><span>Koala</span></li>
+        <li><img src="../assets/racers/rabbit.webp" alt="" loading="lazy"><span>Rabbit</span></li>
+        <li><img src="../assets/racers/octopus.webp" alt="" loading="lazy"><span>Octopus</span></li>
+      </ul>
+    </div>
+
+    <div class="worlds">
+      <section class="w" style="--sky: #F5D29E; --edge: #D9A86A; --ink: #7A3E1E; --tint: #FBE8CC" aria-label="Dune Flats">
+        <div class="w-top">
+          <img class="banner" src="../assets/duo/world-dune.webp" alt="Dune Flats, world 1" loading="lazy">
+          <img class="shot" src="../assets/screens/desert-day.webp" alt="A Dune Flats track at midday" loading="lazy">
+        </div>
+        <div class="w-body">
+          <div class="part"><b>Plants</b><div class="chips"><span class="chip">Barrel cactus</span><span class="chip">Agave</span><span class="chip">Hedgehog clump</span></div></div>
+          <div class="part"><b>Landmarks</b><div class="chips"><span class="chip">8 pyramids</span><span class="chip">Old skeleton</span></div></div>
+          <div class="part"><b>Ground</b><div class="chips"><span class="chip">Sink funnels</span><span class="chip">Sand rim</span></div></div>
+          <div class="part"><b>On track</b><div class="chips"><span class="chip">Switch gates</span><span class="chip">Walls</span></div></div>
+          <div class="rival"><img src="../assets/racers/armadillo.webp" alt="" loading="lazy"><div><strong>Rival: Armadillo</strong>Win the Dune Flats Grand Prix to unlock.</div></div>
+        </div>
+      </section>
+
+      <section class="w" style="--sky: #8FD3D6; --edge: #3E9AA2; --ink: #1A5F66; --tint: #D8F0F0" aria-label="Coral Shallows">
+        <div class="w-top">
+          <img class="banner" src="../assets/duo/world-coral.webp" alt="Coral Shallows, world 2" loading="lazy">
+          <img class="shot" src="../assets/screens/water-trefoil.webp" alt="A trefoil track in Coral Shallows" loading="lazy">
+        </div>
+        <div class="w-body">
+          <div class="part"><b>Plants</b><div class="chips"><span class="chip">Lily pads</span><span class="chip">Kelp fringe</span></div></div>
+          <div class="part"><b>Landmarks</b><div class="chips"><span class="chip">Limestone stacks</span><span class="chip">Coral rocks</span><span class="chip">Sunken anchor</span></div></div>
+          <div class="part"><b>Ground</b><div class="chips"><span class="chip">Turquoise shallows</span><span class="chip">Stone rim</span></div></div>
+          <div class="part"><b>On track</b><div class="chips"><span class="chip">Bridges</span><span class="chip">Knots</span><span class="chip">Walls</span></div></div>
+          <div class="rival"><img src="../assets/racers/puffer.webp" alt="" loading="lazy"><div><strong>Rival: Puffer</strong>Win the Coral Shallows Grand Prix to unlock.</div></div>
+        </div>
+      </section>
+
+      <section class="w" style="--sky: #A9CF8A; --edge: #5E9446; --ink: #2F5E22; --tint: #E0EFD3" aria-label="Fern Hollow">
+        <div class="w-top">
+          <img class="banner" src="../assets/duo/world-fern.webp" alt="Fern Hollow, world 3" loading="lazy">
+          <img class="shot" src="../assets/screens/forest-mushroom.webp" alt="The Mushroom track in Fern Hollow" loading="lazy">
+        </div>
+        <div class="w-body">
+          <div class="part"><b>Plants</b><div class="chips"><span class="chip">Pines &amp; firs</span><span class="chip">Autumn maple</span><span class="chip">Ferns</span></div></div>
+          <div class="part"><b>Landmarks</b><div class="chips"><span class="chip">Mossy boulders</span><span class="chip">Mushroom stump</span></div></div>
+          <div class="part"><b>Ground</b><div class="chips"><span class="chip">Leaf litter</span><span class="chip">Wood rim</span></div></div>
+          <div class="part"><b>On track</b><div class="chips"><span class="chip">Mud</span><span class="chip">Mole tunnels</span><span class="chip">Walls</span></div></div>
+          <div class="rival"><img src="../assets/racers/ladybug.webp" alt="" loading="lazy"><div><strong>Rival: Ladybug</strong>Win the Fern Hollow Grand Prix to unlock.</div></div>
+        </div>
+      </section>
     </div>
   </figure>
 
