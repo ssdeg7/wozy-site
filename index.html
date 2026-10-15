@@ -7,7 +7,8 @@
 <meta name="description" content="wOzy is a small independent studio making iOS apps and games since 2010: Animal Loop, TicToe Fury, Odyz and Dapply.">
 <meta property="og:title" content="wOzy">
 <meta property="og:description" content="Small apps, made with care, since 2010.">
-<link rel="icon" href="assets/wozy-logo.svg" type="image/svg+xml">
+<link rel="icon" href="assets/wozy-logo.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/wozy-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Nunito+Sans:opsz,wght@6..12,800;6..12,900&family=Cabin+Sketch:wght@700&family=Roboto+Slab:wght@600&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
@@ -71,12 +72,12 @@
   .app.ttf .go { background: #F4F1E6; color: #2C4F37; font-family: "Bricolage Grotesque", sans-serif; }
   .app.ttf .chalk { position: absolute; right: 30px; bottom: 26px; width: 150px; height: 150px; opacity: 0.85; }
 
-  .app.odyz { grid-column: span 5; color: #F2F2F2; background: #121212; font-family: "Outfit", sans-serif; }
+  .app.odyz { grid-column: span 7; color: #F2F2F2; background: #121212; font-family: "Outfit", sans-serif; }
   .app.odyz h2 { font-weight: 700; font-size: 40px; letter-spacing: -0.5px; }
   .app.odyz .go { background: #F2F2F2; color: #121212; }
   .app.odyz .globe { position: absolute; right: -60px; bottom: -80px; width: 300px; height: 300px; z-index: -1; opacity: 0.9; }
 
-  .app.dapply { grid-column: span 7; color: #fff; background: linear-gradient(195deg, #5685FF 0%, #27C6FF 100%); font-family: "Roboto Slab", serif; }
+  .app.dapply { grid-column: span 5; color: #fff; background: linear-gradient(195deg, #5685FF 0%, #27C6FF 100%); font-family: "Roboto Slab", serif; }
   .app.dapply h2 { font-weight: 600; font-size: 40px; }
   .app.dapply .kind, .app.dapply .pitch { font-family: "Bricolage Grotesque", sans-serif; }
   .app.dapply .go { background: rgba(255,255,255,0.92); color: #344767; font-family: "Bricolage Grotesque", sans-serif; }
@@ -103,6 +104,10 @@
   footer a { text-decoration: none; font-weight: 500; color: var(--ink); }
   footer a:hover { text-decoration: underline; }
 
+  @media (min-width: 901px) {
+    .app.dapply .glass { top: 30px; bottom: auto; width: 116px; gap: 6px; padding: 8px; border-radius: 18px; }
+    .app.dapply .glass i { border-radius: 9px; }
+  }
   @media (max-width: 900px) {
     .app.al, .app.ttf, .app.odyz, .app.dapply { grid-column: span 12; }
     .about { grid-template-columns: 1fr; gap: 28px; }
@@ -128,7 +133,7 @@
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="/" aria-label="wOzy home"><img src="assets/wozy-logo.svg" alt=""><span>wOzy</span></a>
+    <a class="brand" href="/" aria-label="wOzy home"><img src="assets/wozy-logo.png" alt=""><span>wOzy</span></a>
     <ul>
       <li><a href="#apps">Apps</a></li>
       <li class="hide-sm"><a href="#team">Team</a></li>
