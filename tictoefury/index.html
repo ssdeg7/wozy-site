@@ -52,7 +52,7 @@
 
   nav.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 0; }
   nav.top .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--chalk); font-family: "Cabin Sketch", cursive; font-size: 26px; font-weight: 700; }
-  nav.top .brand svg { width: 42px; height: 42px; flex: none; }
+  nav.top .brand img { width: 46px; height: 46px; flex: none; border-radius: 11px; box-shadow: 0 3px 8px rgba(0,0,0,0.3); }
   nav.top .links { display: flex; gap: 18px; align-items: center; font-size: 20px; }
   nav.top .links a { color: var(--chalk-dim); text-decoration: none; }
   nav.top .links a:hover { color: var(--chalk); text-decoration: underline wavy; text-underline-offset: 5px; }
@@ -87,13 +87,18 @@
 
   /* sections */
   .chalk-rule { height: 10px; margin: 0 0 64px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 10' preserveAspectRatio='none'%3E%3Cpath d='M2 6 C60 3 120 8 200 5 S330 3 398 6' fill='none' stroke='%23F4F1E6' stroke-opacity='.35' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
-  .feat { display: grid; grid-template-columns: 1fr 1fr; gap: 48px 64px; margin-bottom: 72px; }
-  .feat article h2 { font-size: clamp(34px, 4vw, 46px); margin-bottom: 14px; }
-  .feat article p { margin: 0; color: var(--chalk-dim); max-width: 42ch; }
-  .feat article:nth-child(1) h2 { color: var(--yellow); }
-  .feat article:nth-child(2) h2 { color: var(--blue); }
-  .feat article:nth-child(3) h2 { color: var(--pink); }
-  .feat article:nth-child(4) h2 { color: var(--chalk); }
+  .row { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; margin-bottom: 88px; }
+  .row.flip { grid-template-columns: 1fr 1.15fr; }
+  .row.flip .shot { order: 2; }
+  .shot img { display: block; width: 100%; height: auto; filter: drop-shadow(0 14px 24px rgba(0,0,0,0.35)); }
+  .row h2 { font-size: clamp(34px, 4vw, 46px); margin-bottom: 14px; }
+  .row h2 + p ~ h2 { margin-top: 30px; }
+  .row p { margin: 0 0 12px; color: var(--chalk-dim); max-width: 42ch; }
+  .c-yellow { color: var(--yellow); } .c-blue { color: var(--blue); } .c-pink { color: var(--pink); }
+
+  .reviews { text-align: center; margin-bottom: 88px; }
+  .reviews h2 { font-size: clamp(38px, 5vw, 58px); margin-bottom: 18px; }
+  .reviews img { width: min(900px, 100%); height: auto; }
 
   .list { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 40px; margin-bottom: 72px; align-items: start; }
   .list h2 { font-size: clamp(38px, 5vw, 58px); }
@@ -101,7 +106,7 @@
   .list li { break-inside: avoid; padding: 6px 0 6px 34px; position: relative; font-size: 22px; }
   .list li::before { content: ""; position: absolute; left: 0; top: 12px; width: 20px; height: 18px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 18'%3E%3Cpath d='M2 10 L8 15 L18 2' fill='none' stroke='%23F6E27A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat; }
 
-  .notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-bottom: 80px; }
+  .notes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; max-width: 760px; margin: 0 auto 80px; }
   .note { background: #FFF6B8; color: #3B3320; padding: 22px 22px 26px; transform: rotate(-1.5deg); box-shadow: 0 10px 20px rgba(0,0,0,0.3); font-size: 20px; line-height: 1.4; }
   .note:nth-child(2) { transform: rotate(1.2deg); background: #FFD3DC; }
   .note:nth-child(3) { transform: rotate(-0.6deg); background: #CFEBFF; }
@@ -113,7 +118,8 @@
 
   @media (max-width: 860px) {
     .hero { grid-template-columns: 1fr; padding-top: 16px; }
-    .feat, .list { grid-template-columns: 1fr; }
+    .row, .row.flip, .list { grid-template-columns: 1fr; gap: 24px; }
+    .row.flip .shot { order: 0; }
     .notes { grid-template-columns: 1fr; }
   }
   @media (max-width: 560px) {
@@ -133,7 +139,7 @@
   <div class="wrap">
     <nav class="top" aria-label="Main">
       <a class="brand" href="./">
-        <svg viewBox="0 0 80 80" aria-hidden="true"><rect width="80" height="80" rx="18" fill="#B87A45"/><rect x="7" y="7" width="66" height="66" rx="8" fill="#3B6446"/><g stroke="#F4F1E6" stroke-width="2" opacity=".55"><path d="M29 13v54M51 13v54M13 29h54M13 51h54"/></g><g fill="none" stroke="#F4F1E6" stroke-width="3.4" stroke-linecap="round"><circle cx="20" cy="20" r="5.5"/><path d="M55 15l9 9M64 15l-9 9M36 36l9 9M45 36l-9 9"/><circle cx="40" cy="61" r="5.5"/></g></svg>
+        <img src="assets/app-icon.png" alt="">
         TicToe Fury
       </a>
       <div class="links">
@@ -166,23 +172,37 @@
   <div class="wrap">
     <div class="chalk-rule" role="presentation"></div>
 
-    <section class="feat" id="features">
-      <article>
-        <h2>Online or offline</h2>
-        <p>Play against the AI in easy or hard mode, challenge a friend on the same device, or take on anyone online with Game Center turn-based multiplayer.</p>
-      </article>
-      <article>
-        <h2>Graphics that pop</h2>
-        <p>The game you played on paper, redrawn with fluid animations and artwork made for each device, from the smallest iPhone to the biggest iPad.</p>
-      </article>
-      <article>
+    <section class="row" id="features">
+      <div class="shot"><img src="assets/game-styles.webp" alt="TicToe Fury on iPad and iPhone: a big grid taped to a wooden table with a score notepad" width="1280" height="959" loading="lazy"></div>
+      <div>
+        <h2 class="c-yellow">Multiple game styles</h2>
+        <p>TicToe Fury is built to become one of your must-have apps, and to keep you playing for hours. Play alone, with friends on your device or online. However you play, it'll keep you entertained.</p>
+        <h2 class="c-blue">Online or offline</h2>
+        <p>Play against the AI in easy or hard mode, challenge a friend on the same device, or play online against a random player or one of your friends.</p>
+      </div>
+    </section>
+
+    <section class="row flip">
+      <div class="shot"><img src="assets/online.webp" alt="An &quot;It's a tie&quot; card over a finished game on iPad and iPhone" width="1280" height="959" loading="lazy"></div>
+      <div>
+        <h2 class="c-pink">Amazing graphics</h2>
+        <p>The game from your childhood, taken to a new level with artwork made for each device. Whether you play on iPhone or iPad, it looks great.</p>
+        <p>Every illustration is drawn with care, and images and animations are made separately for each device, so the graphics always look sharp.</p>
+      </div>
+    </section>
+
+    <section class="row">
+      <div class="shot"><img src="assets/customize.webp" alt="The TicToe Fury menu and settings in a leather planner, with named markers for each player" width="1280" height="959" loading="lazy"></div>
+      <div>
         <h2>Make it yours</h2>
-        <p>Pick your name, your colors and your playing style, then go after more than 30 achievements.</p>
-      </article>
-      <article>
-        <h2>Version 4.0, free</h2>
-        <p>A rebuilt online experience, new graphics and animations, and support for every iOS device. Already have it? The update is on us.</p>
-      </article>
+        <p>Pick your name, your colors and your playing style, so every match feels different. Earn more than 30 achievements and climb the online leaderboard.</p>
+        <p>The game is universal: download it once and play on all your iOS devices. Your online matches sync too, so you can pick up where you left off.</p>
+      </div>
+    </section>
+
+    <section class="reviews" aria-labelledby="rv">
+      <h2 id="rv">Great reviews</h2>
+      <img src="assets/reviews.png" alt="Over 400,000 downloads worldwide. Top 10 board game in multiple countries." width="1280" height="343" loading="lazy">
     </section>
 
     <section class="list" aria-labelledby="kf">
@@ -201,9 +221,24 @@
       </ul>
     </section>
 
+    <section class="row flip">
+      <div class="shot"><img src="assets/details.webp" alt="Blueprint sketches of the TicToe Fury game board and menu next to the finished design" width="1280" height="666" loading="lazy"></div>
+      <div>
+        <h2 class="c-yellow">It's in the details</h2>
+        <p>At wOzy we care about the small details. We built the app from scratch, started with pencil and paper, and drew every graphic by hand. The code is organized and polished, and we keep improving the app with new features.</p>
+      </div>
+    </section>
+
+    <section class="row">
+      <div class="shot"><img src="assets/music.png" alt="A piano with a glowing &quot;wOzy Music&quot; sign" width="700" height="341" loading="lazy"></div>
+      <div>
+        <h2 class="c-blue">We love music</h2>
+        <p>Life would be boring without music, so we made our own soundtrack. Music by the wOzy team plays throughout the game and makes every match more immersive.</p>
+      </div>
+    </section>
+
     <section class="notes" aria-label="Notes from the team">
-      <div class="note"><h3>It's in the details</h3><p>At wOzy we care about the small things: how a mark lands, how a win feels, how long a menu takes to get out of your way.</p></div>
-      <div class="note"><h3>We love music</h3><p>Life would be boring without it, so TicToe Fury has its own soundtrack to keep every round lively.</p></div>
+      <div class="note"><h3>Version 4.0, free</h3><p>A rebuilt online experience, new graphics and animations, and support for every iOS device. Already have it? The update is on us.</p></div>
       <div class="note"><h3>Where it started</h3><p>TicToe Fury was wOzy's first game, built when the first iPad came out. It's still going strong.</p></div>
     </section>
 
