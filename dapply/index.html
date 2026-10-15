@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dapply</title>
+<meta name="description" content="Dapply is the digital home for your NFTs on iPhone: images, GIFs, videos and 3D art in one gallery, with rarity, offers, portfolio value and on-chain ownership proof.">
+<meta property="og:title" content="Dapply for iPhone">
+<meta property="og:description" content="Your digital NFT home.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234E8DFF'/%3E%3Cstop offset='1' stop-color='%237B4DFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='80' height='80' rx='18' fill='url(%23g)'/%3E%3Cpath d='M24 18h16a22 22 0 0 1 0 44H24z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F0F2F5;
+    --heading: #344767;
+    --text: #7B809A;
+    --info-a: #5685FF;
+    --info-b: #27C6FF;
+    --dark-a: #42424A;
+    --dark-b: #191919;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4 { font-family: "Roboto Slab", serif; color: var(--heading); font-weight: 600; margin: 0; line-height: 1.25; }
+  a { color: var(--info-a); }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--info-b); outline-offset: 3px; border-radius: 8px; }
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+  .grad-text { background: linear-gradient(195deg, var(--info-a), var(--info-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* floating navbar */
+  .navbar { position: absolute; top: 16px; left: 24px; right: 24px; z-index: 10; max-width: 1092px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px 10px 22px; border-radius: 12px; background: rgba(255,255,255,0.8); backdrop-filter: saturate(200%) blur(30px); -webkit-backdrop-filter: saturate(200%) blur(30px); box-shadow: 0 4px 20px rgba(0,0,0,0.14), 0 7px 10px -5px rgba(64,64,64,0.4); }
+  .navbar .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--heading); font-weight: 700; font-size: 15px; }
+  .navbar .brand svg { width: 28px; height: 28px; }
+  .navbar ul { list-style: none; display: flex; align-items: center; gap: 2px; margin: 0; padding: 0; }
+  .navbar ul a { display: flex; align-items: center; gap: 6px; padding: 8px 12px; text-decoration: none; color: var(--heading); font-size: 14px; border-radius: 8px; }
+  .navbar ul a:hover { background: rgba(52,71,103,0.06); }
+  .navbar ul .material-icons-round { font-size: 18px; opacity: 0.7; }
+  .btn-grad { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(195deg, var(--info-a), var(--info-b)); color: #fff !important; font-weight: 700; font-size: 12px !important; text-transform: uppercase; letter-spacing: 0.4px; padding: 10px 18px !important; border-radius: 8px; box-shadow: 0 3px 3px rgba(39,198,255,0.15), 0 3px 1px -2px rgba(39,198,255,0.2), 0 1px 5px rgba(39,198,255,0.15); }
+
+  /* header */
+  .header { min-height: 75vh; background: url("https://wozyweb.s3.us-east-2.amazonaws.com/assets/img/iphone-outdoor.png") center / cover no-repeat, linear-gradient(195deg, var(--info-a), var(--info-b)); position: relative; }
+  .header::after { content: ""; position: absolute; inset: 0; background: linear-gradient(195deg, rgba(86,133,255,0.55), rgba(39,198,255,0.35)); }
+  .card-hero { position: relative; z-index: 2; margin: -96px 24px 0; padding: 48px 24px 40px; border-radius: 12px; background: rgba(255,255,255,0.85); backdrop-filter: saturate(200%) blur(30px); -webkit-backdrop-filter: saturate(200%) blur(30px); box-shadow: 0 8px 26px -4px rgba(20,20,20,0.15), 0 8px 9px -5px rgba(20,20,20,0.06); }
+  .card-hero .intro { text-align: center; max-width: 640px; margin: 0 auto; }
+  .card-hero h1 { font-size: clamp(36px, 5vw, 48px); }
+  .card-hero .intro p { font-size: 20px; font-weight: 300; margin: 12px 0 18px; }
+  .museum { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 16px; text-align: left; background: rgba(86,133,255,0.1); color: #3C64C8; font-size: 14px; font-weight: 500; }
+  .museum .material-icons-round { font-size: 18px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 40px; }
+  .stat { text-align: center; padding: 8px 24px; }
+  .stat + .stat { border-left: 1px solid; border-image: linear-gradient(transparent, rgba(0,0,0,0.25), transparent) 1; }
+  .stat .num { font-family: "Roboto Slab", serif; font-size: 48px; font-weight: 700; line-height: 1.1; }
+  .stat h3 { font-size: 20px; margin-top: 6px; }
+  .stat p { margin: 6px auto 0; max-width: 26ch; font-size: 15px; }
+
+  /* carousel */
+  .shots { padding: 72px 0 24px; }
+  .track { display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 10px 20px 26px; scrollbar-width: thin; scroll-padding: 0 20px; }
+  .track figure { flex: none; width: 220px; margin: 0; scroll-snap-align: start; }
+  .track figure div { aspect-ratio: 462 / 1000; border-radius: 30px; background: #111; padding: 7px; box-shadow: 0 10px 25px rgba(52,71,103,0.25); }
+  .track img { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; display: block; background: #222; }
+  .track-nav { display: flex; justify-content: center; gap: 10px; }
+  .track-nav button { width: 42px; height: 42px; border-radius: 50%; border: 0; background: #fff; color: var(--heading); box-shadow: 0 2px 8px rgba(52,71,103,0.18); cursor: pointer; display: grid; place-items: center; }
+  .track-nav button:hover { background: var(--heading); color: #fff; }
+
+  /* features */
+  .features { padding: 72px 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px 40px; }
+  .feature { display: flex; gap: 18px; align-items: flex-start; }
+  .feature .ic { flex: none; width: 56px; height: 56px; border-radius: 12px; display: grid; place-items: center; color: #fff; background: linear-gradient(195deg, var(--info-a), var(--info-b)); box-shadow: 0 4px 20px rgba(0,0,0,0.14), 0 7px 10px -5px rgba(39,198,255,0.4); }
+  .feature h3 { font-size: 20px; margin-bottom: 6px; }
+  .feature p { margin: 0; }
+
+  /* dark CTA */
+  .dark { margin: 0 20px; border-radius: 16px; overflow: hidden; position: relative; background: url("https://wozyweb.s3.us-east-2.amazonaws.com/assets/img/detailed-views.png") center / cover no-repeat; }
+  .dark::before { content: ""; position: absolute; inset: 0; background: linear-gradient(195deg, rgba(66,66,74,0.92), rgba(25,25,25,0.94)); }
+  .dark .in { position: relative; display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; padding: 64px 48px; max-width: 1140px; margin: 0 auto; }
+  .dark .kick { color: rgba(255,255,255,0.7); font-size: 16px; font-weight: 500; }
+  .dark h2 { color: #fff; font-size: clamp(32px, 4.5vw, 48px); margin: 6px 0 14px; }
+  .dark p { color: rgba(255,255,255,0.8); font-size: 18px; margin: 0 0 26px; max-width: 36ch; }
+  .dark img.devices { width: 100%; display: block; }
+
+  /* app details */
+  .details { padding: 72px 0 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .details div { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 6px rgba(52,71,103,0.08); }
+  .details b { display: block; color: var(--heading); font-family: "Roboto Slab", serif; font-size: 17px; margin-bottom: 4px; }
+  .details span { font-size: 15px; }
+
+  footer { padding: 48px 20px 40px; text-align: center; font-size: 14px; }
+  footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin-bottom: 14px; }
+  footer nav a { color: var(--heading); text-decoration: none; font-weight: 500; }
+  footer nav a:hover { text-decoration: underline; }
+
+  @media (max-width: 900px) {
+    .navbar ul li.hide-md { display: none; }
+    .stats { grid-template-columns: 1fr; gap: 20px; }
+    .stat + .stat { border-left: 0; border-top: 1px solid rgba(0,0,0,0.08); padding-top: 20px; }
+    .features { grid-template-columns: 1fr; }
+    .dark .in { grid-template-columns: 1fr; padding: 48px 24px; }
+    .details { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .navbar { left: 12px; right: 12px; }
+    .navbar ul li.hide-sm { display: none; }
+    .header { min-height: 62vh; }
+    .card-hero { margin: -80px 10px 0; padding: 36px 16px 28px; }
+    .track figure { width: 180px; }
+    .dark { margin: 0 10px; }
+    .details { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="navbar" aria-label="Main">
+    <a class="brand" href="./">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><defs><linearGradient id="dg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4E8DFF"/><stop offset="1" stop-color="#7B4DFF"/></linearGradient></defs><rect width="80" height="80" rx="18" fill="url(#dg)"/><path d="M24 18h16a22 22 0 0 1 0 44H24z" fill="#fff"/><path d="M30 34h11v28H30z" fill="#C9D6F5"/></svg>
+      Dapply
+    </a>
+    <ul>
+      <li class="hide-md"><a href="https://wiki.dapply.app"><span class="material-icons-round" aria-hidden="true">menu_book</span>Wiki</a></li>
+      <li class="hide-md"><a href="https://twitter.com/DapplyApp"><span class="material-icons-round" aria-hidden="true">tag</span>Twitter</a></li>
+      <li class="hide-sm"><a href="https://docs.google.com/forms/d/e/1FAIpQLSemuJiq_p8silVNTD1-nFQmJ9umYozyRx9nmWabc7uFsry7vg/viewform"><span class="material-icons-round" aria-hidden="true">help_outline</span>Support</a></li>
+      <li class="hide-sm"><a href="../"><span class="material-icons-round" aria-hidden="true">apps</span>wOzy</a></li>
+      <li><a class="btn-grad" href="https://apps.apple.com/us/app/dapply/id1601017101">Download</a></li>
+    </ul>
+  </nav>
+  <div class="header" role="img" aria-label="A hand holding an iPhone showing an NFT in Dapply"></div>
+</header>
+
+<main>
+  <section class="card-hero">
+    <div class="intro">
+      <h1>Dapply for iPhone</h1>
+      <p>Your digital home for NFTs. Every piece you own, in one beautiful gallery made for iPhone.</p>
+      <span class="museum"><span class="material-icons-round" aria-hidden="true">account_balance</span>Dapply 3.0 preserves your collection as a museum of the Web3 era</span>
+    </div>
+    <div class="stats container">
+      <div class="stat"><div class="num grad-text">2</div><h3>Networks</h3><p>Ethereum and Solana support, in a single app.</p></div>
+      <div class="stat"><div class="num grad-text">63+</div><h3>Features</h3><p>From properties to offers, bids, notifications and more.</p></div>
+      <div class="stat"><div class="num grad-text">∞</div><h3>NFTs</h3><p>Collect as many as you like and see them in Dapply's beautiful interface.</p></div>
+    </div>
+  </section>
+
+  <section class="shots" aria-label="Screenshots">
+    <div class="track" id="track" tabindex="0">
+      <figure><div><img src="https://wozyweb.s3.us-east-2.amazonaws.com/assets/img/carousel/1.png" alt="Dapply screenshot 1" loading="lazy"></div></figure>
+      <figure><div><img src="https://wozyweb.s3.us-east-2.amazonaws.com/assets/img/carousel/2.png" alt="Dapply screenshot 2" loading="lazy"></div></figure>
+      <figure><div><img src="https://wozyweb.s3.us-east-2.amazonaws.com/assets/img/carousel/3.png" alt="Dapply screenshot 3" loading="lazy"></div></figure>
+      <figure><div><img src="https://wozyweb.s3.us-east-2.amazonaws.com/assets/img/carousel/4.png" alt="Dapply screenshot 4" loading="lazy"></div></figure>
+      <figure><div><img src="https://wozyweb.s3.us-east-2.amazonaws.com/assets/img/carousel/5.png" alt="Dapply screenshot 5" loading="lazy"></div></figure>
+      <figure><div><img src="https://wozyweb.s3.us-east-2.amazonaws.com/assets/img/carousel/6.png" alt="Dapply screenshot 6" loading="lazy"></div></figure>
+      <figure><div><img src="https://wozyweb.s3.us-east-2.amazonaws.com/assets/img/carousel/7.png" alt="Dapply screenshot 7" loading="lazy"></div></figure>
+      <figure><div><img src="https://wozyweb.s3.us-east-2.amazonaws.com/assets/img/carousel/8.png" alt="Dapply screenshot 8" loading="lazy"></div></figure>
+      <figure><div><img src="https://wozyweb.s3.us-east-2.amazonaws.com/assets/img/carousel/9.png" alt="Dapply screenshot 9" loading="lazy"></div></figure>
+      <figure><div><img src="https://wozyweb.s3.us-east-2.amazonaws.com/assets/img/carousel/10.png" alt="Dapply screenshot 10" loading="lazy"></div></figure>
+    </div>
+    <div class="track-nav">
+      <button type="button" data-dir="-1" aria-label="Previous screenshots"><span class="material-icons-round" aria-hidden="true">chevron_left</span></button>
+      <button type="button" data-dir="1" aria-label="Next screenshots"><span class="material-icons-round" aria-hidden="true">chevron_right</span></button>
+    </div>
+  </section>
+
+  <section class="container features" aria-label="Features">
+    <div class="feature"><div class="ic"><span class="material-icons-round" aria-hidden="true">smartphone</span></div><div><h3>iOS ready app</h3><p>Built from the ground up for iPhone, using the best iOS features in an intuitive, friendly way.</p></div></div>
+    <div class="feature"><div class="ic"><span class="material-icons-round" aria-hidden="true">photo_camera</span></div><div><h3>All of your NFTs</h3><p>Images, GIFs, videos and 3D art in one place, with filters, sorting and advanced search. Imported automatically, no manual entry.</p></div></div>
+    <div class="feature"><div class="ic"><span class="material-icons-round" aria-hidden="true">insights</span></div><div><h3>Detailed views</h3><p>Rarity and rank, offers and bids, floor price, royalties, property rarity and full transaction history, plus your portfolio value over time.</p></div></div>
+    <div class="feature"><div class="ic"><span class="material-icons-round" aria-hidden="true">verified_user</span></div><div><h3>Showcase verified NFTs</h3><p>Ownership is verified on the blockchain, and you can share your proof of ownership in several ways.</p></div></div>
+  </section>
+
+  <section class="dark" aria-labelledby="control">
+    <div class="in">
+      <div>
+        <div class="kick">With Dapply</div>
+        <h2 id="control">Control is in your hands</h2>
+        <p>Each view is carefully crafted to show you the most relevant information first.</p>
+        <a href="https://apps.apple.com/us/app/dapply/id1601017101" aria-label="Download Dapply on the App Store" style="display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 20px 0 16px; border-radius: 12px; background: #000; color: #fff; text-decoration: none; box-shadow: inset 0 0 0 1.5px #A6A6A6; font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;"><svg viewBox="0 0 384 512" width="24" height="30" aria-hidden="true"><path fill="#fff" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span style="display: flex; flex-direction: column; line-height: 1; text-align: left"><span style="font-size: 11px; font-weight: 500">Download on the</span><span style="font-size: 24px; font-weight: 600; letter-spacing: -0.6px; margin-top: 3px">App Store</span></span></a>
+      </div>
+      <img class="devices" src="https://wozyweb.s3.us-east-2.amazonaws.com/assets/img/dapply-screenshots.png" alt="Dapply's NFT detail, gallery and portfolio screens" loading="lazy">
+    </div>
+  </section>
+
+  <section class="container details" aria-label="App details">
+    <div><b>Free</b><span>Monthly, yearly and lifetime Pro plans for power users</span></div>
+    <div><b>iPhone and Apple Vision</b><span>Requires iOS 16 or visionOS 1 or later</span></div>
+    <div><b>5.0 stars</b><span>Rated by collectors on the App Store</span></div>
+    <div><b>Graphics &amp; Design</b><span>Made by wOzy Technologies LLC</span></div>
+  </section>
+</main>
+
+<footer>
+  <nav aria-label="Footer">
+    <a href="https://wiki.dapply.app">Dapply Wiki</a>
+    <a href="https://twitter.com/DapplyApp">Twitter</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSemuJiq_p8silVNTD1-nFQmJ9umYozyRx9nmWabc7uFsry7vg/viewform">Support</a>
+    <a href="../">wOzy</a>
+  </nav>
+  Copyright © 2026 wOzy Technologies LLC. All rights reserved. Dapply and wOzy are trademarks of wOzy in the U.S. and/or other countries.
+</footer>
+
+<script>
+  (function () {
+    var track = document.getElementById('track');
+    document.querySelectorAll('.track-nav button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        track.scrollBy({ left: +b.dataset.dir * track.clientWidth * 0.8, behavior: 'smooth' });
+      });
+    });
+  })();
+</script>
+</body>
+</html>

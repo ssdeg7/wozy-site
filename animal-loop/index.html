@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Animal Loop: the one-tap racing game</title>
+<meta name="description" content="Animal Loop is a one-tap animal racing game for iPhone and iPad. 18 racers, 27 handmade tracks across three worlds, a Grand Prix in every world and a day/night cycle on every track.">
+<meta property="og:title" content="Animal Loop: tiny racers, big loops">
+<meta property="og:description" content="The one-tap racing game for iPhone and iPad.">
+<meta property="og:image" content="https://www.wozy.co/animal-loop/assets/blog/hamster-racing-logo.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/app-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;1,6..12,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FBF5E6; --cream-2: #F3E8CC; --sand: #F1E6C9;
+    --navy: #2B1F4D; --navy-2: #2E2154; --body: #3A2F55; --muted: #6B6180;
+    --amber: #EDA11F; --amber-deep: #B47714; --plum: #8C3D47; --rust: #A6582F; --teal: #1F7A82; --leaf: #3F7A2E;
+    --night: #171320;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--cream); color: var(--navy); font-family: "Nunito Sans", "Avenir Next", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; }
+  a { color: var(--plum); text-underline-offset: 3px; }
+  a:hover { color: var(--rust); }
+  a:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; border-radius: 8px; }
+  ::selection { background: var(--amber); color: var(--navy); }
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+
+  /* nav (same as the dev diary) */
+  .nav { position: sticky; top: 0; z-index: 20; background: rgba(251,245,230,0.94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 1px 0 rgba(43,31,77,0.08); }
+  .nav-in { max-width: 1120px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; min-width: 0; }
+  .nav-brand img { width: 34px; height: 34px; border-radius: 9px; flex: none; }
+  .nav-brand b { font-size: 17px; font-weight: 900; color: var(--navy); white-space: nowrap; }
+  .nav-links { display: flex; align-items: center; gap: 6px; }
+  .nav-links .lnk { font-size: 15px; font-weight: 800; color: var(--navy); text-decoration: none; padding: 8px 12px; border-radius: 16px; white-space: nowrap; }
+  .nav-links .lnk:hover { background: var(--cream-2); color: var(--navy); }
+  .pill { display: inline-flex; align-items: center; gap: 8px; background: var(--amber); color: var(--navy); text-decoration: none; font-size: 14px; font-weight: 900; padding: 9px 16px; border-radius: 20px; box-shadow: 0 3px 0 var(--amber-deep); white-space: nowrap; }
+  .pill:hover { background: #F2B03A; color: var(--navy); }
+
+  /* hero */
+  .hero { background: linear-gradient(180deg, #8E80D8 0%, #B08ED0 28%, #E1A0C2 60%, #F8C6B6 100%); padding: 64px 24px 0; overflow: hidden; }
+  .hero-in { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; }
+  .hero .icon { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 6px 0 rgba(43,31,77,0.25); }
+  .hero h1 { margin: 0; font-size: clamp(46px, 8vw, 92px); line-height: 0.98; font-weight: 900; letter-spacing: -2px; color: var(--navy); }
+  .hero .sub { margin: 0; max-width: 560px; font-size: clamp(19px, 2.1vw, 23px); line-height: 1.45; color: var(--navy-2); }
+  .hero .ctas { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px 22px; margin-top: 6px; }
+  .hero .ctas .read { font-size: 16px; font-weight: 800; color: var(--navy); }
+  .phones { position: relative; width: 100%; max-width: 900px; height: clamp(320px, 52vw, 520px); margin-top: 40px; }
+  .phone { position: absolute; bottom: -120px; width: clamp(170px, 26vw, 270px); aspect-ratio: 1206 / 2622; background: #1C1B22; padding: clamp(6px, 0.8vw, 9px); border-radius: clamp(28px, 4vw, 44px); box-shadow: inset 0 0 0 2px #3B3946, 0 0 0 1px #0E0D12, 0 24px 48px rgba(43,31,77,0.3); }
+  .phone::before { content: ""; position: absolute; top: 4.5%; left: 50%; width: 30%; height: 3.2%; transform: translateX(-50%); border-radius: 12px; background: #0E0D12; z-index: 1; }
+  .phone img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: clamp(22px, 3.3vw, 36px); }
+  .phone.c { left: 50%; transform: translateX(-50%); bottom: -60px; z-index: 2; }
+  .phone.l { left: 50%; transform: translateX(-138%) rotate(-7deg); }
+  .phone.r { left: 50%; transform: translateX(38%) rotate(7deg); }
+
+  /* shared section bits */
+  .sec { padding: 96px 24px 0; display: flex; flex-direction: column; align-items: center; }
+  .head { width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 14px; }
+  .head.center { text-align: center; align-items: center; }
+  .head h2 { margin: 0; font-size: clamp(34px, 5vw, 52px); line-height: 1.04; font-weight: 900; letter-spacing: -1.2px; color: var(--navy); }
+  .head p { margin: 0; font-size: 19px; line-height: 1.65; color: var(--body); }
+  .cap { font-family: var(--mono); font-size: 13px; line-height: 1.5; color: var(--muted); text-align: center; }
+
+  .divider { width: 100%; max-width: 680px; position: relative; height: 44px; margin: 88px auto 0; }
+  .divider .dots { position: absolute; left: 0; right: 26px; top: 20px; border-top: 3px dotted #D6C7A4; }
+  .divider .done { position: absolute; left: 0; top: 20px; border-top: 3px dotted var(--amber); }
+  .divider .flag { position: absolute; right: 0; top: 12px; width: 18px; height: 18px; border-radius: 3px; background: repeating-conic-gradient(#2B1F4D 0% 25%, #F7EDD1 0% 50%) 0 0 / 9px 9px; box-shadow: 0 0 0 1.5px #2B1F4D; }
+  .divider .ball { position: absolute; top: 4px; width: 36px; height: 36px; margin-left: -18px; }
+  .divider .ball > div { width: 56px; height: 56px; transform: scale(0.643); transform-origin: 0 0; }
+
+  /* how it plays */
+  #mech-loops { width: 100%; max-width: 1040px; margin-top: 40px; }
+
+  /* worlds */
+  .worlds { width: 100%; max-width: 1120px; margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .world { border-radius: 28px; padding: 22px 22px 0; display: flex; flex-direction: column; gap: 14px; overflow: hidden; }
+  .world.dune { background: #EBC891; } .world.coral { background: #39B8BE; } .world.fern { background: #5DA83B; }
+  .world .banner { width: 100%; border-radius: 14px; display: block; }
+  .world p { margin: 0; font-size: 17px; line-height: 1.5; color: var(--navy); font-weight: 700; }
+  .world.coral p, .world.fern p { color: #fff; }
+  .world .shot { margin: 10px auto -70px; width: 74%; aspect-ratio: 1206 / 2622; border-radius: 26px; overflow: hidden; box-shadow: 0 0 0 6px var(--navy), 0 18px 36px rgba(43,31,77,0.25); }
+  .world .shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .world { padding-bottom: 0; height: 100%; }
+  .world-wrap { overflow: hidden; border-radius: 28px; }
+  .mechs { width: 100%; max-width: 1040px; margin-top: 40px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .mech { display: flex; flex-direction: column; gap: 10px; }
+  .mech img { width: 100%; border-radius: 16px; display: block; }
+  .mech b { font-size: 16px; font-weight: 900; }
+  .mech span { font-size: 15px; line-height: 1.45; color: var(--body); }
+
+  /* racers */
+  .racers { margin-top: 96px; background: var(--navy); color: #F7EDD1; padding: 88px 24px; display: flex; flex-direction: column; align-items: center; gap: 44px; position: relative; overflow: hidden; }
+  .racers::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 14px; background: repeating-conic-gradient(#F7EDD1 0% 25%, #2B1F4D 0% 50%) 0 0 / 14px 14px; }
+  .racers .head h2 { color: #F7EDD1; }
+  .racers .head p { color: rgba(247,237,209,0.85); }
+  .roster { width: 100%; max-width: 1000px; display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 22px 14px; list-style: none; margin: 0; padding: 0; }
+  .roster li { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; color: rgba(247,237,209,0.9); }
+  .roster img { width: 92px; height: 92px; object-fit: contain; display: block; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.35)); }
+  .roster li.more { justify-content: center; }
+  .roster li.more div { width: 92px; height: 92px; border-radius: 50%; display: grid; place-items: center; box-shadow: inset 0 0 0 3px rgba(247,237,209,0.35); font-size: 24px; font-weight: 900; color: var(--amber); }
+
+  /* grand prix */
+  .split { width: 100%; max-width: 1040px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .split .txt { display: flex; flex-direction: column; gap: 18px; }
+  .split h2 { margin: 0; font-size: clamp(34px, 5vw, 52px); line-height: 1.04; font-weight: 900; letter-spacing: -1.2px; }
+  .split p { margin: 0; font-size: 19px; line-height: 1.65; color: var(--body); }
+  .split strong { color: var(--navy); font-weight: 800; }
+  .gp-art { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  .gp-art .doors { width: min(300px, 80%); aspect-ratio: 9 / 16; border-radius: 26px; overflow: hidden; box-shadow: 0 0 0 7px var(--navy), 0 18px 36px rgba(43,31,77,0.22); }
+  .gp-art .doors img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gp-art .callout { width: min(440px, 100%); border-radius: 14px; box-shadow: 0 10px 24px rgba(43,31,77,0.18); transform: rotate(-1.5deg); display: block; }
+
+  /* day / night */
+  .daynight { width: 100%; max-width: 600px; margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .daynight figure { margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  .daynight .frame { position: relative; background: #1C1B22; padding: 9px; border-radius: 44px; box-shadow: inset 0 0 0 2px #3B3946, 0 0 0 1px #0E0D12, 0 20px 40px rgba(43,31,77,0.25); }
+  .daynight .frame::before { content: ""; position: absolute; top: 18px; left: 50%; width: 30%; height: 22px; margin-left: -15%; border-radius: 11px; background: #0E0D12; z-index: 1; }
+  .daynight .frame div { aspect-ratio: 1206 / 2622; border-radius: 36px; overflow: hidden; }
+  .daynight img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* diary */
+  .diary { width: 100%; max-width: 1040px; display: grid; grid-template-columns: 1.1fr 1fr; background: #FFFDF6; border-radius: 28px; overflow: hidden; text-decoration: none; color: var(--navy); box-shadow: 0 0 0 1.5px #EADFC4, 0 6px 0 #EADFC4; }
+  .diary:hover { color: var(--navy); box-shadow: 0 0 0 1.5px var(--amber), 0 6px 0 var(--amber-deep); }
+  .diary .art { background: linear-gradient(180deg, #8E80D8 0%, #E1A0C2 70%, #F8C6B6 100%); display: grid; place-items: center; padding: 28px; }
+  .diary .art img { width: 100%; max-width: 440px; border-radius: 18px; box-shadow: 0 14px 30px rgba(43,31,77,0.25); transform: rotate(-2deg); }
+  .diary .body { padding: 36px 36px 32px; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+  .diary .kicker { font-family: var(--mono); font-size: 13px; color: var(--plum); }
+  .diary h3 { margin: 0; font-size: clamp(26px, 3vw, 34px); line-height: 1.1; font-weight: 900; letter-spacing: -0.6px; }
+  .diary p { margin: 0; font-size: 17px; line-height: 1.6; color: var(--body); }
+  .diary .more { font-weight: 900; color: var(--plum); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* numbers + CTA */
+  .numbers { margin-top: 96px; background: var(--night); padding: 80px 24px; display: flex; justify-content: center; }
+  .numbers ul { width: 100%; max-width: 1040px; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .numbers li { display: flex; flex-direction: column; gap: 8px; }
+  .numbers b { font-size: clamp(60px, 8vw, 92px); line-height: 0.9; font-weight: 900; letter-spacing: -3px; }
+  .numbers span { font-size: 17px; line-height: 1.5; color: rgba(247,237,209,0.85); }
+  .cta { width: 100%; max-width: 1040px; margin: 96px auto 0; background: linear-gradient(180deg, #8E80D8 0%, #C996C8 55%, #F8C6B6 100%); border-radius: 32px; padding: 64px 28px; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
+  .cta img.icon { width: 104px; height: 104px; border-radius: 24px; box-shadow: 0 6px 0 rgba(43,31,77,0.25); }
+  .cta h2 { margin: 0; font-size: clamp(38px, 6vw, 60px); line-height: 1; font-weight: 900; color: var(--navy); letter-spacing: -1.5px; }
+  .cta .free { font-size: 21px; font-weight: 800; color: var(--navy-2); }
+
+  footer { margin-top: 96px; padding: 28px 24px 40px; background: var(--sand); display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+  footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; font-size: 15px; font-weight: 800; }
+  footer nav a { color: var(--navy); }
+  footer small { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+  @media (max-width: 900px) {
+    .worlds { grid-template-columns: 1fr; max-width: 460px; }
+    .mechs { grid-template-columns: repeat(2, 1fr); }
+    .mech:last-child { grid-column: span 2; max-width: calc(50% - 8px); justify-self: center; }
+    .split { grid-template-columns: 1fr; gap: 40px; }
+    .split .gp-art { order: 2; }
+    .diary { grid-template-columns: 1fr; }
+    .numbers ul { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .nav-links .lnk { display: none; }
+    .phones { height: 330px; }
+    .phone { width: 150px; bottom: -90px; }
+    .phone.c { bottom: -40px; width: 170px; }
+    .phone.l { transform: translateX(-120%) rotate(-7deg); }
+    .phone.r { transform: translateX(20%) rotate(7deg); }
+    .daynight { gap: 16px; }
+    .daynight .frame { padding: 6px; border-radius: 30px; }
+    .daynight .frame div { border-radius: 25px; }
+    .daynight .frame::before { top: 12px; height: 14px; }
+    .diary .body { padding: 26px 22px; }
+    .numbers ul { gap: 28px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="nav-brand" href="./" aria-label="Animal Loop home"><img src="assets/app-icon.png" alt=""><b>Animal Loop</b></a>
+    <div class="nav-links">
+      <a class="lnk" href="blog/">Dev diary</a>
+      <a class="lnk" href="../">wOzy</a>
+      <a class="pill" href="https://apps.apple.com/us/search?term=Animal%20Loop">Get the game</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-in">
+    <img class="icon" src="assets/app-icon.png" alt="Animal Loop app icon: a hamster curled in its ball">
+    <h1>Tiny racers.<br>Big loops.</h1>
+    <p class="sub">The one-tap racing game for iPhone and iPad. Your animal rolls on its own. Every tap turns it.</p>
+    <div class="ctas">
+      <a href="https://apps.apple.com/us/search?term=Animal%20Loop" aria-label="Download on the App Store" style="display: inline-flex; align-items: center; gap: 10px; height: 58px; padding: 0 20px 0 16px; border-radius: 13px; background: #000; color: #fff; text-decoration: none; box-shadow: inset 0 0 0 1.5px #A6A6A6, 0 4px 0 rgba(23,19,32,0.35); font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif; "><svg viewBox="0 0 384 512" width="26" height="32" aria-hidden="true" style="flex: none"><path fill="#fff" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span style="display: flex; flex-direction: column; align-items: flex-start; line-height: 1; text-align: left"><span style="font-size: 11px; font-weight: 500; letter-spacing: 0.2px">Download on the</span><span style="font-size: 25px; font-weight: 600; letter-spacing: -0.6px; margin-top: 3px">App Store</span></span></a>
+      <a class="read" href="blog/">Read how it was made</a>
+    </div>
+    <div class="phones" aria-hidden="true">
+      <div class="phone l"><img src="assets/screens/desert-day.webp" alt=""></div>
+      <div class="phone r"><img src="assets/screens/water-figure8-v2.webp" alt=""></div>
+      <div class="phone c"><img src="assets/screens/menu.webp" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="how">
+  <div class="head center">
+    <h2 id="how">One tap to steer</h2>
+    <p>No stick, no brake. Your ball rolls in a straight line and each tap turns it. Time your taps to stay off the walls and keep your hearts.</p>
+  </div>
+  <div id="mech-loops"></div>
+</section>
+
+<div class="divider" aria-hidden="true"><div class="dots"></div><div class="done" style="width: 22%"></div><div class="flag"></div><div class="ball" style="left: 22%; transform: rotate(-12deg)"><div><div style="position:relative; width:56px; height:56px"><div style="position:absolute; inset:0; border-radius:50%; background:#dfa96a; box-shadow:inset 0 0 0 3px #a9743a"></div>
+<div style="position:absolute; left:6px; top:2px; width:16px; height:16px; border-radius:50%; background:#e9bd82; box-shadow:inset 0 0 0 2px #a9743a"></div>
+<div style="position:absolute; left:34px; top:2px; width:16px; height:16px; border-radius:50%; background:#e9bd82; box-shadow:inset 0 0 0 2px #a9743a"></div>
+<div style="position:absolute; left:12px; top:24px; width:32px; height:26px; border-radius:50%; background:#f7ead3"></div>
+<div style="position:absolute; left:19px; top:30px; width:7px; height:7px; border-radius:50%; background:#33251c"></div>
+<div style="position:absolute; left:30px; top:30px; width:7px; height:7px; border-radius:50%; background:#33251c"></div>
+<div style="position:absolute; left:25px; top:40px; width:7px; height:5px; border-radius:50%; background:#b9756a"></div></div></div></div></div>
+
+<section class="sec" aria-labelledby="worlds">
+  <div class="head center">
+    <h2 id="worlds">Three worlds, dawn to night</h2>
+    <p>Nine handmade tracks in every world, from simple loops to figure-8s that cross over themselves.</p>
+  </div>
+  <div class="worlds">
+    <div class="world-wrap"><div class="world dune">
+      <img class="banner" src="assets/duo/world-dune.webp" alt="Dune Flats, world 1, 27 stars">
+      <p>Desert roads past the pyramids, with switch gates that flip which way a tap turns you.</p>
+      <div class="shot"><img src="assets/screens/desert-figure8.webp" alt="A figure-8 track in Dune Flats"></div>
+    </div></div>
+    <div class="world-wrap"><div class="world coral">
+      <img class="banner" src="assets/duo/world-coral.webp" alt="Coral Shallows, world 2, 27 stars">
+      <p>Sandbars over turquoise water, with bridges and knots that loop back under themselves.</p>
+      <div class="shot"><img src="assets/screens/water-trefoil.webp" alt="A trefoil knot track in Coral Shallows"></div>
+    </div></div>
+    <div class="world-wrap"><div class="world fern">
+      <img class="banner" src="assets/duo/world-fern.webp" alt="Fern Hollow, world 3, 27 stars">
+      <p>Forest trails with sticky mud patches and moles that dig you a shortcut.</p>
+      <div class="shot"><img src="assets/screens/forest-mushroom.webp" alt="The Mushroom track in Fern Hollow"></div>
+    </div></div>
+  </div>
+  <div class="mechs">
+    <div class="mech"><img src="assets/mechanics/bridges.webp" alt=""><b>Bridges</b><span>Tracks cross over and under themselves.</span></div>
+    <div class="mech"><img src="assets/mechanics/gates.webp" alt=""><b>Switch gates</b><span>Flip the way your taps turn, mid-lap.</span></div>
+    <div class="mech"><img src="assets/mechanics/mud.webp" alt=""><b>Mud</b><span>Slows you down the deeper you roll in.</span></div>
+    <div class="mech"><img src="assets/mechanics/tunnels.webp" alt=""><b>Mole tunnels</b><span>Hit the mole and take the shortcut.</span></div>
+    <div class="mech"><img src="assets/mechanics/wall.webp" alt=""><b>Walls</b><span>Every bump costs a heart. Hit one too often and it cracks.</span></div>
+  </div>
+</section>
+
+<section class="racers" aria-labelledby="racers">
+  <div class="head center">
+    <h2 id="racers">Collect 18 racers</h2>
+    <p>Hedgehogs, otters, owls and more, each rolling in its own ball. Win a world's Grand Prix and its rival joins your roster.</p>
+  </div>
+  <ul class="roster">
+    <li><img src="assets/racers/hamster.webp" alt="" loading="lazy">Hamster</li>
+    <li><img src="assets/racers/hedgehog.webp" alt="" loading="lazy">Hedgehog</li>
+    <li><img src="assets/racers/armadillo.webp" alt="" loading="lazy">Armadillo</li>
+    <li><img src="assets/racers/chipmunk.webp" alt="" loading="lazy">Chipmunk</li>
+    <li><img src="assets/racers/frog.webp" alt="" loading="lazy">Frog</li>
+    <li><img src="assets/racers/koala.webp" alt="" loading="lazy">Koala</li>
+    <li><img src="assets/racers/ladybug.webp" alt="" loading="lazy">Ladybug</li>
+    <li><img src="assets/racers/mole.webp" alt="" loading="lazy">Mole</li>
+    <li><img src="assets/racers/octopus.webp" alt="" loading="lazy">Octopus</li>
+    <li><img src="assets/racers/otter.webp" alt="" loading="lazy">Otter</li>
+    <li><img src="assets/racers/owl.webp" alt="" loading="lazy">Owl</li>
+    <li><img src="assets/racers/puffer.webp" alt="" loading="lazy">Puffer</li>
+    <li><img src="assets/racers/rabbit.webp" alt="" loading="lazy">Rabbit</li>
+    <li><img src="assets/racers/redpanda.webp" alt="" loading="lazy">Red panda</li>
+    <li><img src="assets/racers/tortoise.webp" alt="" loading="lazy">Tortoise</li>
+    <li class="more"><div>+3</div>to discover</li>
+  </ul>
+</section>
+
+<section class="sec" aria-labelledby="gp">
+  <div class="split">
+    <div class="gp-art">
+      <div class="doors"><img src="assets/blog/vs-doors.webp" alt="Grand Prix doors: the Ladybug rival on top, you below, VS on the seam"></div>
+      <img class="callout" src="assets/duo/callout-gp.webp" alt="The Grand Prix card showing all nine track shapes in race order">
+    </div>
+    <div class="txt">
+      <h2 id="gp">Take on the Grand Prix</h2>
+      <p>Every world ends with one: <strong>all nine tracks, back to back</strong>, at the speed you pick, against that world's rival animal.</p>
+      <p>Your Game Center friends race with you as translucent <strong>ghosts</strong> of their best runs, so you always know if you're ahead or falling behind.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><div class="dots"></div><div class="done" style="width: 58%"></div><div class="flag"></div><div class="ball" style="left: 58%; transform: rotate(20deg)"><div><div style="position:relative; width:56px; height:56px"><div style="position:absolute; inset:0; border-radius:50%; background:#dfa96a; box-shadow:inset 0 0 0 3px #a9743a"></div>
+<div style="position:absolute; left:6px; top:2px; width:16px; height:16px; border-radius:50%; background:#e9bd82; box-shadow:inset 0 0 0 2px #a9743a"></div>
+<div style="position:absolute; left:34px; top:2px; width:16px; height:16px; border-radius:50%; background:#e9bd82; box-shadow:inset 0 0 0 2px #a9743a"></div>
+<div style="position:absolute; left:12px; top:24px; width:32px; height:26px; border-radius:50%; background:#f7ead3"></div>
+<div style="position:absolute; left:19px; top:30px; width:7px; height:7px; border-radius:50%; background:#33251c"></div>
+<div style="position:absolute; left:30px; top:30px; width:7px; height:7px; border-radius:50%; background:#33251c"></div>
+<div style="position:absolute; left:25px; top:40px; width:7px; height:5px; border-radius:50%; background:#b9756a"></div></div></div></div></div>
+
+<section class="sec" aria-labelledby="night">
+  <div class="head center">
+    <h2 id="night">Race into the night</h2>
+    <p>Every track has its own day. The sun moves as you race, shadows follow it, and the hardest laps happen by moonlight.</p>
+  </div>
+  <div class="daynight">
+    <figure><div class="frame"><div><img src="assets/screens/desert-day.webp" alt="A Dune Flats track at midday"></div></div><figcaption class="cap">Noon</figcaption></figure>
+    <figure><div class="frame"><div><img src="assets/screens/desert-night.webp" alt="The same Dune Flats track at night"></div></div><figcaption class="cap">Midnight</figcaption></figure>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><div class="dots"></div><div class="done" style="width: 84%"></div><div class="flag"></div><div class="ball" style="left: 84%; transform: rotate(-8deg)"><div><div style="position:relative; width:56px; height:56px"><div style="position:absolute; inset:0; border-radius:50%; background:#dfa96a; box-shadow:inset 0 0 0 3px #a9743a"></div>
+<div style="position:absolute; left:6px; top:2px; width:16px; height:16px; border-radius:50%; background:#e9bd82; box-shadow:inset 0 0 0 2px #a9743a"></div>
+<div style="position:absolute; left:34px; top:2px; width:16px; height:16px; border-radius:50%; background:#e9bd82; box-shadow:inset 0 0 0 2px #a9743a"></div>
+<div style="position:absolute; left:12px; top:24px; width:32px; height:26px; border-radius:50%; background:#f7ead3"></div>
+<div style="position:absolute; left:19px; top:30px; width:7px; height:7px; border-radius:50%; background:#33251c"></div>
+<div style="position:absolute; left:30px; top:30px; width:7px; height:7px; border-radius:50%; background:#33251c"></div>
+<div style="position:absolute; left:25px; top:40px; width:7px; height:5px; border-radius:50%; background:#b9756a"></div></div></div></div></div>
+
+<section class="sec" aria-labelledby="diary">
+  <a class="diary" href="blog/">
+    <div class="art"><img src="assets/blog/hamster-racing-logo.webp" alt="The original Hamster Racing title screen"></div>
+    <div class="body">
+      <div class="kicker">From the dev diary</div>
+      <h3 id="diary">One Tap, Twenty-Seven Tracks, and a Simulation Engine I Never Planned to Build</h3>
+      <p>How a shelved idea from the first iPad days became Animal Loop, and why I ended up writing my own track simulator and level editor to make it.</p>
+      <span class="more">Read the story</span>
+    </div>
+  </a>
+</section>
+</main>
+
+<section class="numbers" aria-label="Animal Loop by the numbers">
+  <ul>
+    <li><b style="color: #E3B97E">3</b><span>worlds: Dune Flats, Coral Shallows and Fern Hollow</span></li>
+    <li><b style="color: #5CCFD4">27</b><span>hand-built tracks, from Loop to Trefoil Knot to Ivy Leaf</span></li>
+    <li><b style="color: #8BCB5E">18</b><span>playable animals</span></li>
+    <li><b style="color: #EDA11F">1</b><span>button</span></li>
+  </ul>
+</section>
+
+<section class="cta" aria-labelledby="get">
+  <img class="icon" src="assets/app-icon.png" alt="">
+  <div>
+    <h2 id="get">Animal Loop</h2>
+    <div class="free">Free on the App Store</div>
+  </div>
+  <a href="https://apps.apple.com/us/search?term=Animal%20Loop" aria-label="Download on the App Store" style="display: inline-flex; align-items: center; gap: 10px; height: 58px; padding: 0 20px 0 16px; border-radius: 13px; background: #000; color: #fff; text-decoration: none; box-shadow: inset 0 0 0 1.5px #A6A6A6, 0 4px 0 rgba(23,19,32,0.35); font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif; "><svg viewBox="0 0 384 512" width="26" height="32" aria-hidden="true" style="flex: none"><path fill="#fff" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span style="display: flex; flex-direction: column; align-items: flex-start; line-height: 1; text-align: left"><span style="font-size: 11px; font-weight: 500; letter-spacing: 0.2px">Download on the</span><span style="font-size: 25px; font-weight: 600; letter-spacing: -0.6px; margin-top: 3px">App Store</span></span></a>
+</section>
+
+<footer>
+  <nav aria-label="Footer">
+    <a href="blog/">Dev diary</a>
+    <a href="../">wOzy</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSemuJiq_p8silVNTD1-nFQmJ9umYozyRx9nmWabc7uFsry7vg/viewform">Support</a>
+  </nav>
+  <small>© 2026 wOzy Technologies LLC</small>
+</footer>
+
+<script src="assets/al.js" defer></script>
+</body>
+</html>

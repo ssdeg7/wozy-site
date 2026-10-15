@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TicToe Fury</title>
+<meta name="description" content="TicToe Fury is tic-tac-toe taken to a new level: play the AI, a friend on your device or online with Game Center, with chalkboard graphics, 30+ achievements and original music.">
+<meta property="og:title" content="TicToe Fury for iOS">
+<meta property="og:description" content="Your childhood game, taken to a new level.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' rx='18' fill='%23B87A45'/%3E%3Crect x='7' y='7' width='66' height='66' rx='8' fill='%233B6446'/%3E%3Cg fill='none' stroke='%23F4F1E6' stroke-width='5' stroke-linecap='round'%3E%3Cpath d='M20 20l16 16M36 20L20 36'/%3E%3Ccircle cx='54' cy='54' r='9'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --board: #2E5038;
+    --board-dark: #22402C;
+    --chalk: #F4F1E6;
+    --chalk-dim: rgba(244,241,230,0.72);
+    --yellow: #F6E27A;
+    --pink: #F4A6B8;
+    --blue: #9FD3F0;
+    --wood: #9A6235;
+    --wood-dark: #6E411F;
+    --wood-light: #C08955;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; color: var(--chalk); font-family: "Patrick Hand", "Comic Sans MS", cursive; font-size: 21px; line-height: 1.5;
+    background-color: var(--wood);
+    background-image: repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 2px, transparent 2px 9px), linear-gradient(180deg, var(--wood-light), var(--wood) 30%, var(--wood-dark));
+  }
+  a { color: var(--yellow); }
+  a:focus-visible, button:focus-visible { outline: 3px dashed var(--yellow); outline-offset: 4px; }
+  h1, h2, h3 { font-family: "Cabin Sketch", cursive; font-weight: 700; margin: 0; line-height: 1.05; }
+
+  /* the chalkboard */
+  .board {
+    margin: 18px; border-radius: 10px; min-height: calc(100vh - 36px);
+    background:
+      radial-gradient(60% 40% at 20% 10%, rgba(255,255,255,0.07), transparent 70%),
+      radial-gradient(50% 35% at 85% 55%, rgba(255,255,255,0.05), transparent 70%),
+      radial-gradient(70% 50% at 40% 95%, rgba(255,255,255,0.04), transparent 70%),
+      linear-gradient(180deg, var(--board) 0%, var(--board-dark) 100%);
+    box-shadow: inset 0 0 0 3px var(--wood-dark), inset 0 0 80px rgba(0,0,0,0.35), 0 10px 30px rgba(0,0,0,0.35);
+    position: relative; overflow: hidden;
+  }
+  .ledge { height: 16px; margin: 0 18px 18px; border-radius: 4px; background: linear-gradient(180deg, var(--wood-light), var(--wood-dark)); box-shadow: 0 4px 10px rgba(0,0,0,0.35); position: relative; }
+  .ledge::before { content: ""; position: absolute; left: 12%; top: -7px; width: 54px; height: 9px; border-radius: 3px; background: var(--chalk); box-shadow: 70px 1px 0 -1px var(--pink), 120px 0 0 0 var(--yellow); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  nav.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 0; }
+  nav.top .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--chalk); font-family: "Cabin Sketch", cursive; font-size: 26px; font-weight: 700; }
+  nav.top .brand svg { width: 42px; height: 42px; flex: none; }
+  nav.top .links { display: flex; gap: 18px; align-items: center; font-size: 20px; }
+  nav.top .links a { color: var(--chalk-dim); text-decoration: none; }
+  nav.top .links a:hover { color: var(--chalk); text-decoration: underline wavy; text-underline-offset: 5px; }
+
+  /* hero */
+  .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; padding: 40px 0 80px; }
+  .hero h1 { font-size: clamp(56px, 8.5vw, 108px); letter-spacing: 1px; }
+  .hero h1 small { display: block; font-size: 0.34em; font-family: "Patrick Hand", cursive; font-weight: 400; color: var(--yellow); letter-spacing: 0; margin-top: 10px; }
+  .hero p { font-size: 24px; color: var(--chalk-dim); max-width: 30ch; margin: 24px 0 30px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; }
+  .ctas .web { font-size: 21px; }
+
+  .game { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .grid { position: relative; width: min(420px, 100%); aspect-ratio: 1; }
+  .grid svg.lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .cells { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); }
+  .cells button { appearance: none; background: transparent; border: 0; padding: 14%; cursor: pointer; border-radius: 12px; }
+  .cells button:hover:not(:disabled) { background: rgba(255,255,255,0.05); }
+  .cells button:disabled { cursor: default; }
+  .cells svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .mark { fill: none; stroke-width: 9; stroke-linecap: round; stroke-dasharray: 300; stroke-dashoffset: 300; animation: draw .35s ease-out forwards; filter: url(#chalky); }
+  .mark.x { stroke: var(--chalk); }
+  .mark.o { stroke: var(--pink); }
+  .mark.x2 { animation-delay: .18s; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .strike { stroke: var(--yellow); stroke-width: 7; stroke-linecap: round; fill: none; stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw .45s ease-out .15s forwards; filter: url(#chalky); }
+  .status { font-size: 26px; min-height: 1.5em; text-align: center; }
+  .score { display: flex; gap: 28px; font-size: 21px; color: var(--chalk-dim); }
+  .score b { color: var(--chalk); font-weight: 400; font-family: "Cabin Sketch", cursive; font-size: 26px; margin-left: 6px; }
+  .again { font-family: "Cabin Sketch", cursive; font-size: 22px; font-weight: 700; color: var(--board-dark); background: var(--chalk); border: 0; padding: 8px 20px; border-radius: 6px; cursor: pointer; transform: rotate(-1deg); box-shadow: 0 3px 0 rgba(0,0,0,0.25); }
+  .again:hover { background: var(--yellow); }
+
+  /* sections */
+  .chalk-rule { height: 10px; margin: 0 0 64px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 10' preserveAspectRatio='none'%3E%3Cpath d='M2 6 C60 3 120 8 200 5 S330 3 398 6' fill='none' stroke='%23F4F1E6' stroke-opacity='.35' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
+  .feat { display: grid; grid-template-columns: 1fr 1fr; gap: 48px 64px; margin-bottom: 72px; }
+  .feat article h2 { font-size: clamp(34px, 4vw, 46px); margin-bottom: 14px; }
+  .feat article p { margin: 0; color: var(--chalk-dim); max-width: 42ch; }
+  .feat article:nth-child(1) h2 { color: var(--yellow); }
+  .feat article:nth-child(2) h2 { color: var(--blue); }
+  .feat article:nth-child(3) h2 { color: var(--pink); }
+  .feat article:nth-child(4) h2 { color: var(--chalk); }
+
+  .list { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 40px; margin-bottom: 72px; align-items: start; }
+  .list h2 { font-size: clamp(38px, 5vw, 58px); }
+  .list ul { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 40px; }
+  .list li { break-inside: avoid; padding: 6px 0 6px 34px; position: relative; font-size: 22px; }
+  .list li::before { content: ""; position: absolute; left: 0; top: 12px; width: 20px; height: 18px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 18'%3E%3Cpath d='M2 10 L8 15 L18 2' fill='none' stroke='%23F6E27A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat; }
+
+  .notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-bottom: 80px; }
+  .note { background: #FFF6B8; color: #3B3320; padding: 22px 22px 26px; transform: rotate(-1.5deg); box-shadow: 0 10px 20px rgba(0,0,0,0.3); font-size: 20px; line-height: 1.4; }
+  .note:nth-child(2) { transform: rotate(1.2deg); background: #FFD3DC; }
+  .note:nth-child(3) { transform: rotate(-0.6deg); background: #CFEBFF; }
+  .note h3 { font-size: 28px; margin-bottom: 8px; color: #2A2416; }
+  .note p { margin: 0; }
+
+  footer { padding: 26px 0 34px; font-size: 18px; color: var(--chalk-dim); display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; border-top: 2px dashed rgba(244,241,230,0.2); }
+  footer a { color: var(--chalk); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; padding-top: 16px; }
+    .feat, .list { grid-template-columns: 1fr; }
+    .notes { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .board { margin: 10px; }
+    .ledge { margin: 0 10px 10px; }
+    .wrap { padding: 0 18px; }
+    nav.top .links a.hide-sm { display: none; }
+    .list ul { columns: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) { .mark, .strike { animation: none; stroke-dashoffset: 0; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position: absolute" aria-hidden="true"><filter id="chalky"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/></filter></svg>
+
+<div class="board">
+  <div class="wrap">
+    <nav class="top" aria-label="Main">
+      <a class="brand" href="./">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><rect width="80" height="80" rx="18" fill="#B87A45"/><rect x="7" y="7" width="66" height="66" rx="8" fill="#3B6446"/><g stroke="#F4F1E6" stroke-width="2" opacity=".55"><path d="M29 13v54M51 13v54M13 29h54M13 51h54"/></g><g fill="none" stroke="#F4F1E6" stroke-width="3.4" stroke-linecap="round"><circle cx="20" cy="20" r="5.5"/><path d="M55 15l9 9M64 15l-9 9M36 36l9 9M45 36l-9 9"/><circle cx="40" cy="61" r="5.5"/></g></svg>
+        TicToe Fury
+      </a>
+      <div class="links">
+        <a class="hide-sm" href="#features">Features</a>
+        <a href="../">wOzy</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <h1>TicToe Fury<small>for iPhone and iPad</small></h1>
+        <p>Your childhood game, taken to a new level. Play the AI, a friend on the same device, or anyone online.</p>
+        <div class="ctas">
+          <a href="https://apps.apple.com/us/app/tictoe-fury-tic-tac-toe/id534426331" aria-label="Download TicToe Fury on the App Store" style="display: inline-flex; align-items: center; gap: 10px; height: 58px; padding: 0 20px 0 16px; border-radius: 13px; background: #000; color: #fff; text-decoration: none; box-shadow: inset 0 0 0 1.5px #A6A6A6, 0 4px 0 rgba(0,0,0,0.35); font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;"><svg viewBox="0 0 384 512" width="26" height="32" aria-hidden="true"><path fill="#fff" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span style="display: flex; flex-direction: column; line-height: 1; text-align: left"><span style="font-size: 11px; font-weight: 500">Download on the</span><span style="font-size: 25px; font-weight: 600; letter-spacing: -0.6px; margin-top: 3px">App Store</span></span></a>
+          <a class="web" href="http://ttf.wozy.co">or play in your browser</a>
+        </div>
+      </div>
+
+      <div class="game" aria-label="Play a round of tic-tac-toe against the computer">
+        <div class="grid">
+          <svg class="lines" viewBox="0 0 300 300" aria-hidden="true"><g fill="none" stroke="#F4F1E6" stroke-width="6" stroke-linecap="round" opacity=".85" filter="url(#chalky)"><path d="M101 12 C99 90 103 200 100 288"/><path d="M200 10 C202 100 198 210 201 290"/><path d="M12 101 C90 98 210 103 288 100"/><path d="M10 200 C100 202 205 197 290 201"/></g><g id="strike"></g></svg>
+          <div class="cells" role="grid"></div>
+        </div>
+        <div class="status" role="status" aria-live="polite">You're X. Tap a square.</div>
+        <div class="score"><span>You<b id="s-you">0</b></span><span>Draws<b id="s-draw">0</b></span><span>Fury AI<b id="s-ai">0</b></span></div>
+        <button class="again" type="button">New game</button>
+      </div>
+    </section>
+  </div>
+  <div class="wrap">
+    <div class="chalk-rule" role="presentation"></div>
+
+    <section class="feat" id="features">
+      <article>
+        <h2>Online or offline</h2>
+        <p>Play against the AI in easy or hard mode, challenge a friend on the same device, or take on anyone online with Game Center turn-based multiplayer.</p>
+      </article>
+      <article>
+        <h2>Graphics that pop</h2>
+        <p>The game you played on paper, redrawn with fluid animations and artwork made for each device, from the smallest iPhone to the biggest iPad.</p>
+      </article>
+      <article>
+        <h2>Make it yours</h2>
+        <p>Pick your name, your colors and your playing style, then go after more than 30 achievements.</p>
+      </article>
+      <article>
+        <h2>Version 4.0, free</h2>
+        <p>A rebuilt online experience, new graphics and animations, and support for every iOS device. Already have it? The update is on us.</p>
+      </article>
+    </section>
+
+    <section class="list" aria-labelledby="kf">
+      <h2 id="kf">Everything in the box</h2>
+      <ul>
+        <li>Game Center turn-based multiplayer</li>
+        <li>Single-player games against the AI</li>
+        <li>Local multiplayer on one device</li>
+        <li>Universal: buy once, play on all your devices</li>
+        <li>30+ achievements to earn</li>
+        <li>Online leaderboards</li>
+        <li>Name and color selection</li>
+        <li>Magical graphics</li>
+        <li>Fluid animations</li>
+        <li>Original music</li>
+      </ul>
+    </section>
+
+    <section class="notes" aria-label="Notes from the team">
+      <div class="note"><h3>It's in the details</h3><p>At wOzy we care about the small things: how a mark lands, how a win feels, how long a menu takes to get out of your way.</p></div>
+      <div class="note"><h3>We love music</h3><p>Life would be boring without it, so TicToe Fury has its own soundtrack to keep every round lively.</p></div>
+      <div class="note"><h3>Where it started</h3><p>TicToe Fury was wOzy's first game, built when the first iPad came out. It's still going strong.</p></div>
+    </section>
+
+    <footer>
+      <span>© 2026 wOzy Technologies LLC</span>
+      <span><a href="../">wOzy</a> &nbsp;·&nbsp; <a href="https://docs.google.com/forms/d/e/1FAIpQLSemuJiq_p8silVNTD1-nFQmJ9umYozyRx9nmWabc7uFsry7vg/viewform">Support</a></span>
+    </footer>
+  </div>
+</div>
+<div class="ledge" role="presentation"></div>
+
+<script>
+(function () {
+  var cellsEl = document.querySelector('.cells'), statusEl = document.querySelector('.status'), strikeEl = document.getElementById('strike');
+  var score = { you: 0, draw: 0, ai: 0 }, board, over, busy;
+  var LINES = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+  var buttons = [];
+  for (var i = 0; i < 9; i++) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.dataset.i = i;
+    b.setAttribute('aria-label', 'Square ' + (i + 1) + ', empty');
+    b.addEventListener('click', onTap);
+    cellsEl.appendChild(b); buttons.push(b);
+  }
+  function wobble(n) { return (Math.random() * 2 - 1) * n; }
+  function drawMark(i, who) {
+    var w = function (n) { return wobble(n).toFixed(1); };
+    var svg = who === 'X'
+      ? '<svg viewBox="0 0 100 100" aria-hidden="true"><path class="mark x" d="M' + (14 + +w(3)) + ' ' + (16 + +w(3)) + ' L' + (86 + +w(3)) + ' ' + (84 + +w(3)) + '"/><path class="mark x x2" d="M' + (86 + +w(3)) + ' ' + (14 + +w(3)) + ' L' + (16 + +w(3)) + ' ' + (86 + +w(3)) + '"/></svg>'
+      : '<svg viewBox="0 0 100 100" aria-hidden="true"><path class="mark o" d="M50 ' + (12 + +w(2)) + ' C' + (78 + +w(3)) + ' 12 ' + (90 + +w(2)) + ' 34 88 54 C86 78 ' + (66 + +w(3)) + ' 90 48 88 C' + (26 + +w(3)) + ' 86 12 70 13 49 C14 28 ' + (30 + +w(3)) + ' 14 54 14"/></svg>';
+    buttons[i].innerHTML = svg; buttons[i].disabled = true;
+    buttons[i].setAttribute('aria-label', 'Square ' + (i + 1) + ', ' + who);
+  }
+  function winner(bd) {
+    for (var k = 0; k < LINES.length; k++) { var l = LINES[k]; if (bd[l[0]] && bd[l[0]] === bd[l[1]] && bd[l[1]] === bd[l[2]]) return l; }
+    return null;
+  }
+  function center(i) { return [50 + (i % 3) * 100, 50 + Math.floor(i / 3) * 100]; }
+  function finish(line, who) {
+    over = true;
+    buttons.forEach(function (b) { b.disabled = true; });
+    if (line) {
+      var a = center(line[0]), c = center(line[2]);
+      var dx = c[0] - a[0], dy = c[1] - a[1], len = Math.hypot(dx, dy) || 1, ex = dx / len * 34, ey = dy / len * 34;
+      strikeEl.innerHTML = '<path class="strike" d="M' + (a[0] - ex) + ' ' + (a[1] - ey) + ' L' + (c[0] + ex) + ' ' + (c[1] + ey) + '"/>';
+      if (who === 'X') { score.you++; statusEl.textContent = 'You win! Fury AI wants a rematch.'; }
+      else { score.ai++; statusEl.textContent = 'Fury AI wins this one. Try again?'; }
+    } else { score.draw++; statusEl.textContent = "It's a draw. Classic."; }
+    document.getElementById('s-you').textContent = score.you;
+    document.getElementById('s-ai').textContent = score.ai;
+    document.getElementById('s-draw').textContent = score.draw;
+  }
+  function aiMove() {
+    var empty = board.map(function (v, i) { return v ? null : i; }).filter(function (v) { return v !== null; });
+    function find(who) {
+      for (var k = 0; k < empty.length; k++) { var t = board.slice(); t[empty[k]] = who; if (winner(t)) return empty[k]; }
+      return null;
+    }
+    var m = find('O');
+    if (m === null) m = find('X');
+    if (m === null && !board[4] && Math.random() < 0.8) m = 4;
+    if (m === null) {
+      var corners = [0, 2, 6, 8].filter(function (c) { return !board[c]; });
+      var pool = corners.length && Math.random() < 0.6 ? corners : empty;
+      m = pool[Math.floor(Math.random() * pool.length)];
+    }
+    return m;
+  }
+  function onTap(e) {
+    if (over || busy) return;
+    var i = +e.currentTarget.dataset.i;
+    if (board[i]) return;
+    board[i] = 'X'; drawMark(i, 'X');
+    var w = winner(board);
+    if (w) return finish(w, 'X');
+    if (board.every(Boolean)) return finish(null);
+    busy = true; statusEl.textContent = 'Fury AI is thinking…';
+    setTimeout(function () {
+      var m = aiMove(); board[m] = 'O'; drawMark(m, 'O'); busy = false;
+      var w2 = winner(board);
+      if (w2) return finish(w2, 'O');
+      if (board.every(Boolean)) return finish(null);
+      statusEl.textContent = 'Your turn.';
+    }, 520);
+  }
+  function reset() {
+    board = Array(9).fill(null); over = false; busy = false; strikeEl.innerHTML = '';
+    buttons.forEach(function (b, i) { b.innerHTML = ''; b.disabled = false; b.setAttribute('aria-label', 'Square ' + (i + 1) + ', empty'); });
+    statusEl.textContent = "You're X. Tap a square.";
+  }
+  document.querySelector('.again').addEventListener('click', reset);
+  reset();
+})();
+</script>
+</body>
+</html>

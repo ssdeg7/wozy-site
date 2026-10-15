@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>wOzy</title>
+<meta name="description" content="wOzy is a small independent studio making iOS apps and games since 2010: Animal Loop, TicToe Fury, Odyz and Dapply.">
+<meta property="og:title" content="wOzy">
+<meta property="og:description" content="Small apps, made with care, since 2010.">
+<link rel="icon" href="assets/wozy-logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Nunito+Sans:opsz,wght@6..12,800;6..12,900&family=Cabin+Sketch:wght@700&family=Roboto+Slab:wght@600&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FFFDF9;
+    --ink: #1D1A16;
+    --ink-soft: #5E574D;
+    --line: #E9E2D6;
+    --orange: #F39A1E;
+    --orange-deep: #C8740A;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 18px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 6px; }
+  .wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  /* nav */
+  .nav { position: sticky; top: 0; z-index: 10; background: rgba(255,253,249,0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .brand img { width: 38px; height: 38px; display: block; }
+  .brand span { font-size: 27px; font-weight: 500; letter-spacing: -0.5px; color: var(--orange-deep); }
+  .nav ul { list-style: none; display: flex; gap: 4px; margin: 0; padding: 0; }
+  .nav ul a { display: block; padding: 8px 12px; border-radius: 10px; text-decoration: none; font-weight: 500; font-size: 16px; color: var(--ink-soft); }
+  .nav ul a:hover { color: var(--ink); background: #F4EEE3; }
+
+  /* hero */
+  .hero { padding-top: 88px; padding-bottom: 56px; }
+  .hero h1 { margin: 0; font-size: clamp(46px, 8.4vw, 112px); line-height: 0.95; font-weight: 800; letter-spacing: -0.035em; max-width: 11ch; text-wrap: balance; }
+  .hero h1 .w { display: inline-block; width: 0.82em; height: 0.82em; vertical-align: -0.06em; margin: 0 0.02em; }
+  .hero p { margin: 28px 0 0; max-width: 34ch; font-size: clamp(19px, 2vw, 23px); line-height: 1.45; color: var(--ink-soft); }
+
+  /* app shelf */
+  .shelf { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; padding-bottom: 96px; }
+  .app { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 28px; min-height: 380px; padding: 30px; border-radius: 28px; text-decoration: none; overflow: hidden; isolation: isolate; transition: transform .2s ease; }
+  .app:hover { transform: translateY(-3px); }
+  .app:focus-visible { outline-offset: 4px; border-radius: 28px; }
+  .app .top { display: flex; align-items: center; gap: 16px; position: relative; }
+  .app .icon { width: 76px; height: 76px; border-radius: 18px; flex: none; display: block; box-shadow: 0 6px 16px rgba(0,0,0,0.22); }
+  .app h2 { margin: 0; font-size: 34px; line-height: 1; }
+  .app .kind { font-size: 15px; opacity: 0.8; margin-top: 6px; }
+  .app .pitch { position: relative; margin: 0; font-size: 22px; line-height: 1.3; max-width: 22ch; }
+  .app .go { position: relative; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; padding: 10px 16px; border-radius: 999px; }
+  .app .go svg { width: 14px; height: 14px; }
+
+  .app.al { grid-column: span 7; min-height: 460px; color: #2B1F4D; background: linear-gradient(180deg, #8E80D8 0%, #B08ED0 30%, #E1A0C2 64%, #F8C6B6 100%); font-family: "Nunito Sans", sans-serif; }
+  .app.al h2 { font-weight: 900; font-size: 44px; letter-spacing: -1px; }
+  .app.al .pitch { font-weight: 800; font-size: 28px; }
+  .app.al .go { background: #EDA11F; color: #2B1F4D; box-shadow: 0 3px 0 #B47714; font-weight: 900; }
+  .app.al .shots { position: absolute; right: -10px; bottom: -70px; width: 46%; max-width: 300px; display: flex; gap: 0; z-index: -1; }
+  .app.al .shots img { width: 58%; border-radius: 22px; border: 6px solid #2B1F4D; box-shadow: 0 18px 36px rgba(43,31,77,0.3); }
+  .app.al .shots img + img { margin-left: -16%; margin-top: 52px; transform: rotate(5deg); }
+  .app.al .shots img:first-child { transform: rotate(-5deg); }
+
+  .app.ttf { grid-column: span 5; color: #F4F1E6; font-family: "Cabin Sketch", cursive; background: radial-gradient(120% 90% at 30% 20%, #3F6B4A 0%, #2C4F37 55%, #22402C 100%); box-shadow: inset 0 0 0 12px #9A6235, inset 0 0 0 14px #6E411F, inset 0 0 60px rgba(0,0,0,0.35); padding: 40px; }
+  .app.ttf h2 { font-size: 42px; font-weight: 700; }
+  .app.ttf .kind, .app.ttf .pitch { font-family: "Bricolage Grotesque", sans-serif; }
+  .app.ttf .go { background: #F4F1E6; color: #2C4F37; font-family: "Bricolage Grotesque", sans-serif; }
+  .app.ttf .chalk { position: absolute; right: 30px; bottom: 26px; width: 150px; height: 150px; opacity: 0.85; }
+
+  .app.odyz { grid-column: span 5; color: #F2F2F2; background: #121212; font-family: "Outfit", sans-serif; }
+  .app.odyz h2 { font-weight: 700; font-size: 40px; letter-spacing: -0.5px; }
+  .app.odyz .go { background: #F2F2F2; color: #121212; }
+  .app.odyz .globe { position: absolute; right: -60px; bottom: -80px; width: 300px; height: 300px; z-index: -1; opacity: 0.9; }
+
+  .app.dapply { grid-column: span 7; color: #fff; background: linear-gradient(195deg, #5685FF 0%, #27C6FF 100%); font-family: "Roboto Slab", serif; }
+  .app.dapply h2 { font-weight: 600; font-size: 40px; }
+  .app.dapply .kind, .app.dapply .pitch { font-family: "Bricolage Grotesque", sans-serif; }
+  .app.dapply .go { background: rgba(255,255,255,0.92); color: #344767; font-family: "Bricolage Grotesque", sans-serif; }
+  .app.dapply .glass { position: absolute; right: 30px; bottom: 30px; width: min(44%, 280px); aspect-ratio: 1; border-radius: 26px; background: rgba(255,255,255,0.18); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4); backdrop-filter: blur(6px); display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px; z-index: -1; }
+  .app.dapply .glass i { border-radius: 14px; background: rgba(255,255,255,0.28); }
+  .app.dapply .glass i:nth-child(1) { background: linear-gradient(140deg, #FF9AC8, #FFD38A); }
+  .app.dapply .glass i:nth-child(4) { background: linear-gradient(140deg, #9BF2C9, #6CA8FF); }
+
+  /* about */
+  .about { border-top: 1px solid var(--line); padding: 88px 0; display: grid; grid-template-columns: 5fr 7fr; gap: 48px; }
+  .about h2 { margin: 0; font-size: clamp(36px, 4.6vw, 56px); line-height: 1; letter-spacing: -0.03em; font-weight: 800; }
+  .about .lede { margin: 0 0 40px; font-size: 22px; line-height: 1.45; max-width: 36ch; }
+  .people { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
+  .person { display: grid; grid-template-columns: 64px 1fr; gap: 18px; align-items: start; }
+  .mono { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 22px; color: #fff; }
+  .person h3 { margin: 2px 0 0; font-size: 21px; line-height: 1.2; font-weight: 700; }
+  .person .role { font-size: 15px; color: var(--orange-deep); font-weight: 700; margin: 2px 0 6px; }
+  .person p { margin: 0; color: var(--ink-soft); font-size: 17px; max-width: 52ch; }
+
+  footer { border-top: 1px solid var(--line); padding: 36px 0 48px; font-size: 15px; color: var(--ink-soft); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+  footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
+  footer a { text-decoration: none; font-weight: 500; color: var(--ink); }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 900px) {
+    .app.al, .app.ttf, .app.odyz, .app.dapply { grid-column: span 12; }
+    .about { grid-template-columns: 1fr; gap: 28px; }
+  }
+  @media (max-width: 560px) {
+    .nav ul a { padding: 8px 8px; font-size: 15px; }
+    .nav ul li.hide-sm { display: none; }
+    .hero { padding-top: 56px; padding-bottom: 40px; }
+    .app { padding: 24px; min-height: 340px; }
+    .app.ttf { padding: 32px; }
+    .app.al { min-height: 0; padding-bottom: 0; }
+    .app.al .shots { position: relative; right: auto; bottom: auto; width: 78%; max-width: 280px; align-self: center; margin: 4px 0 -64px; z-index: 0; }
+    .app.odyz .globe { width: 220px; height: 220px; right: -70px; bottom: -70px; opacity: 0.45; }
+    .app h2, .app.al h2 { font-size: 34px; }
+    .app .icon { width: 64px; height: 64px; border-radius: 15px; }
+    .app.ttf .chalk { display: none; }
+    .app.dapply .glass { width: 44%; }
+  }
+  @media (prefers-reduced-motion: reduce) { .app { transition: none; } .app:hover { transform: none; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="wOzy home"><img src="assets/wozy-logo.svg" alt=""><span>wOzy</span></a>
+    <ul>
+      <li><a href="#apps">Apps</a></li>
+      <li class="hide-sm"><a href="#team">Team</a></li>
+      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSemuJiq_p8silVNTD1-nFQmJ9umYozyRx9nmWabc7uFsry7vg/viewform">Support</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <h1>Small apps, made with care, since 2010.</h1>
+    <p>wOzy is a tiny independent studio. We build the iPhone and iPad apps we want to use ourselves, and sweat the details.</p>
+  </section>
+
+  <section id="apps" class="wrap shelf" aria-label="Our apps">
+
+    <a class="app al" href="animal-loop/">
+      <div class="top">
+        <img class="icon" src="animal-loop/assets/app-icon.png" alt="">
+        <div><h2>Animal Loop</h2><div class="kind">One-tap racing game</div></div>
+      </div>
+      <p class="pitch">Tiny racers. Big loops. Twenty-seven tracks, one button.</p>
+      <span class="go">Meet the racers <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <div class="shots" aria-hidden="true">
+        <img src="animal-loop/assets/screens/menu.webp" alt="">
+        <img src="animal-loop/assets/screens/water-trefoil.webp" alt="">
+      </div>
+    </a>
+
+    <a class="app ttf" href="tictoefury/">
+      <div class="top">
+        <svg class="icon" viewBox="0 0 80 80" aria-hidden="true"><rect width="80" height="80" rx="18" fill="#B87A45"/><rect x="7" y="7" width="66" height="66" rx="8" fill="#3B6446"/><g stroke="#F4F1E6" stroke-width="2" opacity=".55"><path d="M29 13v54M51 13v54M13 29h54M13 51h54"/></g><g fill="none" stroke="#F4F1E6" stroke-width="3.4" stroke-linecap="round"><circle cx="20" cy="20" r="5.5"/><path d="M55 15l9 9M64 15l-9 9M36 36l9 9M45 36l-9 9"/><circle cx="40" cy="61" r="5.5"/></g></svg>
+        <div><h2>TicToe Fury</h2><div class="kind">Tic-tac-toe, reimagined</div></div>
+      </div>
+      <p class="pitch">The game you grew up with, played on a chalkboard against friends or the AI.</p>
+      <span class="go">Play a round <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <svg class="chalk" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="#F4F1E6" stroke-width="3" stroke-linecap="round" opacity=".5"><path d="M35 8c-1 28 1 58-1 86M66 7c1 30-1 57 1 87M7 35c30-2 58 1 87-1M6 66c29 1 58-1 88 1"/></g><g fill="none" stroke="#F4F1E6" stroke-width="5" stroke-linecap="round"><path d="M10 10l15 15M25 10L10 25M75 75l15 15M90 75L75 90"/><circle cx="50" cy="50" r="9"/></g></svg>
+    </a>
+
+    <a class="app odyz" href="https://www.odyz.app/">
+      <div class="top">
+        <svg class="icon" viewBox="0 0 80 80" aria-hidden="true"><rect width="80" height="80" rx="18" fill="#1E1E1E"/><circle cx="40" cy="40" r="21" fill="none" stroke="#F2F2F2" stroke-width="4"/><ellipse cx="40" cy="40" rx="9" ry="21" fill="none" stroke="#F2F2F2" stroke-width="3"/><path d="M19 40h42" stroke="#F2F2F2" stroke-width="3"/></svg>
+        <div><h2>Odyz</h2><div class="kind">Privacy-first travel tracker</div></div>
+      </div>
+      <p class="pitch">Your trips, mapped from your photos. A digital passport with no account needed.</p>
+      <span class="go">Visit odyz.app <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <svg class="globe" viewBox="0 0 200 200" aria-hidden="true"><defs><pattern id="dots" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="1.4" fill="#5A5A5A"/></pattern><clipPath id="g"><circle cx="100" cy="100" r="96"/></clipPath></defs><circle cx="100" cy="100" r="96" fill="url(#dots)"/><g clip-path="url(#g)" fill="none" stroke="#3A3A3A" stroke-width="1.2"><ellipse cx="100" cy="100" rx="40" ry="96"/><ellipse cx="100" cy="100" rx="78" ry="96"/><path d="M4 100h192M10 60h180M10 140h180"/></g><circle cx="76" cy="70" r="5" fill="#F2F2F2"/><circle cx="128" cy="96" r="5" fill="#F2F2F2"/><path d="M76 70Q104 62 128 96" fill="none" stroke="#F2F2F2" stroke-width="2" stroke-dasharray="4 4"/></svg>
+    </a>
+
+    <a class="app dapply" href="dapply/">
+      <div class="top">
+        <svg class="icon" viewBox="0 0 80 80" aria-hidden="true"><defs><linearGradient id="dg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4E8DFF"/><stop offset="1" stop-color="#7B4DFF"/></linearGradient></defs><rect width="80" height="80" rx="18" fill="url(#dg)"/><path d="M24 18h16a22 22 0 0 1 0 44H24z" fill="#fff"/><path d="M30 34h11v28H30z" fill="#C9D6F5"/><circle cx="38.5" cy="49" r="1.6" fill="#4E6BD8"/></svg>
+        <div><h2>Dapply</h2><div class="kind">NFT gallery for iPhone</div></div>
+      </div>
+      <p class="pitch">Every NFT you own, in one beautiful gallery. Now preserved as a museum of the Web3 era.</p>
+      <span class="go">Visit the gallery <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <div class="glass" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    </a>
+  </section>
+
+  <section id="team" class="wrap about">
+    <div>
+      <h2>Developing team</h2>
+    </div>
+    <div>
+      <p class="lede">wOzy has been creating apps since 2010. We started as a small team in Colombia, and we're still small on purpose.</p>
+      <ul class="people">
+        <li class="person">
+          <div class="mono" style="background: #F39A1E" aria-hidden="true">SS</div>
+          <div>
+            <h3>Sebastián Salazar de Greiff</h3>
+            <div class="role">Co-founder, Product</div>
+            <p>MBA from Harvard Business School, with degrees in industrial and computer engineering from Universidad de los Andes.</p>
+          </div>
+        </li>
+        <li class="person">
+          <div class="mono" style="background: #3B6446" aria-hidden="true">MD</div>
+          <div>
+            <h3>Mateo Diaz</h3>
+            <div class="role">Co-founder, Developer</div>
+            <p>PhD in Applied Mathematics at Cornell University.</p>
+          </div>
+        </li>
+        <li class="person">
+          <div class="mono" style="background: #5685FF" aria-hidden="true">CM</div>
+          <div>
+            <h3>Camilo Mariño</h3>
+            <div class="role">Co-founder, Developer</div>
+            <p>Studied computer engineering at Universidad de los Andes.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 wOzy Technologies LLC. wOzy and the wOzy logo are trademarks of wOzy in the U.S. and/or other countries.</div>
+    <nav aria-label="Footer">
+      <a href="animal-loop/">Animal Loop</a>
+      <a href="tictoefury/">TicToe Fury</a>
+      <a href="https://www.odyz.app/">Odyz</a>
+      <a href="dapply/">Dapply</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSemuJiq_p8silVNTD1-nFQmJ9umYozyRx9nmWabc7uFsry7vg/viewform">Support</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
