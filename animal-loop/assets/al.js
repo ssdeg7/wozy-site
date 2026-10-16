@@ -74,7 +74,7 @@
       );
     };
 
-    // 1 · Fern Hollow: each tap = one 24° heading change
+    // 1 · Fern Hollow: each tap is one heading change
     var seg = 0.42, N = 15, R = 30, T1 = t % (seg * N);
     var k = Math.floor(T1 / seg), f = (T1 % seg) / seg, age = f * seg;
     var V = function (i) { var a = (-90 + i * 24) * Math.PI / 180; return [50 + R * Math.cos(a), 50 + R * Math.sin(a)]; };
