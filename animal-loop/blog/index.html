@@ -287,7 +287,7 @@
   <div style="width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 18px">
     <p style="margin: 0; font-size: 19px; line-height: 1.7; color: #3A2F55; text-wrap: pretty">A few things I added along the way:</p>
     <ul style="margin: 0; padding: 0 0 0 22px; display: flex; flex-direction: column; gap: 12px">
-      <li style="font-size: 19px; line-height: 1.65; color: #3A2F55; text-wrap: pretty; padding-left: 4px"><strong style="color: #2B1F4D; font-weight: 800">Figure-8s with real bridges and tunnels.</strong> Tracks can cross themselves. The game works out which arm you're on from your lap progress, not your direction, so you never "snap" onto the wrong road at a crossing.</li>
+      <li style="font-size: 19px; line-height: 1.65; color: #3A2F55; text-wrap: pretty; padding-left: 4px"><strong style="color: #2B1F4D; font-weight: 800">Tracks with overlaps, real bridges and tunnels.</strong> Tracks can cross themselves. The game works out which arm you're on from your lap progress, not your direction, so you never "snap" onto the wrong road at a crossing.</li>
       <li style="font-size: 19px; line-height: 1.65; color: #3A2F55; text-wrap: pretty; padding-left: 4px"><strong style="color: #2B1F4D; font-weight: 800">Direction-switch gates</strong> that flip which way a tap turns you, mid-lap.</li>
       <li style="font-size: 19px; line-height: 1.65; color: #3A2F55; text-wrap: pretty; padding-left: 4px"><strong style="color: #2B1F4D; font-weight: 800">Mud patches</strong> that slow you depending on how much of your ball is in them.</li>
       <li style="font-size: 19px; line-height: 1.65; color: #3A2F55; text-wrap: pretty; padding-left: 4px"><strong style="color: #2B1F4D; font-weight: 800">Mole tunnels</strong>: hit the mole and it digs you a shortcut.</li>
@@ -374,7 +374,7 @@
   </div>
 
   <div style="width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 22px">
-    <p style="margin: 0; font-size: 19px; line-height: 1.7; color: #3A2F55; text-wrap: pretty">The first tracks were circles written by hand in code. Within two days I'd moved them to JSON files. On <strong style="color: #2B1F4D; font-weight: 800">day three</strong> I started building a level editor, because hand-typing coordinates for a figure-8 is nobody's idea of fun.</p>
+    <p style="margin: 0; font-size: 19px; line-height: 1.7; color: #3A2F55; text-wrap: pretty">The first tracks were circles written by hand in code. Within two days I'd moved them to JSON files. On <strong style="color: #2B1F4D; font-weight: 800">day three</strong> I started building a level editor, because hand-typing coordinates for a track with overlaps is nobody's idea of fun.</p>
     <p style="margin: 0; font-size: 19px; line-height: 1.7; color: #3A2F55; text-wrap: pretty">That editor grew into the most-used tool in the project. Every one of the game's 27 tracks was built in it.</p>
   </div>
 
@@ -384,7 +384,7 @@
       <div style="flex: 1 1 220px; max-width: 320px; display: flex; flex-direction: column; gap: 12px">
         <div style="position: relative; background: #1C1B22; padding: 9px; border-radius: 44px; box-shadow: inset 0 0 0 2px #3B3946, 0 0 0 1px #0E0D12, 0 20px 40px rgba(43,31,77,0.25)">
           <div style="position: absolute; top: 18px; left: 50%; width: 30%; height: 22px; margin-left: -15%; border-radius: 11px; background: #0E0D12; z-index: 1"></div>
-          <div style="aspect-ratio: 1185 / 2576; border-radius: 36px; overflow: hidden"><img src="../assets/blog/great-8-mock.webp" alt="The first draft of a figure-8 track: rough, angular segments built before the Level Creator" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
+          <div style="aspect-ratio: 1185 / 2576; border-radius: 36px; overflow: hidden"><img src="../assets/blog/great-8-mock.webp" alt="The first draft of a track with overlaps: rough, angular segments built before the Level Creator" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
         </div>
         <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: 1.5px; color: #2B1F4D; text-align: center">FIRST DRAFT</div>
       </div>
@@ -403,7 +403,7 @@
         <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: 1.5px; color: #2B1F4D; text-align: center">THE RESULT</div>
       </div>
     </div>
-    <figcaption style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.5; color: #6B6180; text-align: center">The first figure-8, built before the Level Creator existed, then Mushroom in the Level Creator and the finished track in the game.</figcaption>
+    <figcaption style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.5; color: #6B6180; text-align: center">The first track with overlaps, built before the Level Creator existed, then Mushroom in the Level Creator and the finished track in the game.</figcaption>
   </figure>
 
   <div style="width: 100%; max-width: 680px">
@@ -450,7 +450,7 @@
 
   <figure style="width: 100%; max-width: 860px; margin: 28px 0; display: flex; flex-direction: column; align-items: center; text-align: center">
     <div style="font-size: 110px; line-height: 0.9; height: 56px; font-weight: 900; color: #EDA11F">“</div>
-    <blockquote style="margin: 0; font-size: clamp(25px, 3.4vw, 36px); line-height: 1.28; font-weight: 800; color: #2B1F4D; letter-spacing: -0.5px; text-wrap: balance">Hand-typing coordinates for a figure-8 is nobody's idea of fun.</blockquote>
+    <blockquote style="margin: 0; font-size: clamp(25px, 3.4vw, 36px); line-height: 1.28; font-weight: 800; color: #2B1F4D; letter-spacing: -0.5px; text-wrap: balance">Hand-typing coordinates for a track with overlaps is nobody's idea of fun.</blockquote>
   </figure>
 
   <div style="width: 100%; max-width: 680px; position: relative; height: 44px; margin: 48px 0 24px">
