@@ -154,7 +154,64 @@
       chip(32, 10, 36, 'SPEED ' + pct + '%', inMud ? '#5B3519' : '#FFF4DC', inMud ? '#F6E2BB' : '#2B1F4D')
     );
 
-    return h('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 } }, p1, p2, p3, p4).__html;
+    // 5 · Fern Hollow: hit the mole, it digs a tunnel, the ball drops in and pops out past the bend
+    var v5 = 46, hx = 40, yTop = 30, yBot = 72;
+    var tHit = (hx - 7 + 8) / v5, tDig = tHit + 0.6, tIn = tHit + 7 / v5, tUnder = tIn + 0.3, tPop = tUnder + 0.6, tOut = tPop + 0.35;
+    var tEnd = tOut + (hx + 8) / v5, loop5 = tEnd + 0.5;
+    var T5 = t % loop5;
+    var lerp = function (a, b, x) { return a + (b - a) * clamp(x); };
+    var hole = function (x, y) { return h('g', null, h('ellipse', { cx: x, cy: y + 0.6, rx: 6.4, ry: 4, fill: '#7A5230' }), h('ellipse', { cx: x, cy: y, rx: 5.2, ry: 3.2, fill: '#2A170A' })); };
+    var hill = function (x, y) { return h('g', null, h('ellipse', { cx: x, cy: y + 0.8, rx: 6.2, ry: 3.6, fill: '#000', opacity: 0.18 }), h('ellipse', { cx: x, cy: y, rx: 5.8, ry: 3.6, fill: '#8A5E36' }), h('ellipse', { cx: x - 1.2, cy: y - 1, rx: 2.6, ry: 1.2, fill: '#B07F4E' })); };
+    var mole = function (x, y, op) {
+      return h('g', { opacity: op },
+        h('circle', { cx: x, cy: y - 2, r: 4.6, fill: '#5E4436' }),
+        h('ellipse', { cx: x, cy: y - 0.6, rx: 2.4, ry: 1.7, fill: '#C9A48C' }),
+        h('circle', { cx: x, cy: y - 1.2, r: 0.9, fill: '#E58C98' }),
+        h('circle', { cx: x - 1.7, cy: y - 3.4, r: 0.6, fill: '#1A0F08' }),
+        h('circle', { cx: x + 1.7, cy: y - 3.4, r: 0.6, fill: '#1A0F08' }),
+        h('ellipse', { cx: x - 3.4, cy: y + 0.6, rx: 1.6, ry: 1, fill: '#E9C6B0' }),
+        h('ellipse', { cx: x + 3.4, cy: y + 0.6, rx: 1.6, ry: 1, fill: '#E9C6B0' }));
+    };
+    var clods = function (yTo) {
+      var out = [];
+      for (var cy = yTop + 6; cy < yTo - 2; cy += 4) out.push(h('circle', { cx: hx + ((cy * 7) % 3 - 1) * 0.8, cy: cy, r: 1.3, fill: '#6B4423', opacity: 0.85 }));
+      return out;
+    };
+    var trackPath = 'M -10 ' + yTop + ' H 70 A 21 21 0 0 1 70 ' + yBot + ' H -10';
+    var entry, exit, moleEl = null, digTrail = null, ballEl = null, bump = null, chip5 = null;
+    if (T5 < tHit) {
+      entry = hole(hx, yTop); exit = hill(hx, yBot);
+      moleEl = mole(hx, yTop, 1);
+      ballEl = ball(-8 + v5 * T5, yTop);
+      chip5 = chip(28, 4, 44, 'HIT THE MOLE', '#FFF4DC', '#2B1F4D');
+    } else if (T5 < tUnder) {
+      var dig = clamp((T5 - tHit) / (tDig - tHit));
+      entry = hole(hx, yTop); exit = dig >= 1 ? hole(hx, yBot) : hill(hx, yBot);
+      digTrail = clods(lerp(yTop, yBot, dig));
+      if (dig < 1) moleEl = h('circle', { cx: hx, cy: lerp(yTop, yBot, dig), r: 2.8, fill: '#8A5E36', stroke: '#5B3519', strokeWidth: 0.6 });
+      if (T5 < tIn) ballEl = ball(hx - 7 + v5 * (T5 - tHit), yTop);
+      else { var s = 1 - clamp((T5 - tIn) / (tUnder - tIn)); ballEl = h('g', { transform: 'translate(' + hx + ' ' + yTop + ') scale(' + s.toFixed(3) + ') translate(' + (-hx) + ' ' + (-yTop) + ')' }, ball(hx, yTop, s)); }
+      chip5 = chip(36, 4, 28, 'BONK!', '#EDA11F', '#2B1F4D');
+    } else if (T5 < tPop) {
+      var u5 = (T5 - tUnder) / (tPop - tUnder);
+      entry = hill(hx, yTop); exit = hole(hx, yBot);
+      digTrail = clods(yBot);
+      bump = h('ellipse', { cx: hx, cy: lerp(yTop + 4, yBot - 4, u5), rx: 4.2, ry: 3, fill: '#9A6B3E', stroke: '#5B3519', strokeWidth: 0.6 });
+      chip5 = chip(32, 4, 36, 'SHORTCUT!', '#5B3519', '#F6E2BB');
+    } else {
+      entry = hill(hx, yTop);
+      exit = T5 < tOut + 0.4 ? hole(hx, yBot) : hill(hx, yBot);
+      if (T5 < tOut) { var g = clamp((T5 - tPop) / (tOut - tPop)); ballEl = h('g', { transform: 'translate(' + hx + ' ' + yBot + ') scale(' + g.toFixed(3) + ') translate(' + (-hx) + ' ' + (-yBot) + ')' }, ball(hx, yBot, g)); }
+      else ballEl = ball(hx - v5 * (T5 - tOut), yBot);
+    }
+    var p5 = svg('#5DA83B', 'A mole digging a shortcut',
+      h('path', { d: trackPath, fill: 'none', stroke: '#5A3A1E', strokeWidth: 20 }),
+      h('path', { d: trackPath, fill: 'none', stroke: '#EBD3A4', strokeWidth: 20, strokeDasharray: '3.2 3.2' }),
+      h('path', { d: trackPath, fill: 'none', stroke: '#CFA46A', strokeWidth: 17 }),
+      digTrail, entry, exit, bump, moleEl, ballEl, chip5
+    );
+
+    return h('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 16 } }, p1, p2, p3, p4, p5).__html;
   }
 
   // ---------- AdjustDemo ----------
