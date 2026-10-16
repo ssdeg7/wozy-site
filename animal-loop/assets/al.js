@@ -81,7 +81,7 @@
     var A = V(k), B = V(k + 1);
     var bx = A[0] + (B[0] - A[0]) * f, by = A[1] + (B[1] - A[1]) * f;
     var trail = [V(k - 3), V(k - 2), V(k - 1), A, [bx, by]].map(function (q) { return q[0].toFixed(2) + ',' + q[1].toFixed(2); }).join(' ');
-    var p1 = svg('#5DA83B', 'Each tap turns the ball',
+    var p1 = svg('#5DA83B', 'Each tap turns your character',
       h('circle', { cx: 50, cy: 50, r: R, fill: 'none', stroke: '#5A3A1E', strokeWidth: 20 }),
       h('circle', { cx: 50, cy: 50, r: R, fill: 'none', stroke: '#EBD3A4', strokeWidth: 20, strokeDasharray: '3.2 3.2' }),
       h('circle', { cx: 50, cy: 50, r: R, fill: 'none', stroke: '#CFA46A', strokeWidth: 17 }),
