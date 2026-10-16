@@ -184,58 +184,66 @@
     <blockquote style="margin: 0; font-size: clamp(25px, 3.4vw, 36px); line-height: 1.28; font-weight: 800; color: #2B1F4D; letter-spacing: -0.5px; text-wrap: balance">I built it for myself, my friends, and my family. Now it's ready for anyone who wants a quick, satisfying game for a few spare minutes.</blockquote>
   </figure>
 
-  <figure style="width: 100%; max-width: 900px; margin: 8px 0 24px; display: flex; flex-direction: column; gap: 14px">
-    <div style="position: relative; padding: 0 0 36px">
-      <div style="border-radius: 6px; overflow: hidden; transform: rotate(1deg); box-shadow: 0 2px 0 rgba(43,31,77,0.08), 0 20px 40px rgba(43,31,77,0.18)">
-        <img src="../assets/blog/first-track-hand-drawn.webp" alt="The first Hamster Racing track, drawn by hand in pen on paper: a looping knot that crosses itself" style="width: 100%; height: auto; display: block">
-      </div>
-      <style>
-        .icon-evo { position: absolute; left: -8px; bottom: 0; margin: 0; padding: 12px 16px 10px; list-style: none; display: flex; align-items: flex-start; gap: 8px; background: #FFFDF6; border-radius: 22px; transform: rotate(-2deg); box-shadow: 0 10px 24px rgba(43,31,77,0.22); }
-        .icon-evo li { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-        .icon-evo img { width: 64px; height: 64px; border-radius: 15px; display: block; box-shadow: 0 2px 0 rgba(43,31,77,0.15); }
-        .icon-evo li span { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1.2px; line-height: 1.3; color: #6B6180; text-align: center; white-space: nowrap; }
-        .icon-evo li:last-of-type span { color: #8C3D47; font-weight: 600; }
-        .icon-evo .arr { align-self: center; margin-top: -18px; font-size: 18px; color: #EDA11F; }
-        @media (max-width: 560px) {
-          .icon-evo { position: relative; left: 0; margin: -28px auto 0; width: fit-content; max-width: 100%; gap: 4px; padding: 10px 12px 8px; }
-          .icon-evo img { width: 50px; height: 50px; border-radius: 12px; }
-          .icon-evo li span { font-size: 9.5px; letter-spacing: 0.8px; }
-          .icon-evo .arr { font-size: 14px; }
-        }
-      </style>
-      <ol class="icon-evo" aria-label="How the app icon changed over time">
-        <li><img src="../assets/blog/first-icon-armadillo.webp" alt="The first app icon: a curled-up armadillo on a light blue background"><span>THE FIRST<br>ICON</span></li><span class="arr" aria-hidden="true">→</span>
-        <li><img src="../assets/blog/icon-hamster.jpg" alt="A hamster in its ball on an orange background"><span>HAMSTER<br>RACING</span></li><span class="arr" aria-hidden="true">→</span>
-        <li><img src="../assets/blog/icon-beta.jpg" alt="A blueprint-style hedgehog icon marked BETA"><span>BETA<br>BLUEPRINT</span></li><span class="arr" aria-hidden="true">→</span>
-        <li><img src="../assets/app-icon.png" alt="The current icon: a smiling hedgehog in its ball under a sunset"><span>TODAY</span></li>
-      </ol>
-    </div>
-    <figcaption style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 1.5px; color: #6B6180; text-align: center">circa 2010 · the first track, drawn by hand</figcaption>
+  <figure class="track-evo" style="width: 100%; max-width: 960px; margin: 8px 0 24px">
+    <style>
+      .track-evo ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 36px; }
+      .track-evo li { display: flex; flex-direction: column; gap: 14px; align-items: center; }
+      .track-evo .frame { width: 100%; aspect-ratio: 4 / 3; overflow: hidden; }
+      .track-evo .frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .track-evo .cap { display: flex; align-items: baseline; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 1.5px; color: #6B6180; text-align: center; }
+      .track-evo .cap b { flex: none; display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: #EDA11F; color: #2B1F4D; font-size: 12px; font-weight: 600; letter-spacing: 0; }
+      @media (max-width: 640px) { .track-evo ol { grid-template-columns: 1fr; gap: 32px; } }
+    </style>
+    <ol aria-label="How the track design evolved">
+      <li>
+        <div class="frame" style="border-radius: 6px; transform: rotate(1deg); box-shadow: 0 2px 0 rgba(43,31,77,0.08), 0 20px 40px rgba(43,31,77,0.18)">
+          <img src="../assets/blog/first-track-hand-drawn.webp" alt="The first Hamster Racing track, drawn by hand in pen on paper: a looping knot that crosses itself" loading="lazy">
+        </div>
+        <div class="cap"><b>1</b><span>circa 2010 · the first track, drawn by hand</span></div>
+      </li>
+      <li>
+        <div class="frame" style="transform: rotate(-1.5deg); background-color: #FFFCF2; background-image: repeating-linear-gradient(180deg, transparent 0 27px, rgba(57,120,190,0.14) 27px 28px); border-radius: 6px; box-shadow: 0 2px 0 rgba(43,31,77,0.08), 0 18px 36px rgba(43,31,77,0.16); padding: 14px">
+          <img src="../assets/blog/alpha-track-sketch.webp" alt="Hand-drawn Hamster Racing alpha track with a legend for start line, turn direction, wall bouncers and on-track switches" loading="lazy" style="object-fit: contain; mix-blend-mode: multiply">
+        </div>
+        <div class="cap"><b>2</b><span>circa 2010 · the alpha track</span></div>
+      </li>
+      <li>
+        <div class="frame" style="border-radius: 18px; transform: rotate(1.5deg); box-shadow: 0 0 0 5px #FFFDF6, 0 12px 28px rgba(43,31,77,0.2)">
+          <img src="../assets/blog/concept-oval.webp" alt="Early concept drawing: a yellow oval track on green grass" loading="lazy">
+        </div>
+        <div class="cap"><b>3</b><span>circa 2010 · concept oval</span></div>
+      </li>
+      <li>
+        <div class="frame" style="border-radius: 18px; transform: rotate(-1deg); box-shadow: 0 0 0 5px #2B1F4D, 0 12px 28px rgba(43,31,77,0.22)">
+          <img src="../assets/blog/loop-night.webp" alt="The finished Loop track in Animal Loop at night" loading="lazy" style="object-position: 50% 48%">
+        </div>
+        <div class="cap"><b>4</b><span>2026 · Loop</span></div>
+      </li>
+    </ol>
   </figure>
 
-  <figure style="width: 100%; max-width: 1040px; margin: 8px 0; display: flex; flex-direction: column; gap: 16px">
-    <div style="display: flex; flex-wrap: wrap; gap: 28px; justify-content: center; align-items: flex-end">
-      <div style="flex: 3 1 420px; max-width: 560px; display: flex; flex-direction: column; gap: 12px; align-items: center">
-        <div style="width: 100%; transform: rotate(-1.5deg); background-color: #FFFCF2; background-image: repeating-linear-gradient(180deg, transparent 0 27px, rgba(57,120,190,0.14) 27px 28px); border-radius: 6px; box-shadow: 0 2px 0 rgba(43,31,77,0.08), 0 18px 36px rgba(43,31,77,0.16); padding: 18px; box-sizing: border-box">
-          <img src="../assets/blog/alpha-track-sketch.webp" alt="Hand-drawn Hamster Racing alpha track with a legend for start line, turn direction, wall bouncers and on-track switches" style="width: 100%; height: auto; display: block; mix-blend-mode: multiply">
-        </div>
-        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 1.5px; color: #6B6180">circa 2010 · the alpha track</div>
-      </div>
-      <div style="flex: 1 1 200px; max-width: 260px; display: flex; flex-direction: column; gap: 20px">
-        <div style="display: flex; flex-direction: column; gap: 10px; align-items: center">
-          <div style="width: 100%; aspect-ratio: 4 / 3; border-radius: 18px; overflow: hidden; transform: rotate(1.5deg); box-shadow: 0 0 0 5px #FFFDF6, 0 12px 28px rgba(43,31,77,0.2)">
-            <img src="../assets/blog/concept-oval.webp" alt="Early concept drawing: a yellow oval track on green grass" style="width: 100%; height: 100%; object-fit: cover; display: block">
-          </div>
-          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 1.5px; color: #6B6180">circa 2010 · concept oval</div>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 10px; align-items: center">
-          <div style="width: 100%; aspect-ratio: 4 / 3; border-radius: 18px; overflow: hidden; transform: rotate(-1deg); box-shadow: 0 0 0 5px #2B1F4D, 0 12px 28px rgba(43,31,77,0.22)">
-            <img src="../assets/blog/loop-night.webp" alt="The finished Loop track in Animal Loop at night" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 48%; display: block">
-          </div>
-          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 1.5px; color: #6B6180">2026 · Loop</div>
-        </div>
-      </div>
-    </div>
+  <figure class="icon-evo-fig" style="width: 100%; max-width: 680px; margin: 16px 0 8px; display: flex; flex-direction: column; align-items: center; gap: 14px">
+    <style>
+      .icon-evo { margin: 0; padding: 18px 22px 14px; list-style: none; display: flex; align-items: flex-start; gap: 10px; background: #FFFDF6; border-radius: 24px; transform: rotate(-1deg); box-shadow: 0 10px 24px rgba(43,31,77,0.18); max-width: 100%; }
+      .icon-evo li { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+      .icon-evo img { width: 84px; height: 84px; border-radius: 19px; display: block; box-shadow: 0 2px 0 rgba(43,31,77,0.15); }
+      .icon-evo li span { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 1.2px; line-height: 1.3; color: #6B6180; text-align: center; white-space: nowrap; }
+      .icon-evo li:last-of-type span { color: #8C3D47; font-weight: 600; }
+      .icon-evo .arr { align-self: center; margin-top: -22px; font-size: 20px; color: #EDA11F; }
+      @media (max-width: 560px) {
+        .icon-evo { gap: 4px; padding: 12px 12px 10px; }
+        .icon-evo img { width: 52px; height: 52px; border-radius: 12px; }
+        .icon-evo li span { font-size: 9.5px; letter-spacing: 0.8px; }
+        .icon-evo .arr { font-size: 14px; margin-top: -18px; }
+      }
+    </style>
+    <ol class="icon-evo" aria-label="How the app icon changed over time">
+      <li><img src="../assets/blog/first-icon-armadillo.webp" alt="The first app icon: a curled-up armadillo on a light blue background"><span>THE FIRST<br>ICON</span></li><span class="arr" aria-hidden="true">→</span>
+      <li><img src="../assets/blog/icon-hamster.jpg" alt="A hamster in its ball on an orange background"><span>HAMSTER<br>RACING</span></li><span class="arr" aria-hidden="true">→</span>
+      <li><img src="../assets/blog/icon-beta.jpg" alt="A blueprint-style hedgehog icon marked BETA"><span>BETA<br>BLUEPRINT</span></li><span class="arr" aria-hidden="true">→</span>
+      <li><img src="../assets/app-icon.png" alt="The current icon: a smiling hedgehog in its ball under a sunset"><span>TODAY</span></li>
+    </ol>
+    <figcaption style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 1.5px; color: #6B6180; text-align: center">from 2010 to 2026 · how the app icon evolved</figcaption>
   </figure>
 
   <div style="width: 100%; max-width: 680px; position: relative; height: 44px; margin: 48px 0 24px">
