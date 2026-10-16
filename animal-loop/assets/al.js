@@ -67,7 +67,7 @@
     };
     var svg = function (bg, label) {
       var kids = Array.prototype.slice.call(arguments, 2);
-      return h('div', { style: { display: 'flex', flexDirection: 'column', gap: 10 } },
+      return h('div', { style: { display: 'flex', flexDirection: 'column', gap: 10, width: 'calc((100% - 64px) / 5)', minWidth: 150, maxWidth: 200 } },
         h('div', { style: { aspectRatio: '1', borderRadius: 20, overflow: 'hidden', background: bg } },
           h.apply(null, ['svg', { viewBox: '0 0 100 100', style: { width: '100%', height: '100%', display: 'block' }, role: 'img', 'aria-label': label }].concat(kids))),
         h('div', { style: { fontFamily: mono, fontSize: 13, color: '#6B6180', textAlign: 'center' } }, label)
@@ -81,7 +81,7 @@
     var A = V(k), B = V(k + 1);
     var bx = A[0] + (B[0] - A[0]) * f, by = A[1] + (B[1] - A[1]) * f;
     var trail = [V(k - 3), V(k - 2), V(k - 1), A, [bx, by]].map(function (q) { return q[0].toFixed(2) + ',' + q[1].toFixed(2); }).join(' ');
-    var p1 = svg('#5DA83B', 'Each tap turns the ball 24°',
+    var p1 = svg('#5DA83B', 'Each tap turns the ball',
       h('circle', { cx: 50, cy: 50, r: R, fill: 'none', stroke: '#5A3A1E', strokeWidth: 20 }),
       h('circle', { cx: 50, cy: 50, r: R, fill: 'none', stroke: '#EBD3A4', strokeWidth: 20, strokeDasharray: '3.2 3.2' }),
       h('circle', { cx: 50, cy: 50, r: R, fill: 'none', stroke: '#CFA46A', strokeWidth: 17 }),
@@ -211,7 +211,7 @@
       digTrail, entry, exit, bump, moleEl, ballEl, chip5
     );
 
-    return h('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 16 } }, p1, p2, p3, p4, p5).__html;
+    return h('div', { style: { display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 16 } }, p1, p2, p3, p4, p5).__html;
   }
 
   // ---------- AdjustDemo ----------
