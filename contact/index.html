@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact wOzy: support, feedback and press</title>
+<meta name="description" content="Get help with Animal Loop, TicToe Fury, Odyz or Dapply, report a bug, suggest a feature or reach wOzy for press.">
+<link rel="canonical" href="https://www.wozy.co/contact/">
+<meta property="og:url" content="https://www.wozy.co/contact/">
+<meta property="og:site_name" content="wOzy">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contact wOzy">
+<meta property="og:description" content="Support, feedback and press for wOzy's apps.">
+<meta property="og:image" content="https://www.wozy.co/assets/og-wozy.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact wOzy",
+  "url": "https://www.wozy.co/contact/",
+  "about": { "@type": "Organization", "@id": "https://www.wozy.co/#org", "name": "wOzy", "url": "https://www.wozy.co/" }
+}
+</script>
+<link rel="icon" href="/assets/wozy-logo.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/wozy-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FFFDF9;
+    --ink: #1D1A16;
+    --ink-soft: #5E574D;
+    --line: #E9E2D6;
+    --field: #FFFFFF;
+    --chip: #F4EEE3;
+    --orange: #F39A1E;
+    --orange-deep: #C8740A;
+    --error: #B3261E;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 18px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 6px; }
+  .wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  [hidden] { display: none !important; }
+
+  /* nav (same as the home page) */
+  .nav { position: sticky; top: 0; z-index: 10; background: rgba(255,253,249,0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .brand img { width: 38px; height: 38px; display: block; }
+  .brand span { font-size: 27px; font-weight: 500; letter-spacing: -0.5px; color: var(--orange-deep); }
+  .nav ul { list-style: none; display: flex; gap: 4px; margin: 0; padding: 0; }
+  .nav ul a { display: block; padding: 8px 12px; border-radius: 10px; text-decoration: none; font-weight: 500; font-size: 16px; color: var(--ink-soft); }
+  .nav ul a:hover, .nav ul a[aria-current] { color: var(--ink); background: var(--chip); }
+
+  /* page */
+  .page { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; padding-top: 72px; padding-bottom: 96px; align-items: start; }
+  .intro h1 { margin: 0; font-size: clamp(44px, 6.4vw, 84px); line-height: 0.95; font-weight: 800; letter-spacing: -0.035em; text-wrap: balance; }
+  .intro p { margin: 24px 0 0; max-width: 34ch; font-size: clamp(18px, 1.8vw, 21px); line-height: 1.45; color: var(--ink-soft); }
+  .intro .small { font-size: 15px; margin-top: 18px; }
+
+  /* form */
+  .card { background: var(--field); border: 1px solid var(--line); border-radius: 28px; padding: 32px; box-shadow: 0 1px 0 var(--line), 0 18px 40px rgba(29,26,22,0.06); }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 16px; }
+  .full { grid-column: 1 / -1; }
+  label, legend { display: block; font-size: 15px; font-weight: 700; margin: 0 0 7px; padding: 0; }
+  .opt { font-weight: 400; color: var(--ink-soft); }
+  input[type="text"], input[type="email"], select, textarea {
+    width: 100%; font: inherit; font-size: 17px; color: var(--ink); background: var(--paper);
+    border: 1.5px solid var(--line); border-radius: 14px; padding: 12px 14px; transition: border-color .15s, box-shadow .15s;
+  }
+  textarea { min-height: 160px; resize: vertical; line-height: 1.5; }
+  select { appearance: none; -webkit-appearance: none; padding-right: 40px; cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%235E574D' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 15px center; background-size: 12px 8px; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 4px rgba(243,154,30,0.18); }
+  .touched :is(input, select, textarea):invalid { border-color: var(--error); }
+
+  fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips label { margin: 0; font-weight: 500; font-size: 16px; }
+  .chips input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .chips span { display: inline-block; padding: 9px 16px; border-radius: 999px; background: var(--chip); border: 1.5px solid transparent; cursor: pointer; transition: background .15s, border-color .15s; }
+  .chips span:hover { border-color: var(--line); background: #EFE6D7; }
+  .chips input:checked + span { background: var(--ink); color: var(--paper); }
+  .chips input:focus-visible + span { outline: 3px solid var(--orange); outline-offset: 2px; }
+  .touched .chips:has(input:required:invalid) span { border-color: var(--error); }
+
+  .botcheck { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; }
+  button { font: inherit; font-size: 17px; font-weight: 700; color: #fff; background: var(--orange); border: 0; border-radius: 999px; padding: 14px 28px; cursor: pointer; box-shadow: 0 3px 0 var(--orange-deep); transition: background .15s; }
+  button:hover { background: var(--orange-deep); }
+  button:disabled { opacity: .6; cursor: progress; }
+  .note { margin: 0; font-size: 14px; color: var(--ink-soft); flex: 1 1 220px; }
+  .status { margin: 0; flex-basis: 100%; font-size: 16px; font-weight: 500; }
+  .status:empty { display: none; }
+  .status.error { color: var(--error); }
+
+  .thanks { text-align: center; padding: 28px 8px; }
+  .thanks .tick { width: 64px; height: 64px; margin: 0 auto 18px; border-radius: 50%; background: var(--orange); display: grid; place-items: center; }
+  .thanks h2 { margin: 0; font-size: 34px; line-height: 1.05; font-weight: 800; letter-spacing: -0.02em; }
+  .thanks p { margin: 14px auto 0; max-width: 36ch; color: var(--ink-soft); }
+  .thanks a { display: inline-block; margin-top: 22px; font-weight: 700; font-size: 16px; }
+
+  footer { border-top: 1px solid var(--line); padding: 36px 0 48px; font-size: 15px; color: var(--ink-soft); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+  footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
+  footer a { text-decoration: none; font-weight: 500; color: var(--ink); }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 880px) {
+    .page { grid-template-columns: 1fr; gap: 32px; padding-top: 48px; }
+  }
+  @media (max-width: 560px) {
+    .card { padding: 22px 18px; border-radius: 22px; }
+    form { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="wOzy home"><img src="/assets/wozy-logo.png" alt=""><span>wOzy</span></a>
+    <ul>
+      <li><a href="/#apps">Apps</a></li>
+      <li><a href="/contact/" aria-current="page">Support</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="wrap page">
+  <div class="intro">
+    <h1>Get in touch</h1>
+    <p>Found a bug, have an idea, or writing about one of our apps? Tell us here and we'll reply by email.</p>
+    <p class="small">We're a small team, so it can take a few days, but we read every message.</p>
+  </div>
+
+  <div class="card">
+    <!-- Web3Forms delivers submissions to info@wozy.co. The access key is public by design:
+         it can only send to that inbox. Without JavaScript the form still posts directly. -->
+    <form id="contact" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="69ff71ca-35fd-4e2e-87b8-118fcbdfa36a">
+      <input type="hidden" name="subject" value="New message from wozy.co">
+      <input type="hidden" name="from_name" value="wOzy website">
+      <input type="hidden" name="redirect" value="https://www.wozy.co/contact/?sent=1">
+      <div class="botcheck" aria-hidden="true"><input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></div>
+
+      <div>
+        <label for="first">First name</label>
+        <input id="first" name="First name" type="text" autocomplete="given-name" required>
+      </div>
+      <div>
+        <label for="last">Last name</label>
+        <input id="last" name="Last name" type="text" autocomplete="family-name" required>
+      </div>
+      <div class="full">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required>
+      </div>
+      <div class="full">
+        <label for="app">Which app is this about?</label>
+        <select id="app" name="App" required>
+          <option value="" disabled selected>Choose an app</option>
+          <option value="Animal Loop" data-slug="animal-loop">Animal Loop</option>
+          <option value="TicToe Fury" data-slug="tictoefury">TicToe Fury</option>
+          <option value="Odyz" data-slug="odyz">Odyz</option>
+          <option value="Dapply" data-slug="dapply">Dapply</option>
+          <option value="Something else" data-slug="other">Something else</option>
+        </select>
+      </div>
+      <fieldset class="full">
+        <legend>What's this about?</legend>
+        <div class="chips">
+          <label><input type="radio" name="Type" value="Bug" required><span>Bug</span></label>
+          <label><input type="radio" name="Type" value="Feature request"><span>Feature request</span></label>
+          <label><input type="radio" name="Type" value="Press"><span>Press</span></label>
+          <label><input type="radio" name="Type" value="Other"><span>Other</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="full" id="device-field">
+        <legend>Your device</legend>
+        <div class="chips">
+          <label><input type="radio" name="Device" value="iPhone" required><span>iPhone</span></label>
+          <label><input type="radio" name="Device" value="iPad"><span>iPad</span></label>
+          <label><input type="radio" name="Device" value="Mac"><span>Mac</span></label>
+          <label><input type="radio" name="Device" value="Other"><span>Other</span></label>
+        </div>
+      </fieldset>
+      <div class="full">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required placeholder="What happened, or what would you like to tell us?"></textarea>
+      </div>
+      <div class="full actions">
+        <button type="submit">Send message</button>
+        <p class="note">We only use your details to reply to you. Messages are delivered by Web3Forms.</p>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+
+    <div class="thanks" id="thanks" hidden tabindex="-1">
+      <div class="tick" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h2>Thanks, we got it.</h2>
+      <p>Your message is on its way to the team. We'll reply to the email you gave us.</p>
+      <a href="/">Back to wOzy</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 wOzy Technologies LLC. wOzy and the wOzy logo are trademarks of wOzy in the U.S. and/or other countries.</div>
+    <nav aria-label="Footer">
+      <a href="/animal-loop/">Animal Loop</a>
+      <a href="/tictoefury/">TicToe Fury</a>
+      <a href="https://www.odyz.app/">Odyz</a>
+      <a href="/dapply/">Dapply</a>
+      <a href="/contact/">Support</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('contact');
+  var thanks = document.getElementById('thanks');
+  var status = document.getElementById('status');
+  var button = form.querySelector('button');
+  var deviceField = document.getElementById('device-field');
+  var deviceInputs = deviceField.querySelectorAll('input');
+  form.noValidate = true;
+
+  function showThanks() {
+    form.hidden = true;
+    thanks.hidden = false;
+    thanks.focus();
+  }
+
+  // Press messages don't need a device.
+  function syncDevice() {
+    var type = form.querySelector('input[name="Type"]:checked');
+    var press = type && type.value === 'Press';
+    deviceField.hidden = press;
+    deviceInputs[0].required = !press;
+    deviceInputs.forEach(function (i) { i.disabled = press; });
+  }
+
+  // Links like /contact/?app=animal-loop&type=press preselect the form.
+  var params = new URLSearchParams(location.search);
+  if (params.get('sent')) showThanks();
+  var app = params.get('app');
+  if (app) {
+    var opt = form.querySelector('#app option[data-slug="' + app.replace(/[^a-z-]/g, '') + '"]');
+    if (opt) opt.selected = true;
+  }
+  var type = (params.get('type') || '').toLowerCase();
+  var typeMap = { bug: 'Bug', feature: 'Feature request', press: 'Press', other: 'Other' };
+  if (typeMap[type]) form.querySelector('input[name="Type"][value="' + typeMap[type] + '"]').checked = true;
+  form.querySelectorAll('input[name="Type"]').forEach(function (i) { i.addEventListener('change', syncDevice); });
+  syncDevice();
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    status.textContent = '';
+    status.className = 'status';
+    form.classList.add('touched');
+    if (!form.checkValidity()) {
+      var bad = form.querySelector(':invalid:not(fieldset)');
+      status.textContent = 'Please fill in the highlighted fields.';
+      status.classList.add('error');
+      if (bad) bad.focus();
+      return;
+    }
+
+    var data = Object.fromEntries(new FormData(form));
+    if (data.botcheck) { showThanks(); return; }
+    delete data.redirect;
+    var name = (data['First name'] + ' ' + data['Last name']).trim();
+    data.name = name;
+    data.subject = '[' + data.App + '] ' + data.Type + ' from ' + name;
+
+    button.disabled = true;
+    button.textContent = 'Sending…';
+    fetch(form.action, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return r.ok && j.success; }); })
+      .catch(function () { return false; })
+      .then(function (ok) {
+        if (ok) { form.reset(); showThanks(); return; }
+        status.textContent = 'Sorry, that didn’t send. Please try again in a minute, or email us at info' + '@' + 'wozy.co.';
+        status.classList.add('error');
+        button.disabled = false;
+        button.textContent = 'Send message';
+      });
+  });
+})();
+</script>
+</body>
+</html>

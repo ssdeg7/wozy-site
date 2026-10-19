@@ -18,6 +18,10 @@
 
 - [Animal Loop press kit](https://www.wozy.co/animal-loop/press/): Fact sheet, descriptions, screenshots, app icon, racer art and press contact. Downloadable ZIP: https://www.wozy.co/animal-loop/press/animal-loop-press-kit.zip
 
+## Contact
+
+- [Contact wOzy](https://www.wozy.co/contact/): Support, bug reports, feature requests and press inquiries for all wOzy apps.
+
 ## Team
 
 - Sebastián Salazar de Greiff: Co-founder
