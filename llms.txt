@@ -15,9 +15,9 @@
 
 ## Team
 
-- Sebastián Salazar de Greiff: Co-founder, Product
-- Mateo Diaz: Co-founder, Developer
-- Camilo Mariño: Co-founder, Developer
+- Sebastián Salazar de Greiff: Co-founder
+- Mateo Diaz: Co-founder
+- Camilo Mariño: Co-founder
 
 ## Optional
 
