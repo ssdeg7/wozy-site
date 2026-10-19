@@ -1,0 +1,25 @@
+# wOzy
+
+> wOzy (wOzy Technologies LLC) is a small independent studio that has made iPhone and iPad apps and games since 2010. It started as a small team in Colombia and is still small on purpose.
+
+## Apps
+
+- [Animal Loop](https://www.wozy.co/animal-loop/): One-tap animal racing game for iPhone and iPad. 18 racers, 27 handmade tracks across three worlds (Dune Flats, Coral Shallows, Fern Hollow), a Grand Prix in every world and a day/night cycle on every track. [App Store](https://apps.apple.com/us/app/animal-loop/id6806081867)
+- [TicToe Fury](https://www.wozy.co/tictoefury/): Free tic-tac-toe game for iPhone and iPad. Play the AI, a friend on the same device, or online with Game Center; chalkboard graphics, 30+ achievements and original music. wOzy's first game, launched with the first iPad. [App Store](https://apps.apple.com/us/app/tictoe-fury-tic-tac-toe/id534426331)
+- [Odyz](https://www.odyz.app/): Privacy-first travel tracker that maps your trips from your photos into a digital passport, with no account needed.
+- [Dapply](https://www.wozy.co/dapply/): NFT gallery for iPhone with Ethereum and Solana support. Dapply 3.0 preserves collections as a museum of the Web3 era. [App Store](https://apps.apple.com/us/app/dapply/id1601017101)
+
+## Writing
+
+- [Building Animal Loop](https://www.wozy.co/animal-loop/blog/): Developer diary on how a shelved iPad-era idea became Animal Loop, and the custom track simulator, track analyzer and level editor built to design and balance its 27 tracks.
+
+## Team
+
+- Sebastián Salazar de Greiff: Co-founder, Product
+- Mateo Diaz: Co-founder, Developer
+- Camilo Mariño: Co-founder, Developer
+
+## Optional
+
+- [Animal Loop privacy policy](https://www.wozy.co/animal-loop/privacy/)
+- [Animal Loop terms of use](https://www.wozy.co/animal-loop/terms/)
