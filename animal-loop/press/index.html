@@ -65,6 +65,10 @@
   .hero p { margin: 14px auto 0; max-width: 560px; font-size: clamp(18px, 2vw, 21px); line-height: 1.5; color: #2E2154; text-wrap: pretty; }
   .btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 26px; background: #2B1F4D; color: #FBF5E6; text-decoration: none; font-weight: 900; font-size: 17px; padding: 14px 24px; border-radius: 99px; box-shadow: 0 4px 0 rgba(43,31,77,0.35); }
   .btn:hover { background: #3A2F55; color: #FBF5E6; }
+  .btn + .btn { margin-left: 10px; }
+  .btn-alt { background: rgba(255,253,246,0.85); color: #2B1F4D; box-shadow: 0 0 0 1.5px #2B1F4D, 0 4px 0 rgba(43,31,77,0.35); }
+  .btn-alt:hover { background: #FFFDF6; color: #2B1F4D; }
+  @media (max-width: 560px) { .btn + .btn { margin-left: 0; } .hero .btn { display: flex; width: max-content; margin-left: auto; margin-right: auto; } .hero .btn + .btn { margin-top: 12px; } }
   .btn small { font-family: 'IBM Plex Mono', monospace; font-weight: 400; font-size: 13px; opacity: .8; }
   .kit { max-width: 1040px; margin: 0 auto; padding: 8px 24px 0; color: #2B1F4D; }
   .kit section { padding-top: 56px; }
@@ -72,7 +76,7 @@
   .kit p, .kit li { font-size: 17px; line-height: 1.65; color: #3A2F55; }
   .kit p { margin: 0 0 14px; max-width: 70ch; }
   .label { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #8C3D47; margin: 0 0 8px; }
-  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; margin: 0; background: #FFFDF6; border-radius: 24px; box-shadow: 0 0 0 1.5px #EADFC4, 0 6px 0 #EADFC4; overflow: hidden; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0; margin: 0; background: #FFFDF6; border-radius: 24px; box-shadow: 0 0 0 1.5px #EADFC4, 0 6px 0 #EADFC4; overflow: hidden; }
   .facts div { padding: 18px 22px; border-bottom: 1.5px solid #F1E6C9; }
   .facts dt { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #6B6180; }
   .facts dd { margin: 4px 0 0; font-size: 17px; font-weight: 800; color: #2B1F4D; overflow-wrap: anywhere; }
@@ -91,7 +95,7 @@
   .brand { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
   .brand a { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; text-decoration: none; color: #2B1F4D; font-weight: 800; }
   .brand img { display: block; max-width: 100%; height: auto; }
-  .team { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .team { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
   .team li { background: #FFFDF6; border-radius: 18px; padding: 16px 20px; box-shadow: 0 0 0 1.5px #EADFC4; }
   .team b { display: block; color: #2B1F4D; font-size: 17px; }
   .note { font-size: 15px !important; color: #6B6180 !important; }
@@ -140,6 +144,7 @@
   <h1>Animal Loop</h1>
   <p>The one-tap racing game for iPhone and iPad. Your animal rolls on its own. Every tap turns it.</p>
   <a class="btn" href="animal-loop-press-kit.zip" download>Download the press kit <small>ZIP · 1.8 MB</small></a>
+  <a class="btn btn-alt" href="/contact/?app=animal-loop&amp;type=press">Contact us for press</a>
 </header>
 
 <main class="kit">
@@ -147,13 +152,14 @@
     <h2 id="facts">Fact sheet</h2>
     <dl class="facts">
       <div><dt>Developer</dt><dd>wOzy</dd></div>
+      <div><dt>Created by</dt><dd>Sebastián Salazar de Greiff</dd></div>
       <div><dt>Released</dt><dd>2026</dd></div>
       <div><dt>Platforms</dt><dd>iPhone and iPad</dd></div>
       <div><dt>Price</dt><dd>Free, with in-app purchases</dd></div>
       <div><dt>Genre</dt><dd>One-tap racing</dd></div>
       <div><dt>App Store</dt><dd><a href="https://apps.apple.com/us/app/animal-loop/id6806081867">Animal Loop on the App Store</a></dd></div>
       <div><dt>Website</dt><dd><a href="../">wozy.co/animal-loop</a></dd></div>
-      <div><dt>Press contact</dt><dd><a href="#contact">Get in touch</a></dd></div>
+      <div><dt>Press contact</dt><dd><a href="/contact/?app=animal-loop&amp;type=press">Contact form</a></dd></div>
     </dl>
   </section>
 
@@ -188,7 +194,7 @@
   <section aria-labelledby="history">
     <h2 id="history">History</h2>
     <p>Animal Loop began around 2010 as <em>Hamster Racing</em>, an idea sketched right after wOzy launched its first game, TicToe Fury, for the first iPad. It was shelved. Development restarted from a blank Xcode project on July 28, 2026.</p>
-    <p>A game with a single input lives or dies on its difficulty curve, so wOzy built its own tools to balance the 27 tracks: a level editor, a track analyzer that scores each track's difficulty, and a simulator that plays every track with a bot. The full story is in the dev diary: <a href="../blog/building-animal-loop/">One Tap, Twenty-Seven Tracks, and a Simulation Engine I Never Planned to Build</a>.</p>
+    <p>A game with a single input lives or dies on its difficulty curve, so Sebastián built custom tools to balance the 27 tracks: a level editor, a track analyzer that scores each track's difficulty, and a simulator that plays every track with a bot. The full story is in the dev diary: <a href="../blog/building-animal-loop/">One Tap, Twenty-Seven Tracks, and a Simulation Engine I Never Planned to Build</a>.</p>
   </section>
 
   <section aria-labelledby="shots">
@@ -243,15 +249,14 @@
     <h2 id="studio">About wOzy</h2>
     <p>wOzy is a small independent studio that has made iPhone and iPad apps and games since 2010. It started as a small team in Colombia and is still small on purpose. Its apps include Animal Loop, <a href="../../tictoefury/">TicToe Fury</a>, <a href="https://www.odyz.app/">Odyz</a> and <a href="../../dapply/">Dapply</a>.</p>
     <ul class="team">
-      <li><b>Sebastián Salazar de Greiff</b>Co-founder</li>
-      <li><b>Mateo Diaz</b>Co-founder</li>
-      <li><b>Camilo Mariño</b>Co-founder</li>
+      <li><b>Sebastián Salazar de Greiff</b>Creator of Animal Loop, co-founder of wOzy</li>
     </ul>
   </section>
 
   <section aria-labelledby="contact">
     <h2 id="contact">Press contact</h2>
     <p>For interviews, review access or anything else, <a href="/contact/?app=animal-loop&amp;type=press">send us a message</a>. All assets on this page may be used for coverage of Animal Loop.</p>
+    <a class="btn" href="/contact/?app=animal-loop&amp;type=press" style="margin-top: 6px">Contact us for press</a>
   </section>
 </main>
 

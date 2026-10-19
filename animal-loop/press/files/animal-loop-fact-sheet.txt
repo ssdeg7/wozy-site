@@ -2,6 +2,7 @@ ANIMAL LOOP: FACT SHEET
 https://www.wozy.co/animal-loop/press/
 
 Developer:   wOzy (wOzy Technologies LLC)
+Created by:  Sebastián Salazar de Greiff
 Released:    2026
 Platforms:   iPhone and iPad
 Price:       Free, with in-app purchases
@@ -46,15 +47,16 @@ HISTORY
 Animal Loop began around 2010 as "Hamster Racing", an idea sketched right after
 wOzy launched its first game, TicToe Fury, for the first iPad. It was shelved.
 Development restarted from a blank Xcode project on July 28, 2026. To balance
-27 tracks for a game with a single input, wOzy built its own level editor, a
-track analyzer that scores every track's difficulty, and a simulator that
-plays every track with a bot.
+27 tracks for a game with a single input, Sebastián built a custom level
+editor, a track analyzer that scores every track's difficulty, and a simulator
+that plays every track with a bot.
 
 ABOUT WOZY
 wOzy is a small independent studio that has made iPhone and iPad apps and games
 since 2010. It started as a small team in Colombia and is still small on
 purpose. Its apps include Animal Loop, TicToe Fury, Odyz and Dapply.
-Founders: Sebastián Salazar de Greiff, Mateo Diaz and Camilo Mariño.
+Animal Loop was designed and built by Sebastián Salazar de Greiff, co-founder
+of wOzy.
 https://www.wozy.co/
 
 ASSETS IN THIS KIT
