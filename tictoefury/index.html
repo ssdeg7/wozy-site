@@ -173,6 +173,26 @@
   }
   @media (prefers-reduced-motion: reduce) { .mark, .strike { animation: none; stroke-dashoffset: 0; } }
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&text=wOzy&display=swap" rel="stylesheet">
+<style>
+  /* wOzy home link, shared by every app page header */
+  .wz-crumb { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .wz-home { display: inline-flex; align-items: center; gap: 7px; flex: none; margin-left: -4px; padding: 4px 8px 4px 4px; border-radius: 10px; text-decoration: none; color: var(--wz-ink, #C8740A); font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 19px; font-weight: 600; letter-spacing: -0.3px; line-height: 1; transition: background .15s; }
+  .wz-home:hover { color: var(--wz-ink, #C8740A); background: var(--wz-hover, rgba(243,154,30,0.12)); text-decoration: none; }
+  .wz-home:focus-visible { outline: 2px solid #F39A1E; outline-offset: 2px; }
+  .wz-home img { width: 26px; height: 26px; display: block; border-radius: 7px; }
+  .wz-sep { flex: none; width: 1.5px; height: 22px; border-radius: 1px; background: var(--wz-sep, rgba(0,0,0,0.16)); }
+  .wz-crumb > a:not(.wz-home), .wz-crumb > a:not(.wz-home) * { white-space: nowrap; }
+  @media (max-width: 560px) {
+    .wz-crumb { gap: 10px; }
+    .wz-home { padding: 4px; }
+    .wz-home span { display: none; }
+  }
+  @media (max-width: 420px) {
+    .wz-crumb > a:not(.wz-home) img, .wz-crumb > a:not(.wz-home) svg { display: none; }
+  }
+  nav.top { --wz-ink: #F6B25A; --wz-hover: rgba(244,241,230,0.1); --wz-sep: rgba(244,241,230,0.35); }
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position: absolute" aria-hidden="true"><filter id="chalky"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/></filter></svg>
@@ -180,13 +200,16 @@
 <div class="board">
   <div class="wrap">
     <nav class="top" aria-label="Main">
-      <a class="brand" href="./">
+      <div class="wz-crumb">
+        <a class="wz-home" href="/" aria-label="wOzy home"><img src="/assets/wozy-logo.svg" alt="" width="26" height="26"><span>wOzy</span></a>
+      <span class="wz-sep" aria-hidden="true"></span>
+        <a class="brand" href="./">
         <img src="assets/app-icon.png" alt="">
         TicToe Fury
       </a>
+      </div>
       <div class="links">
         <a class="hide-sm" href="#features">Features</a>
-        <a href="../">wOzy</a>
       </div>
     </nav>
 

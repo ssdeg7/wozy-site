@@ -150,20 +150,42 @@
     .details { grid-template-columns: 1fr; }
   }
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&text=wOzy&display=swap" rel="stylesheet">
+<style>
+  /* wOzy home link, shared by every app page header */
+  .wz-crumb { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .wz-home { display: inline-flex; align-items: center; gap: 7px; flex: none; margin-left: -4px; padding: 4px 8px 4px 4px; border-radius: 10px; text-decoration: none; color: var(--wz-ink, #C8740A); font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 19px; font-weight: 600; letter-spacing: -0.3px; line-height: 1; transition: background .15s; }
+  .wz-home:hover { color: var(--wz-ink, #C8740A); background: var(--wz-hover, rgba(243,154,30,0.12)); text-decoration: none; }
+  .wz-home:focus-visible { outline: 2px solid #F39A1E; outline-offset: 2px; }
+  .wz-home img { width: 26px; height: 26px; display: block; border-radius: 7px; }
+  .wz-sep { flex: none; width: 1.5px; height: 22px; border-radius: 1px; background: var(--wz-sep, rgba(0,0,0,0.16)); }
+  .wz-crumb > a:not(.wz-home), .wz-crumb > a:not(.wz-home) * { white-space: nowrap; }
+  @media (max-width: 560px) {
+    .wz-crumb { gap: 10px; }
+    .wz-home { padding: 4px; }
+    .wz-home span { display: none; }
+  }
+  @media (max-width: 420px) {
+    .wz-crumb > a:not(.wz-home) img, .wz-crumb > a:not(.wz-home) svg { display: none; }
+  }
+</style>
 </head>
 <body>
 
 <header>
   <nav class="navbar" aria-label="Main">
-    <a class="brand" href="./">
+    <div class="wz-crumb">
+      <a class="wz-home" href="/" aria-label="wOzy home"><img src="/assets/wozy-logo.svg" alt="" width="26" height="26"><span>wOzy</span></a>
+      <span class="wz-sep" aria-hidden="true"></span>
+      <a class="brand" href="./">
       <svg viewBox="0 0 80 80" aria-hidden="true"><defs><linearGradient id="dg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4E8DFF"/><stop offset="1" stop-color="#7B4DFF"/></linearGradient></defs><rect width="80" height="80" rx="18" fill="url(#dg)"/><path d="M24 18h16a22 22 0 0 1 0 44H24z" fill="#fff"/><path d="M30 34h11v28H30z" fill="#C9D6F5"/></svg>
       Dapply
     </a>
+    </div>
     <ul>
       <li class="hide-md"><a href="https://wiki.dapply.app"><span class="material-icons-round" aria-hidden="true">menu_book</span>Wiki</a></li>
       <li class="hide-md"><a href="https://twitter.com/DapplyApp"><span class="material-icons-round" aria-hidden="true">tag</span>Twitter</a></li>
       <li class="hide-sm"><a href="https://docs.google.com/forms/d/e/1FAIpQLSemuJiq_p8silVNTD1-nFQmJ9umYozyRx9nmWabc7uFsry7vg/viewform"><span class="material-icons-round" aria-hidden="true">help_outline</span>Support</a></li>
-      <li class="hide-sm"><a href="../"><span class="material-icons-round" aria-hidden="true">apps</span>wOzy</a></li>
       <li><a class="btn-grad" href="https://apps.apple.com/us/app/dapply/id1601017101">Download</a></li>
     </ul>
   </nav>

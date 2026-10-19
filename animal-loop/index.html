@@ -218,15 +218,37 @@
     .numbers ul { gap: 28px 18px; }
   }
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&text=wOzy&display=swap" rel="stylesheet">
+<style>
+  /* wOzy home link, shared by every app page header */
+  .wz-crumb { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .wz-home { display: inline-flex; align-items: center; gap: 7px; flex: none; margin-left: -4px; padding: 4px 8px 4px 4px; border-radius: 10px; text-decoration: none; color: var(--wz-ink, #C8740A); font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 19px; font-weight: 600; letter-spacing: -0.3px; line-height: 1; transition: background .15s; }
+  .wz-home:hover { color: var(--wz-ink, #C8740A); background: var(--wz-hover, rgba(243,154,30,0.12)); text-decoration: none; }
+  .wz-home:focus-visible { outline: 2px solid #F39A1E; outline-offset: 2px; }
+  .wz-home img { width: 26px; height: 26px; display: block; border-radius: 7px; }
+  .wz-sep { flex: none; width: 1.5px; height: 22px; border-radius: 1px; background: var(--wz-sep, rgba(0,0,0,0.16)); }
+  .wz-crumb > a:not(.wz-home), .wz-crumb > a:not(.wz-home) * { white-space: nowrap; }
+  @media (max-width: 560px) {
+    .wz-crumb { gap: 10px; }
+    .wz-home { padding: 4px; }
+    .wz-home span { display: none; }
+  }
+  @media (max-width: 420px) {
+    .wz-crumb > a:not(.wz-home) img, .wz-crumb > a:not(.wz-home) svg { display: none; }
+  }
+</style>
 </head>
 <body>
 
 <header class="nav">
   <div class="nav-in">
-    <a class="nav-brand" href="./" aria-label="Animal Loop home"><img src="assets/app-icon.png" alt=""><b>Animal Loop</b></a>
+    <div class="wz-crumb">
+      <a class="wz-home" href="/" aria-label="wOzy home"><img src="/assets/wozy-logo.svg" alt="" width="26" height="26"><span>wOzy</span></a>
+      <span class="wz-sep" aria-hidden="true"></span>
+      <a class="nav-brand" href="./" aria-label="Animal Loop home"><img src="assets/app-icon.png" alt=""><b>Animal Loop</b></a>
+    </div>
     <div class="nav-links">
       <a class="lnk" href="blog/">Dev diary</a>
-      <a class="lnk" href="../">wOzy</a>
       <a class="pill" href="https://apps.apple.com/us/app/animal-loop/id6806081867">Get the game</a>
     </div>
   </div>

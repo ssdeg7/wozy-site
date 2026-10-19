@@ -59,7 +59,7 @@
     .nav-cta-long { display: none; }
     .nav-cta-short { display: inline; }
   }
-  @media (max-width: 380px) {
+  @media (max-width: 560px) {
     nav [aria-label="Animal Loop home"] > div:last-child { display: none; }
   }
 </style>
@@ -83,17 +83,40 @@
     .post .body { padding: 26px 22px; }
   }
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&text=wOzy&display=swap" rel="stylesheet">
+<style>
+  /* wOzy home link, shared by every app page header */
+  .wz-crumb { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .wz-home { display: inline-flex; align-items: center; gap: 7px; flex: none; margin-left: -4px; padding: 4px 8px 4px 4px; border-radius: 10px; text-decoration: none; color: var(--wz-ink, #C8740A); font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 19px; font-weight: 600; letter-spacing: -0.3px; line-height: 1; transition: background .15s; }
+  .wz-home:hover { color: var(--wz-ink, #C8740A); background: var(--wz-hover, rgba(243,154,30,0.12)); text-decoration: none; }
+  .wz-home:focus-visible { outline: 2px solid #F39A1E; outline-offset: 2px; }
+  .wz-home img { width: 26px; height: 26px; display: block; border-radius: 7px; }
+  .wz-sep { flex: none; width: 1.5px; height: 22px; border-radius: 1px; background: var(--wz-sep, rgba(0,0,0,0.16)); }
+  .wz-crumb > a:not(.wz-home), .wz-crumb > a:not(.wz-home) * { white-space: nowrap; }
+  @media (max-width: 560px) {
+    .wz-crumb { gap: 10px; }
+    .wz-home { padding: 4px; }
+    .wz-home span { display: none; }
+  }
+  @media (max-width: 420px) {
+    .wz-crumb > a:not(.wz-home) img, .wz-crumb > a:not(.wz-home) svg { display: none; }
+  }
+</style>
 </head>
 <body>
 <div style="min-height: 100vh; background: #FBF5E6; color: #2B1F4D">
 
 <nav style="position: sticky; top: 0; z-index: 20; background: rgba(251,245,230,0.94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 1px 0 rgba(43,31,77,0.08)">
   <div style="max-width: 1120px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
-    <a href="../" aria-label="Animal Loop home" style="display: flex; align-items: center; gap: 12px; min-width: 0; text-decoration: none">
+    <div class="wz-crumb">
+      <a class="wz-home" href="/" aria-label="wOzy home"><img src="/assets/wozy-logo.svg" alt="" width="26" height="26"><span>wOzy</span></a>
+      <span class="wz-sep" aria-hidden="true"></span>
+      <a href="../" aria-label="Animal Loop home" style="display: flex; align-items: center; gap: 12px; min-width: 0; text-decoration: none">
       <img src="../assets/app-icon.png" alt="Animal Loop app icon" style="width: 34px; height: 34px; border-radius: 9px; flex: none">
       <div style="font-size: 17px; font-weight: 900; color: #2B1F4D; white-space: nowrap">Animal Loop</div>
       <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: #6B6180; white-space: nowrap">/ DEV DIARY</div>
     </a>
+    </div>
     <a href="https://apps.apple.com/us/app/animal-loop/id6806081867" class="nav-cta" style="flex: none; display: flex; align-items: center; gap: 8px; background: #EDA11F; color: #2B1F4D; text-decoration: none; font-size: 14px; font-weight: 900; padding: 9px 16px; border-radius: 20px; box-shadow: 0 3px 0 #B47714"><span class="nav-cta-long">Download on the App Store →</span><span class="nav-cta-short">Get the game →</span></a>
   </div>
 </nav>
