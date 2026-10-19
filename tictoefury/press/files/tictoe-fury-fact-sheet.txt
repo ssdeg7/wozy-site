@@ -1,0 +1,65 @@
+TICTOE FURY: FACT SHEET
+https://www.wozy.co/tictoefury/press/
+
+Developer:       wOzy (wOzy Technologies LLC)
+First released:  2010, alongside the first iPad
+Latest version:  4.0
+Platforms:       iPhone and iPad (universal)
+Price:           Free
+Genre:           Board game (tic-tac-toe)
+Downloads:       400,000+ worldwide
+App Store:       https://apps.apple.com/us/app/tictoe-fury-tic-tac-toe/id534426331
+Website:         https://www.wozy.co/tictoefury/
+
+SHORT DESCRIPTION
+TicToe Fury is tic-tac-toe taken to a new level, for iPhone and iPad. Play the
+AI in easy or hard mode, challenge a friend on the same device, or play online
+through Game Center, with hand-drawn chalkboard graphics, more than 30
+achievements and an original soundtrack.
+
+LONG DESCRIPTION
+TicToe Fury turns the game everyone grew up with into something you can keep
+playing for hours. Play alone against the AI in easy or hard mode, pass the
+device to a friend, or play online against a random player or one of your
+friends with Game Center turn-based multiplayer.
+
+Every illustration is drawn by hand, and the images and animations are made
+separately for each device, so the game looks sharp on both iPhone and iPad.
+Players pick their name, colors and playing style, earn more than 30
+achievements and climb the online leaderboard. The game is universal, and
+online matches sync across devices.
+
+Version 4.0 rebuilt the online experience, added new graphics and animations,
+and brought support for every iOS device.
+
+KEY FACTS
+- 400,000+ downloads worldwide
+- Top 10 board game in multiple countries
+- Play the AI (easy or hard), a friend on one device, or online
+- Game Center turn-based multiplayer and online leaderboards
+- 30+ achievements
+- Hand-drawn graphics made separately for iPhone and iPad
+- Original soundtrack by the wOzy team
+- Universal: one download for all your iOS devices
+
+HISTORY
+TicToe Fury was wOzy's first game, built when the first iPad came out. It
+started with pencil and paper: every graphic was sketched and drawn by hand,
+and the code was written from scratch. The team still updates it today;
+version 4.0 is a full rebuild of the online experience.
+
+ABOUT WOZY
+wOzy is a small independent studio that has made iPhone and iPad apps and games
+since 2010. It started as a small team in Colombia and is still small on
+purpose. Its apps include TicToe Fury, Animal Loop, Odyz and Dapply.
+https://www.wozy.co/
+
+ASSETS IN THIS KIT
+- icon/: app icon, PNG
+- screenshots/: 4 images of the game on iPhone and iPad, 1280px wide JPG
+- tictoe-fury-key-art-1200x630.jpg
+
+All assets may be used for coverage of TicToe Fury.
+
+PRESS CONTACT
+https://www.wozy.co/contact/?app=tictoefury&type=press
