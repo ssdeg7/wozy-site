@@ -171,6 +171,9 @@
   .devices .split { grid-template-columns: 1fr 1.05fr; }
   .devices .photo { margin: 0; }
   .devices .photo img { display: block; width: 100%; height: auto; }
+  .devices figure { display: flex; flex-direction: column; gap: 4px; }
+  .devices .open { width: 100%; max-width: 980px; margin: 32px 0 0; }
+  .devices .open img { display: block; width: 100%; height: auto; }
   .chips { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
   .chips li { font-size: 16px; font-weight: 900; color: var(--navy); background: #FFFDF6; padding: 8px 16px; border-radius: 99px; box-shadow: 0 0 0 1.5px #EADFC4, 0 3px 0 #EADFC4; }
   .chips li.new { background: var(--amber); box-shadow: 0 3px 0 var(--amber-deep); }
@@ -401,8 +404,9 @@
         <li class="new">iPhone Duo<small>New</small></li>
       </ul>
     </div>
-    <figure class="photo"><img src="assets/duo-in-hand.webp" alt="Animal Loop's Fern Hollow track on an iPhone Duo held in one hand" width="920" height="1055" loading="lazy"></figure>
+    <figure class="photo"><img src="assets/duo-in-hand.webp" alt="Animal Loop's Fern Hollow track on an iPhone Duo held in one hand" width="920" height="1055" loading="lazy"><figcaption class="cap">Folded</figcaption></figure>
   </div>
+  <figure class="open"><img src="assets/duo-open-in-hands.webp" alt="Animal Loop's Coral Shallows trefoil track across the open iPhone Duo, held in two hands" width="1630" height="892" loading="lazy"><figcaption class="cap">Open</figcaption></figure>
 </section>
 
 <div class="divider" aria-hidden="true"><div class="dots"></div><div class="done" style="width: 84%"></div><div class="flag"></div><div class="ball" style="left: 84%; transform: rotate(-8deg)"><div><div style="position:relative; width:56px; height:56px"><div style="position:absolute; inset:0; border-radius:50%; background:#dfa96a; box-shadow:inset 0 0 0 3px #a9743a"></div>
