@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Animal Loop: one-tap animal racing game for iPhone and iPad</title>
-<meta name="description" content="Animal Loop is a one-tap animal racing game for iPhone and iPad. 18 racers, 27 handmade tracks across three worlds, a Grand Prix in every world and a day/night cycle on every track.">
+<title>Animal Loop: one-tap animal racing game for iPhone, iPad and Mac</title>
+<meta name="description" content="Animal Loop is a one-tap animal racing game for iPhone, iPad and Mac. 18 racers, 27 handmade tracks across three worlds, a Grand Prix in every world and a day/night cycle on every track.">
 <link rel="canonical" href="https://www.wozy.co/animal-loop/">
 <meta property="og:url" content="https://www.wozy.co/animal-loop/">
 <meta property="og:site_name" content="wOzy">
@@ -16,8 +16,8 @@
   "@type": "MobileApplication",
   "name": "Animal Loop",
   "url": "https://www.wozy.co/animal-loop/",
-  "description": "A one-tap animal racing game for iPhone and iPad with 18 racers, 27 handmade tracks across three worlds, a Grand Prix in every world and a day/night cycle on every track.",
-  "operatingSystem": "iOS",
+  "description": "A one-tap animal racing game for iPhone, iPad and Mac with 18 racers, 27 handmade tracks across three worlds, a Grand Prix in every world and a day/night cycle on every track.",
+  "operatingSystem": "iOS, iPadOS, macOS",
   "applicationCategory": "GameApplication",
   "image": "https://www.wozy.co/animal-loop/assets/app-icon.png",
   "installUrl": "https://apps.apple.com/us/app/animal-loop/id6806081867",
@@ -45,7 +45,7 @@
 }
 </script>
 <meta property="og:title" content="Animal Loop: tiny racers, big loops">
-<meta property="og:description" content="The one-tap racing game for iPhone and iPad.">
+<meta property="og:description" content="The one-tap racing game for iPhone, iPad and Mac.">
 <meta property="og:image" content="https://www.wozy.co/animal-loop/assets/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -167,6 +167,16 @@
   .daynight .frame div { aspect-ratio: 1206 / 2622; border-radius: 36px; overflow: hidden; }
   .daynight img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+  /* devices */
+  .devices .split { grid-template-columns: 1fr 1.05fr; }
+  .devices .photo { margin: 0; background: #FBFBFD; border-radius: 28px; overflow: hidden; box-shadow: 0 0 0 1.5px #EADFC4, 0 6px 0 #EADFC4; }
+  .devices .photo img { display: block; width: 100%; height: auto; }
+  .chips { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+  .chips li { font-size: 16px; font-weight: 900; color: var(--navy); background: #FFFDF6; padding: 8px 16px; border-radius: 99px; box-shadow: 0 0 0 1.5px #EADFC4, 0 3px 0 #EADFC4; }
+  .chips li.new { background: var(--amber); box-shadow: 0 3px 0 var(--amber-deep); }
+  .chips li.new small { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-left: 6px; }
+  @media (max-width: 900px) { .devices .split { grid-template-columns: 1fr; } .devices .photo { max-width: 460px; width: 100%; justify-self: center; } }
+
   /* diary */
   .diary { width: 100%; max-width: 1040px; display: grid; grid-template-columns: 1.1fr 1fr; background: #FFFDF6; border-radius: 28px; overflow: hidden; text-decoration: none; color: var(--navy); box-shadow: 0 0 0 1.5px #EADFC4, 0 6px 0 #EADFC4; }
   .diary:hover { color: var(--navy); box-shadow: 0 0 0 1.5px var(--amber), 0 6px 0 var(--amber-deep); }
@@ -259,7 +269,7 @@
   <div class="hero-in">
     <img class="icon" src="assets/app-icon.png" alt="Animal Loop app icon: a smiling hedgehog">
     <h1>Tiny racers.<br>Big loops.</h1>
-    <p class="sub">The one-tap racing game for iPhone and iPad. Your animal rolls on its own. Every tap turns it.</p>
+    <p class="sub">The one-tap racing game for iPhone, iPad and Mac. Your animal rolls on its own. Every tap turns it.</p>
     <div class="ctas">
       <a href="https://apps.apple.com/us/app/animal-loop/id6806081867" aria-label="Download on the App Store" style="display: inline-flex; align-items: center; gap: 10px; height: 58px; padding: 0 20px 0 16px; border-radius: 13px; background: #000; color: #fff; text-decoration: none; box-shadow: inset 0 0 0 1.5px #A6A6A6, 0 4px 0 rgba(23,19,32,0.35); font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif; "><svg viewBox="0 0 384 512" width="26" height="32" aria-hidden="true" style="flex: none"><path fill="#fff" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span style="display: flex; flex-direction: column; align-items: flex-start; line-height: 1; text-align: left"><span style="font-size: 11px; font-weight: 500; letter-spacing: 0.2px">Download on the</span><span style="font-size: 25px; font-weight: 600; letter-spacing: -0.6px; margin-top: 3px">App Store</span></span></a>
       <a class="read" href="blog/building-animal-loop/">Read how it was made</a>
@@ -376,6 +386,22 @@
   <div class="daynight">
     <figure><div class="frame"><div><img src="assets/screens/desert-day.webp" alt="A Dune Flats track at midday"></div></div><figcaption class="cap">Noon</figcaption></figure>
     <figure><div class="frame"><div><img src="assets/screens/desert-night.webp" alt="The same Dune Flats track at night"></div></div><figcaption class="cap">Midnight</figcaption></figure>
+  </div>
+</section>
+
+<section class="sec devices" aria-labelledby="devices">
+  <div class="split">
+    <div class="txt">
+      <h2 id="devices">Plays on every screen</h2>
+      <p>Animal Loop runs on <strong>every iPhone, iPad and Mac</strong>, and it's ready for the new <strong>iPhone Duo</strong>. One tap still steers, whatever you're holding.</p>
+      <ul class="chips" aria-label="Supported devices">
+        <li>iPhone</li>
+        <li>iPad</li>
+        <li>Mac</li>
+        <li class="new">iPhone Duo<small>New</small></li>
+      </ul>
+    </div>
+    <figure class="photo"><img src="assets/duo-in-hand.webp" alt="Animal Loop's Fern Hollow track on an iPhone Duo held in one hand" width="920" height="1055" loading="lazy"></figure>
   </div>
 </section>
 
