@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Newest post first. When adding a post, add an <item> here, update lastBuildDate,
+     and add the post to blog/index.html, sitemap.xml and llms.txt. -->
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Animal Loop dev diary</title>
+    <link>https://www.wozy.co/animal-loop/blog/</link>
+    <atom:link href="https://www.wozy.co/animal-loop/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Behind-the-scenes posts on designing, building and balancing Animal Loop, a one-tap animal racing game for iPhone and iPad, by the indie studio wOzy.</description>
+    <language>en</language>
+    <lastBuildDate>Tue, 20 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <image>
+      <url>https://www.wozy.co/animal-loop/assets/app-icon.png</url>
+      <title>Animal Loop dev diary</title>
+      <link>https://www.wozy.co/animal-loop/blog/</link>
+    </image>
+
+    <item>
+      <title>One Tap, Twenty-Seven Tracks, and a Simulation Engine I Never Planned to Build</title>
+      <link>https://www.wozy.co/animal-loop/blog/building-animal-loop/</link>
+      <guid isPermaLink="true">https://www.wozy.co/animal-loop/blog/building-animal-loop/</guid>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <dc:creator>Sebastián Salazar de Greiff</dc:creator>
+      <category>Game development</category>
+      <category>iOS</category>
+      <category>Level design</category>
+      <description><![CDATA[<p>How a shelved idea from the first iPad days became Animal Loop, and why I ended up writing my own track simulator and level editor to make it.</p><p><img src="https://www.wozy.co/animal-loop/assets/og.jpg" alt="Animal Loop" width="1200" height="630"></p><p><a href="https://www.wozy.co/animal-loop/blog/building-animal-loop/">Read the full post</a></p>]]></description>
+    </item>
+  </channel>
+</rss>

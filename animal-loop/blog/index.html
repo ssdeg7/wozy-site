@@ -45,6 +45,7 @@
 }
 </script>
 <link rel="icon" href="../assets/app-icon.png">
+<link rel="alternate" type="application/rss+xml" title="Animal Loop dev diary" href="https://www.wozy.co/animal-loop/blog/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;1,6..12,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -69,6 +70,10 @@
   .hero .tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: 4px; color: #2B1F4D; background: rgba(247,237,209,0.7); padding: 6px 14px; border-radius: 16px; }
   .hero h1 { margin: 20px auto 0; max-width: 16ch; font-size: clamp(38px, 6vw, 64px); line-height: 1.04; font-weight: 900; color: #2B1F4D; letter-spacing: -1.5px; text-wrap: balance; }
   .hero p { margin: 18px auto 0; max-width: 620px; font-size: clamp(18px, 2vw, 21px); line-height: 1.5; color: #2E2154; text-wrap: pretty; }
+  .hero .follow { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 12px; margin-top: 22px; font-size: 16px; font-weight: 800; }
+  .hero .follow a { color: #2B1F4D; }
+  .hero .follow span { opacity: .5; }
+  @media (max-width: 420px) { .hero .follow { flex-direction: column; align-items: center; } .hero .follow span { display: none; } }
   .posts { max-width: 1040px; margin: 0 auto; padding: 56px 24px 0; display: flex; flex-direction: column; gap: 28px; }
   .post a { display: grid; grid-template-columns: 1.1fr 1fr; background: #FFFDF6; border-radius: 28px; overflow: hidden; text-decoration: none; color: #2B1F4D; box-shadow: 0 0 0 1.5px #EADFC4, 0 6px 0 #EADFC4; }
   .post a:hover { color: #2B1F4D; box-shadow: 0 0 0 1.5px #EDA11F, 0 6px 0 #B47714; }
@@ -126,11 +131,12 @@
   <div class="tag">DEVELOPER DIARY</div>
   <h1>How Animal Loop gets made</h1>
   <p>Notes from building a one-tap racing game: the ideas, the tools and the design decisions behind every track.</p>
+  <p class="follow"><a href="feed.xml">Subscribe with RSS</a><span aria-hidden="true">·</span><a href="https://x.com/wozyofficial" rel="me">Follow @wozyofficial on X</a></p>
 </header>
 
 <main class="posts">
 <!-- Newest post first. To add a post, put it in its own folder (blog/<slug>/index.html),
-     copy an <article> below, and add it to the JSON-LD above, sitemap.xml and llms.txt. -->
+     copy an <article> below, and add it to the JSON-LD above, feed.xml, sitemap.xml and llms.txt. -->
   <article class="post">
     <a href="building-animal-loop/">
       <div class="art"><img src="../assets/blog/hamster-racing-logo.webp" alt="The original Hamster Racing title screen" width="738" height="276"></div>
