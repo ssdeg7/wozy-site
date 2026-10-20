@@ -168,17 +168,18 @@
   .daynight img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   /* devices */
-  .devices .split { grid-template-columns: 1fr 1.05fr; }
-  .devices .photo { margin: 0; }
-  .devices .photo img { display: block; width: 100%; height: auto; }
-  .devices figure { display: flex; flex-direction: column; gap: 4px; }
-  .devices .open { width: 100%; max-width: 980px; margin: 32px 0 0; }
-  .devices .open img { display: block; width: 100%; height: auto; }
-  .chips { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+  .chips { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
   .chips li { font-size: 16px; font-weight: 900; color: var(--navy); background: #FFFDF6; padding: 8px 16px; border-radius: 99px; box-shadow: 0 0 0 1.5px #EADFC4, 0 3px 0 #EADFC4; }
   .chips li.new { background: var(--amber); box-shadow: 0 3px 0 var(--amber-deep); }
   .chips li.new small { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-left: 6px; }
-  @media (max-width: 900px) { .devices .split { grid-template-columns: 1fr; } .devices .photo { max-width: 460px; width: 100%; justify-self: center; } }
+  /* Each photo grows in proportion to its aspect ratio, so all three share one height. */
+  .lineup { width: 100%; max-width: 1180px; margin-top: 44px; display: flex; align-items: flex-end; gap: 28px; }
+  .lineup figure { margin: 0; flex: var(--ar) 1 0; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+  .lineup img { display: block; width: 100%; height: auto; }
+  @media (max-width: 560px) {
+    .lineup { flex-wrap: wrap; gap: 24px 12px; }
+    .lineup .open { flex-basis: 100%; }
+  }
 
   /* diary */
   .diary { width: 100%; max-width: 1040px; display: grid; grid-template-columns: 1.1fr 1fr; background: #FFFDF6; border-radius: 28px; overflow: hidden; text-decoration: none; color: var(--navy); box-shadow: 0 0 0 1.5px #EADFC4, 0 6px 0 #EADFC4; }
@@ -393,20 +394,21 @@
 </section>
 
 <section class="sec devices" aria-labelledby="devices">
-  <div class="split">
-    <div class="txt">
-      <h2 id="devices">Plays on every screen</h2>
-      <p>Animal Loop runs on <strong>every iPhone, iPad and Mac</strong>, and it's ready for the new <strong>iPhone Duo</strong>. One tap still steers, whatever you're holding.</p>
-      <ul class="chips" aria-label="Supported devices">
-        <li>iPhone</li>
-        <li>iPad</li>
-        <li>Mac</li>
-        <li class="new">iPhone Duo<small>New</small></li>
-      </ul>
-    </div>
-    <figure class="photo"><img src="assets/duo-in-hand.webp" alt="Animal Loop's Fern Hollow track on an iPhone Duo held in one hand" width="920" height="1055" loading="lazy"><figcaption class="cap">Folded</figcaption></figure>
+  <div class="head center">
+    <h2 id="devices">Plays on every screen</h2>
+    <p>Animal Loop runs on <strong>every iPhone, iPad and Mac</strong>, and it's ready for the new <strong>iPhone Duo</strong>. One tap still steers, whatever you're holding.</p>
+    <ul class="chips" aria-label="Supported devices">
+      <li>iPhone</li>
+      <li>iPad</li>
+      <li>Mac</li>
+      <li class="new">iPhone Duo<small>New</small></li>
+    </ul>
   </div>
-  <figure class="open"><img src="assets/duo-open-in-hands.webp" alt="Animal Loop's Coral Shallows trefoil track across the open iPhone Duo, held in two hands" width="1630" height="892" loading="lazy"><figcaption class="cap">Open</figcaption></figure>
+  <div class="lineup">
+    <figure style="--ar: 0.733"><img src="assets/iphone-in-hand.webp" alt="A Dune Flats track in Animal Loop on an iPhone held in one hand" width="740" height="1009" loading="lazy"><figcaption class="cap">iPhone</figcaption></figure>
+    <figure style="--ar: 0.773"><img src="assets/duo-in-hand.webp" alt="Animal Loop's Fern Hollow track on an iPhone Duo held in one hand" width="860" height="1112" loading="lazy"><figcaption class="cap">iPhone Duo, folded</figcaption></figure>
+    <figure class="open" style="--ar: 1.788"><img src="assets/duo-open-in-hands.webp" alt="Animal Loop's Coral Shallows trefoil track across the open iPhone Duo, held in two hands" width="1500" height="839" loading="lazy"><figcaption class="cap">iPhone Duo, open</figcaption></figure>
+  </div>
 </section>
 
 <div class="divider" aria-hidden="true"><div class="dots"></div><div class="done" style="width: 84%"></div><div class="flag"></div><div class="ball" style="left: 84%; transform: rotate(-8deg)"><div><div style="position:relative; width:56px; height:56px"><div style="position:absolute; inset:0; border-radius:50%; background:#dfa96a; box-shadow:inset 0 0 0 3px #a9743a"></div>
