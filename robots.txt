@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
-# The Odyz site is published at https://www.odyz.app/, not here.
-Disallow: /odyz.app/
-Disallow: /odyz.app-tools/
 
 Sitemap: https://www.wozy.co/sitemap.xml
