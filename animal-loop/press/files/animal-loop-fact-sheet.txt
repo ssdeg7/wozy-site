@@ -4,7 +4,7 @@ https://www.wozy.co/animal-loop/press/
 Developer:   wOzy (wOzy Technologies LLC)
 Created by:  Sebastián Salazar de Greiff
 Released:    2026
-Platforms:   iPhone and iPad
+Platforms:   iPhone, iPad, Mac and iPhone Duo
 Price:       Free, with in-app purchases
 Genre:       One-tap racing
 App Store:   https://apps.apple.com/us/app/animal-loop/id6806081867
@@ -12,10 +12,10 @@ Website:     https://www.wozy.co/animal-loop/
 Dev diary:   https://www.wozy.co/animal-loop/blog/building-animal-loop/
 
 SHORT DESCRIPTION
-Animal Loop is a one-tap racing game for iPhone and iPad. Your animal rolls on
-its own, and every tap turns it. Race 18 animals across 27 handmade tracks in
-three worlds, take on a Grand Prix in every world, and race into the night as
-the sun sets on every track.
+Animal Loop is a one-tap racing game for iPhone, iPad and Mac. Your animal
+rolls on its own, and every tap turns it. Race 18 animals across 27 handmade
+tracks in three worlds, take on a Grand Prix in every world, and race into the
+night as the sun sets on every track.
 
 LONG DESCRIPTION
 In Animal Loop there is no stick and no brake. Your animal rolls forward in a
