@@ -144,7 +144,8 @@
   .racers .head p { color: rgba(247,237,209,0.85); }
   .roster { width: 100%; max-width: 1000px; display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 22px 14px; list-style: none; margin: 0; padding: 0; }
   .roster li { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; color: rgba(247,237,209,0.9); }
-  .roster img { width: 92px; height: 92px; object-fit: contain; display: block; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.35)); }
+  .roster img { width: 92px; height: 92px; object-fit: contain; display: block; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.35)); transition: transform .2s ease; }
+  .roster li:hover img { transform: translateY(-6px) rotate(-8deg); }
   .roster li.more { justify-content: center; }
   .roster li.more div { width: 92px; height: 92px; border-radius: 50%; display: grid; place-items: center; box-shadow: inset 0 0 0 3px rgba(247,237,209,0.35); font-size: 24px; font-weight: 900; color: var(--amber); }
 
