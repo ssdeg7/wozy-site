@@ -106,7 +106,7 @@ SECTIONS = [
                 ("Odyz", "https://www.odyz.app/"),
                 ("Dapply", "/dapply/"),
             ]),
-            ("Help", ["AUTO:help", ("Odyz help center", "https://www.odyz.app/help/")]),
+            ("Help", ["AUTO:help", ("Odyz FAQ", "https://www.odyz.app/#faq")]),
             ("Compare", ["AUTO:compare", ("Odyz vs other travel apps", "https://www.odyz.app/compare/")]),
             ("Company", [
                 ("About wOzy", "/"),
@@ -248,7 +248,9 @@ def main():
             if not check:
                 p.write_text(new, encoding="utf-8")
     sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
-    missing = [url_for(p) for p in pages() if p.name == "index.html" and SITE + url_for(p) not in sitemap]
+    missing = [url_for(p) for p in pages()
+               if p.name == "index.html" and SITE + url_for(p) not in sitemap
+               and 'http-equiv="refresh"' not in p.read_text(encoding="utf-8")]
     for m in missing:
         print(f"warning: {m} is not in sitemap.xml", file=sys.stderr)
     if check:
