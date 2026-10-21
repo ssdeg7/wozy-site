@@ -150,6 +150,14 @@
   .list li { break-inside: avoid; padding: 6px 0 6px 34px; position: relative; font-size: 22px; }
   .list li::before { content: ""; position: absolute; left: 0; top: 12px; width: 20px; height: 18px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 18'%3E%3Cpath d='M2 10 L8 15 L18 2' fill='none' stroke='%23F6E27A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat; }
 
+  /* FAQ */
+  .faq { max-width: 860px; margin: 0 auto 88px; }
+  .faq h2 { font-size: clamp(38px, 5vw, 58px); margin-bottom: 18px; }
+  .faq-q { border-bottom: 2px dashed rgba(244,241,230,0.2); padding: 14px 0; }
+  .faq-q summary { cursor: pointer; font-family: "Cabin Sketch", cursive; font-weight: 700; font-size: 26px; line-height: 1.2; }
+  .faq-q summary:hover { color: var(--yellow); }
+  .faq-q p { margin: 10px 0 4px; color: var(--chalk-dim); max-width: 64ch; }
+  .faq-q .faq-more { color: var(--yellow); }
   .notes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; max-width: 760px; margin: 0 auto 80px; }
   .note { background: #FFF6B8; color: #3B3320; padding: 22px 22px 26px; transform: rotate(-1.5deg); box-shadow: 0 10px 20px rgba(0,0,0,0.3); font-size: 20px; line-height: 1.4; }
   .note:nth-child(2) { transform: rotate(1.2deg); background: #FFD3DC; }
@@ -196,6 +204,64 @@
   nav.top { --wz-ink: #F6B25A; --wz-hover: rgba(244,241,230,0.1); --wz-sep: rgba(244,241,230,0.35); }
 </style>
 <link rel="stylesheet" href="/assets/site-footer.css?v=21d15ed2">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you play 9x9 tic-tac-toe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The board is nine small tic-tac-toe boards inside one big board. The square you play in a small board sends your opponent to the matching small board, so every move decides where they play next. Win three in a row on a small board to claim it, and claim three small boards in a row to win.",
+        "url": "https://www.wozy.co/tictoefury/help/how-to-play-9x9-tic-tac-toe/"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I play against the computer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. TicToe Fury has an AI opponent in easy and hard mode, so you can learn the 9x9 game on easy and test your strategy on hard."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I play online with friends?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Play online through Game Center turn-based matches, against a friend or a random player. Each of you plays your turn whenever you're free, and matches sync across your iPhone and iPad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can two people play on one iPhone or iPad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Pick a two-player game and pass the device back and forth."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is TicToe Fury free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. TicToe Fury is free on the App Store, and it's universal: one download works on your iPhone and iPad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is TicToe Fury different from regular tic-tac-toe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Regular 3x3 tic-tac-toe ends in a draw once both players know the trick. TicToe Fury's 9x9 game makes every move choose where your opponent plays next, so it rewards planning ahead.",
+        "url": "https://www.wozy.co/tictoefury/compare/"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <svg width="0" height="0" style="position: absolute" aria-hidden="true"><filter id="chalky"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/></filter></svg>
@@ -310,6 +376,48 @@
       <div class="note"><h3>Where it started</h3><p>TicToe Fury was wOzy's first game, built when the first iPad came out. It's still going strong.</p></div>
     </section>
 
+    <section class="faq" aria-labelledby="faq">
+      <h2 id="faq">Frequently asked questions</h2>
+      <details class="faq-q">
+        <summary>How do you play 9x9 tic-tac-toe?</summary>
+        <div>
+          <p>The board is nine small tic-tac-toe boards inside one big board. The square you play in a small board sends your opponent to the matching small board, so every move decides where they play next. Win three in a row on a small board to claim it, and claim three small boards in a row to win.</p>
+          <p><a class="faq-more" href="/tictoefury/help/how-to-play-9x9-tic-tac-toe/">See the rules, step by step &rarr;</a></p>
+        </div>
+      </details>
+      <details class="faq-q">
+        <summary>Can I play against the computer?</summary>
+        <div>
+          <p>Yes. TicToe Fury has an AI opponent in easy and hard mode, so you can learn the 9x9 game on easy and test your strategy on hard.</p>
+        </div>
+      </details>
+      <details class="faq-q">
+        <summary>Can I play online with friends?</summary>
+        <div>
+          <p>Yes. Play online through Game Center turn-based matches, against a friend or a random player. Each of you plays your turn whenever you're free, and matches sync across your iPhone and iPad.</p>
+        </div>
+      </details>
+      <details class="faq-q">
+        <summary>Can two people play on one iPhone or iPad?</summary>
+        <div>
+          <p>Yes. Pick a two-player game and pass the device back and forth.</p>
+        </div>
+      </details>
+      <details class="faq-q">
+        <summary>Is TicToe Fury free?</summary>
+        <div>
+          <p>Yes. TicToe Fury is free on the App Store, and it's universal: one download works on your iPhone and iPad.</p>
+        </div>
+      </details>
+      <details class="faq-q">
+        <summary>How is TicToe Fury different from regular tic-tac-toe?</summary>
+        <div>
+          <p>Regular 3x3 tic-tac-toe ends in a draw once both players know the trick. TicToe Fury's 9x9 game makes every move choose where your opponent plays next, so it rewards planning ahead.</p>
+          <p><a class="faq-more" href="/tictoefury/compare/">See the rules, step by step &rarr;</a></p>
+        </div>
+      </details>
+    </section>
+
     <!-- site-footer -->
 <footer class="sf">
   <div class="sf-in">
@@ -318,6 +426,16 @@
         <a class="sf-logo" href="/tictoefury/"><img src="/tictoefury/assets/app-icon.png" alt="" width="36" height="36"><span>TicToe Fury</span></a>
         <p>9x9 tic-tac-toe for iPhone and iPad.</p>
       </div>
+      <nav class="sf-col" aria-label="Apps">
+        <h2 class="sf-h">Apps</h2>
+        <ul>
+          <li><a href="/animal-loop/">Animal Loop</a></li>
+          <li><a href="/tictoefury/">TicToe Fury</a></li>
+          <li><a href="https://www.odyz.app/">Odyz</a></li>
+          <li><a href="/dapply/">Dapply</a></li>
+          <li><a href="/">About wOzy</a></li>
+        </ul>
+      </nav>
       <nav class="sf-col" aria-label="TicToe Fury">
         <h2 class="sf-h">TicToe Fury</h2>
         <ul>
@@ -337,16 +455,6 @@
         <h2 class="sf-h">Compare</h2>
         <ul>
           <li><a href="/tictoefury/compare/">TicToe Fury vs regular tic-tac-toe</a></li>
-        </ul>
-      </nav>
-      <nav class="sf-col" aria-label="wOzy apps">
-        <h2 class="sf-h">wOzy apps</h2>
-        <ul>
-          <li><a href="/animal-loop/">Animal Loop</a></li>
-          <li><a href="/tictoefury/">TicToe Fury</a></li>
-          <li><a href="https://www.odyz.app/">Odyz</a></li>
-          <li><a href="/dapply/">Dapply</a></li>
-          <li><a href="/">About wOzy</a></li>
         </ul>
       </nav>
     </div>

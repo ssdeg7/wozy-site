@@ -190,6 +190,13 @@
   }
 
   /* diary */
+  /* FAQ */
+  .faq { width: 100%; max-width: 860px; margin-top: 32px; }
+  .faq-q { background: #FFFDF6; border-radius: 20px; box-shadow: 0 0 0 1.5px #EADFC4; padding: 4px 22px; margin-bottom: 12px; }
+  .faq-q summary { cursor: pointer; padding: 14px 0; font-size: 19px; font-weight: 800; color: var(--navy); }
+  .faq-q summary:hover { color: var(--plum); }
+  .faq-q p { margin: 0 0 14px; font-size: 17px; line-height: 1.6; color: var(--body); }
+  .faq-q .faq-more { font-weight: 900; color: var(--plum); text-decoration: underline; text-underline-offset: 3px; }
   .diary { width: 100%; max-width: 1040px; display: grid; grid-template-columns: 1.1fr 1fr; background: #FFFDF6; border-radius: 28px; overflow: hidden; text-decoration: none; color: var(--navy); box-shadow: 0 0 0 1.5px #EADFC4, 0 6px 0 #EADFC4; }
   .diary:hover { color: var(--navy); box-shadow: 0 0 0 1.5px var(--amber), 0 6px 0 var(--amber-deep); }
   .diary .art { background: linear-gradient(180deg, #8E80D8 0%, #E1A0C2 70%, #F8C6B6 100%); display: grid; place-items: center; padding: 28px; }
@@ -260,6 +267,73 @@
   }
 </style>
 <link rel="stylesheet" href="/assets/site-footer.css?v=21d15ed2">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you play Animal Loop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your animal rolls forward on its own inside its ball, and every tap turns it. There's no stick and no brake: time your taps to stay off the walls and keep your hearts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a Grand Prix?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The big race at the end of every world: all nine of the world's tracks, raced back to back at one speed you pick, against that world's rival animal. Beat the rival and they join your roster.",
+        "url": "https://www.wozy.co/animal-loop/help/what-is-a-grand-prix/"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you play Animal Loop with friends?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Through Game Center. Invite friends from the Friends screen, race their best runs as ghosts on every track, and beat their Grand Prix times.",
+        "url": "https://www.wozy.co/animal-loop/help/how-to-play-with-friends/"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Animal Loop free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Animal Loop is free on the App Store, and everything in the game can be unlocked by playing. In-app purchases are optional."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which devices can I play Animal Loop on?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "iPhone, iPad and Mac, including iPhone Duo. One tap still steers, whatever you're holding."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many tracks and racers are there?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "27 handmade tracks across three worlds, Dune Flats, Coral Shallows and Fern Hollow, and 18 animal racers to collect, from a hamster to an octopus."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is Animal Loop different from other racing games?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most one-tap games are endless runs for a high score. Animal Loop has real, handmade tracks to master, rivals to beat and friends to race, with a single tap as your only control.",
+        "url": "https://www.wozy.co/animal-loop/compare/"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -439,6 +513,59 @@
     </div>
   </a>
 </section>
+
+<section class="sec" aria-labelledby="faq">
+  <div class="head center">
+    <h2 id="faq">Frequently asked questions</h2>
+  </div>
+  <div class="faq">
+    <details class="faq-q">
+      <summary>How do you play Animal Loop?</summary>
+      <div>
+        <p>Your animal rolls forward on its own inside its ball, and every tap turns it. There's no stick and no brake: time your taps to stay off the walls and keep your hearts.</p>
+      </div>
+    </details>
+    <details class="faq-q">
+      <summary>What is a Grand Prix?</summary>
+      <div>
+        <p>The big race at the end of every world: all nine of the world's tracks, raced back to back at one speed you pick, against that world's rival animal. Beat the rival and they join your roster.</p>
+        <p><a class="faq-more" href="/animal-loop/help/what-is-a-grand-prix/">Read the full answer &rarr;</a></p>
+      </div>
+    </details>
+    <details class="faq-q">
+      <summary>How do you play Animal Loop with friends?</summary>
+      <div>
+        <p>Through Game Center. Invite friends from the Friends screen, race their best runs as ghosts on every track, and beat their Grand Prix times.</p>
+        <p><a class="faq-more" href="/animal-loop/help/how-to-play-with-friends/">Read the full answer &rarr;</a></p>
+      </div>
+    </details>
+    <details class="faq-q">
+      <summary>Is Animal Loop free?</summary>
+      <div>
+        <p>Yes. Animal Loop is free on the App Store, and everything in the game can be unlocked by playing. In-app purchases are optional.</p>
+      </div>
+    </details>
+    <details class="faq-q">
+      <summary>Which devices can I play Animal Loop on?</summary>
+      <div>
+        <p>iPhone, iPad and Mac, including iPhone Duo. One tap still steers, whatever you're holding.</p>
+      </div>
+    </details>
+    <details class="faq-q">
+      <summary>How many tracks and racers are there?</summary>
+      <div>
+        <p>27 handmade tracks across three worlds, Dune Flats, Coral Shallows and Fern Hollow, and 18 animal racers to collect, from a hamster to an octopus.</p>
+      </div>
+    </details>
+    <details class="faq-q">
+      <summary>How is Animal Loop different from other racing games?</summary>
+      <div>
+        <p>Most one-tap games are endless runs for a high score. Animal Loop has real, handmade tracks to master, rivals to beat and friends to race, with a single tap as your only control.</p>
+        <p><a class="faq-more" href="/animal-loop/compare/">Read the full answer &rarr;</a></p>
+      </div>
+    </details>
+  </div>
+</section>
 </main>
 
 <section class="numbers" aria-label="Animal Loop by the numbers">
@@ -467,6 +594,16 @@
         <a class="sf-logo" href="/animal-loop/"><img src="/animal-loop/assets/app-icon.png" alt="" width="36" height="36"><span>Animal Loop</span></a>
         <p>The one-tap racing game for iPhone, iPad and Mac.</p>
       </div>
+      <nav class="sf-col" aria-label="Apps">
+        <h2 class="sf-h">Apps</h2>
+        <ul>
+          <li><a href="/animal-loop/">Animal Loop</a></li>
+          <li><a href="/tictoefury/">TicToe Fury</a></li>
+          <li><a href="https://www.odyz.app/">Odyz</a></li>
+          <li><a href="/dapply/">Dapply</a></li>
+          <li><a href="/">About wOzy</a></li>
+        </ul>
+      </nav>
       <nav class="sf-col" aria-label="Animal Loop">
         <h2 class="sf-h">Animal Loop</h2>
         <ul>
@@ -488,16 +625,6 @@
         <h2 class="sf-h">Compare</h2>
         <ul>
           <li><a href="/animal-loop/compare/">Animal Loop vs other racing games</a></li>
-        </ul>
-      </nav>
-      <nav class="sf-col" aria-label="wOzy apps">
-        <h2 class="sf-h">wOzy apps</h2>
-        <ul>
-          <li><a href="/animal-loop/">Animal Loop</a></li>
-          <li><a href="/tictoefury/">TicToe Fury</a></li>
-          <li><a href="https://www.odyz.app/">Odyz</a></li>
-          <li><a href="/dapply/">Dapply</a></li>
-          <li><a href="/">About wOzy</a></li>
         </ul>
       </nav>
     </div>

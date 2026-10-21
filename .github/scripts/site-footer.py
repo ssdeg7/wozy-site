@@ -35,7 +35,7 @@ SKIP = {"odyz/index.html"}
 # A column is (heading, links). A link is (label, href). "AUTO:help" and
 # "AUTO:compare" expand to the section's pages with a footer-label under
 # /help/ or /compare/, in footer-order. Columns with no links are left out.
-APPS = ("wOzy apps", [
+APPS = ("Apps", [
     ("Animal Loop", "/animal-loop/"),
     ("TicToe Fury", "/tictoefury/"),
     ("Odyz", "https://www.odyz.app/"),
@@ -52,6 +52,7 @@ SECTIONS = [
         "brand": ("Animal Loop", "/animal-loop/", "/animal-loop/assets/app-icon.png",
                   "The one-tap racing game for iPhone, iPad and Mac."),
         "columns": [
+            APPS,
             ("Animal Loop", [
                 ("The game", "/animal-loop/"),
                 ("Dev diary", "/animal-loop/blog/"),
@@ -60,7 +61,6 @@ SECTIONS = [
             ]),
             ("Help", ["AUTO:help", ("Contact support", "/contact/?app=animal-loop")]),
             ("Compare", ["AUTO:compare"]),
-            APPS,
         ],
         "bottom": [("Privacy Policy", "/animal-loop/privacy/"), ("Terms of Use", "/animal-loop/terms/"), X],
     },
@@ -69,6 +69,7 @@ SECTIONS = [
         "brand": ("TicToe Fury", "/tictoefury/", "/tictoefury/assets/app-icon.png",
                   "9x9 tic-tac-toe for iPhone and iPad."),
         "columns": [
+            APPS,
             ("TicToe Fury", [
                 ("The game", "/tictoefury/"),
                 ("Press kit", "/tictoefury/press/"),
@@ -76,7 +77,6 @@ SECTIONS = [
             ]),
             ("Help", ["AUTO:help", ("Contact support", "/contact/?app=tictoefury")]),
             ("Compare", ["AUTO:compare"]),
-            APPS,
         ],
         "bottom": [X],
     },
@@ -85,6 +85,7 @@ SECTIONS = [
         "brand": ("Dapply", "/dapply/", "/dapply/assets/icon.svg",
                   "The NFT gallery for iPhone, now in demo mode."),
         "columns": [
+            APPS,
             ("Dapply", [
                 ("The app", "/dapply/"),
                 ("Dapply Wiki", "https://wiki.dapply.app"),
@@ -92,7 +93,6 @@ SECTIONS = [
             ]),
             ("Help", ["AUTO:help", ("Contact support", "/contact/?app=dapply")]),
             ("Compare", ["AUTO:compare"]),
-            APPS,
         ],
         "bottom": [("Dapply on X", "https://twitter.com/DapplyApp"), X],
     },
