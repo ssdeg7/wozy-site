@@ -193,6 +193,7 @@
   }
   @media (prefers-reduced-motion: reduce) { .app { transition: none; } .app:hover { transform: none; } }
 </style>
+<link rel="stylesheet" href="/assets/site-footer.css?v=f7baef98">
 </head>
 <body>
 
@@ -295,18 +296,58 @@
   </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <div>© 2026 wOzy Technologies LLC. wOzy and the wOzy logo are trademarks of wOzy in the U.S. and/or other countries.</div>
-    <nav aria-label="Footer">
-      <a href="animal-loop/">Animal Loop</a>
-      <a href="tictoefury/">TicToe Fury</a>
-      <a href="https://www.odyz.app/">Odyz</a>
-      <a href="dapply/">Dapply</a>
-      <a href="/contact/">Support</a>
-      <a href="https://x.com/wozyofficial" rel="me">X</a>
-    </nav>
+<!-- site-footer -->
+<footer class="sf">
+  <div class="sf-in">
+    <div class="sf-grid">
+      <div class="sf-brand">
+        <a class="sf-logo" href="/"><img src="/assets/wozy-logo.png" alt="" width="36" height="36"><span>wOzy</span></a>
+        <p>Small apps, made with care, since 2010.</p>
+      </div>
+      <nav class="sf-col" aria-label="Apps">
+        <h2 class="sf-h">Apps</h2>
+        <ul>
+          <li><a href="/animal-loop/">Animal Loop</a></li>
+          <li><a href="/tictoefury/">TicToe Fury</a></li>
+          <li><a href="https://www.odyz.app/">Odyz</a></li>
+          <li><a href="/dapply/">Dapply</a></li>
+        </ul>
+      </nav>
+      <nav class="sf-col" aria-label="Help">
+        <h2 class="sf-h">Help</h2>
+        <ul>
+          <li><a href="/animal-loop/help/what-is-a-grand-prix/">Animal Loop Grand Prix, explained</a></li>
+          <li><a href="/animal-loop/help/how-to-play-with-friends/">Racing friends in Animal Loop</a></li>
+          <li><a href="/tictoefury/help/how-to-play-9x9-tic-tac-toe/">How to play 9x9 tic-tac-toe</a></li>
+          <li><a href="https://www.odyz.app/help/">Odyz help center</a></li>
+        </ul>
+      </nav>
+      <nav class="sf-col" aria-label="Compare">
+        <h2 class="sf-h">Compare</h2>
+        <ul>
+          <li><a href="/tictoefury/compare/">TicToe Fury vs regular tic-tac-toe</a></li>
+          <li><a href="/animal-loop/compare/">Animal Loop vs other racing games</a></li>
+          <li><a href="https://www.odyz.app/compare/">Odyz vs other travel apps</a></li>
+        </ul>
+      </nav>
+      <nav class="sf-col" aria-label="Company">
+        <h2 class="sf-h">Company</h2>
+        <ul>
+          <li><a href="/">About wOzy</a></li>
+          <li><a href="/animal-loop/blog/">Animal Loop dev diary</a></li>
+          <li><a href="/animal-loop/press/">Animal Loop press kit</a></li>
+          <li><a href="/tictoefury/press/">TicToe Fury press kit</a></li>
+          <li><a href="https://www.odyz.app/press/">Odyz press kit</a></li>
+          <li><a href="/contact/">Contact us</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="sf-bottom">
+      <p>© 2026 wOzy Technologies LLC. wOzy and the wOzy logo are trademarks of wOzy.</p>
+      <p class="sf-links"><a href="/animal-loop/privacy/">Animal Loop Privacy</a> <a href="/animal-loop/terms/">Animal Loop Terms</a> <a href="https://x.com/wozyofficial">X</a></p>
+    </div>
   </div>
 </footer>
+<!-- /site-footer -->
 </body>
 </html>
