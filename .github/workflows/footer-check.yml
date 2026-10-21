@@ -1,0 +1,21 @@
+name: Footer check
+
+# Fails when a page's footer doesn't match what .github/scripts/site-footer.py
+# would write, for example after adding a help page without re-running it.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  footer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 .github/scripts/site-footer.py --check

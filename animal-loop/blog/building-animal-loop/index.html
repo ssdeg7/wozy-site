@@ -86,6 +86,7 @@
     .wz-crumb > a:not(.wz-home) img, .wz-crumb > a:not(.wz-home) svg { display: none; }
   }
 </style>
+<link rel="stylesheet" href="/assets/site-footer.css?v=47c6fff1">
 </head>
 <body>
 <div style="min-height: 100vh; background: #FBF5E6; color: #2B1F4D">
@@ -879,18 +880,59 @@
 
 
 
-<footer style="margin-top: 96px; padding: 28px 24px 40px; background: #F1E6C9; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; font-size: 15px; font-weight: 800">
-    <a href="../../" style="color: #2B1F4D">Animal Loop</a><span style="opacity: .4">·</span>
-    <a href="../" style="color: #2B1F4D">Dev diary</a><span style="opacity: .4">·</span>
-    <a href="../feed.xml" style="color: #2B1F4D">RSS</a><span style="opacity: .4">·</span>
-    <a href="/" style="color: #2B1F4D">wOzy</a><span style="opacity: .4">·</span>
-    <a href="/contact/?app=animal-loop" style="color: #2B1F4D">Support</a><span style="opacity: .4">·</span>
-    <a href="../../terms/" style="color: #2B1F4D">Terms of Use</a><span style="opacity: .4">·</span>
-    <a href="../../privacy/" style="color: #2B1F4D">Privacy Policy</a>
+<!-- site-footer -->
+<footer class="sf">
+  <div class="sf-in">
+    <div class="sf-grid">
+      <div class="sf-brand">
+        <a class="sf-logo" href="/"><img src="/assets/wozy-logo.png" alt="" width="36" height="36"><span>wOzy</span></a>
+        <p>Small apps, made with care, since 2010.</p>
+      </div>
+      <nav class="sf-col" aria-label="Apps">
+        <h2 class="sf-h">Apps</h2>
+        <ul>
+          <li><a href="/animal-loop/">Animal Loop</a></li>
+          <li><a href="/tictoefury/">TicToe Fury</a></li>
+          <li><a href="https://www.odyz.app/">Odyz</a></li>
+          <li><a href="/dapply/">Dapply</a></li>
+        </ul>
+      </nav>
+      <nav class="sf-col" aria-label="Help">
+        <h2 class="sf-h">Help</h2>
+        <ul>
+          <li><a href="/animal-loop/help/what-is-a-grand-prix/">Animal Loop Grand Prix, explained</a></li>
+          <li><a href="/animal-loop/help/how-to-play-with-friends/">Racing friends in Animal Loop</a></li>
+          <li><a href="/tictoefury/help/how-to-play-9x9-tic-tac-toe/">How to play 9x9 tic-tac-toe</a></li>
+          <li><a href="https://www.odyz.app/help/">Odyz help center</a></li>
+        </ul>
+      </nav>
+      <nav class="sf-col" aria-label="Compare">
+        <h2 class="sf-h">Compare</h2>
+        <ul>
+          <li><a href="/tictoefury/compare/">TicToe Fury vs regular tic-tac-toe</a></li>
+          <li><a href="/animal-loop/compare/">Animal Loop vs other racing games</a></li>
+          <li><a href="https://www.odyz.app/compare/">Odyz vs other travel apps</a></li>
+        </ul>
+      </nav>
+      <nav class="sf-col" aria-label="Company">
+        <h2 class="sf-h">Company</h2>
+        <ul>
+          <li><a href="/">About wOzy</a></li>
+          <li><a href="/animal-loop/blog/">Animal Loop dev diary</a></li>
+          <li><a href="/animal-loop/press/">Animal Loop press kit</a></li>
+          <li><a href="/tictoefury/press/">TicToe Fury press kit</a></li>
+          <li><a href="https://www.odyz.app/press/">Odyz press kit</a></li>
+          <li><a href="/contact/">Contact us</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="sf-bottom">
+      <p>© 2026 wOzy Technologies LLC. wOzy and the wOzy logo are trademarks of wOzy.</p>
+      <p class="sf-links"><a href="/animal-loop/privacy/">Animal Loop Privacy</a> <a href="/animal-loop/terms/">Animal Loop Terms</a> <a href="https://x.com/wozyofficial">X</a></p>
+    </div>
   </div>
-  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6B6180">© 2026 wOzy Technologies LLC</div>
 </footer>
+<!-- /site-footer -->
 </div>
 <script src="../../assets/al.js?v=3" defer></script>
 </body>
