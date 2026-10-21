@@ -27,7 +27,7 @@ SITE = "https://www.wozy.co"
 CSS = "assets/site-footer.css"
 
 # Pages that never get the footer.
-SKIP = {"404.html", "odyz/index.html"}
+SKIP = {"odyz/index.html"}
 
 BRAND = {
     "name": "wOzy",

@@ -20,6 +20,7 @@ footer.sf {
   text-align: left;
 }
 .sf *, .sf *::before, .sf *::after { box-sizing: border-box; }
+.sf p { margin: 0; max-width: none; font-size: inherit; line-height: inherit; color: inherit; }
 .sf-in { max-width: var(--sf-max, 1120px); margin: 0 auto; padding: 0 24px; }
 .sf-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) repeat(4, minmax(0, 1fr)); gap: 36px 28px; }
 

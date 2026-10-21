@@ -95,6 +95,14 @@
     },
     {
       "@type": "Question",
+      "name": "Can I ever play anywhere I like?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only on the very first move. After that, TicToe Fury always sends you to the board your opponent's last move points to, and you have to play there. There are no free moves, which is why every square you pick matters twice: once for the board you're on, and once for the board you send your opponent to."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "Can I play 9x9 tic-tac-toe against the computer?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -294,7 +302,7 @@
   .kit .q p { margin: 10px 0 4px; }
   @media (max-width: 760px) { .how, .tips { grid-template-columns: 1fr; } }
 </style>
-<link rel="stylesheet" href="/assets/site-footer.css?v=f7baef98">
+<link rel="stylesheet" href="/assets/site-footer.css?v=47c6fff1">
 </head>
 <body>
 <div class="board">
@@ -335,7 +343,7 @@
           <ol class="steps">
             <li><b>The board.</b> The big board is a 3x3 grid, and each of its nine spaces is a small 3x3 tic-tac-toe board.</li>
             <li><b>The first move</b> can go in any square of any small board.</li>
-            <li><b>Every move picks the next board.</b> The square you choose inside a small board sends your opponent to the small board in the same position. Play the top-right square, and your opponent has to play somewhere in the top-right board.</li>
+            <li><b>Every move picks the next board.</b> The square you choose inside a small board sends your opponent to the small board in the same position. Play the top-right square, and your opponent has to play somewhere in the top-right board. There are no free moves: you always play in the board your opponent sends you to.</li>
             <li><b>Win a small board</b> by getting three in a row on it, just like regular tic-tac-toe.</li>
             <li><b>Win the game</b> by winning three small boards in a row on the big board: across, down or diagonally.</li>
           </ol>
@@ -419,6 +427,10 @@
         <details class="q">
           <summary>Is 9x9 tic-tac-toe the same as ultimate tic-tac-toe?</summary>
           <p>Yes. 9x9 tic-tac-toe, as TicToe Fury plays it, follows the same idea as the game often called ultimate tic-tac-toe: nine small boards inside a big one, where the square you pick decides which board your opponent plays next.</p>
+        </details>
+        <details class="q">
+          <summary>Can I ever play anywhere I like?</summary>
+          <p>Only on the very first move. After that, TicToe Fury always sends you to the board your opponent's last move points to, and you have to play there. There are no free moves, which is why every square you pick matters twice: once for the board you're on, and once for the board you send your opponent to.</p>
         </details>
         <details class="q">
           <summary>Can I play 9x9 tic-tac-toe against the computer?</summary>
