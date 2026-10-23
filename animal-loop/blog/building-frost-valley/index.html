@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frost Valley Is Coming: Animal Loop's Fourth World and Its Cracking Ice</title>
+<meta name="description" content="A first look at Frost Valley, Animal Loop's upcoming fourth world: where it stands, how its cracking ice works, and why ice that breaks behind you was the hardest thing in the game to get right.">
+<link rel="canonical" href="https://www.wozy.co/animal-loop/blog/building-frost-valley/">
+<meta property="og:url" content="https://www.wozy.co/animal-loop/blog/building-frost-valley/">
+<meta property="og:site_name" content="wOzy">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Coming Soon: Frost Valley, Where the Road Breaks Behind You",
+  "description": "A first look at Frost Valley, Animal Loop's upcoming fourth world: where it stands, how its cracking ice works, and why ice that breaks behind you was the hardest thing in the game to get right.",
+  "datePublished": "2026-10-23",
+  "author": {
+    "@type": "Person",
+    "name": "Sebastián Salazar de Greiff"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://www.wozy.co/#org",
+    "name": "wOzy",
+    "url": "https://www.wozy.co/"
+  },
+  "image": "https://www.wozy.co/animal-loop/assets/blog/frost-valley-og.jpg",
+  "mainEntityOfPage": "https://www.wozy.co/animal-loop/blog/building-frost-valley/",
+  "about": {
+    "@type": "MobileApplication",
+    "name": "Animal Loop",
+    "url": "https://www.wozy.co/animal-loop/"
+  },
+  "keywords": "indie game dev, iOS game, SpriteKit, game mechanics, level design, coming soon, devlog"
+}
+</script>
+<meta name="keywords" content="indie game dev, iOS game, SpriteKit, game mechanics, level design, coming soon, devlog">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;1,6..12,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; background: #FBF5E6; font-family: "Nunito Sans", "Avenir Next", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #8C3D47; text-decoration: underline; text-underline-offset: 3px; }
+  a:hover { color: #A6582F; }
+  ::selection { background: #EDA11F; color: #2B1F4D; }
+
+  .nav-cta:hover { background: #F2B03A !important; color: #2B1F4D !important; }
+  .nav-cta-short { display: none; }
+  @media (max-width: 520px) {
+    .nav-cta-long { display: none; }
+    .nav-cta-short { display: inline; }
+  }
+  @media (max-width: 560px) {
+    nav [aria-label="Animal Loop home"] > div:last-child { display: none; }
+  }
+</style>
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-10-23">
+<meta property="og:title" content="Coming Soon: Frost Valley, Where the Road Breaks Behind You">
+<meta property="og:description" content="A first look at Animal Loop's fourth world, its cracking ice, and why it was so hard to get right.">
+<meta property="og:image" content="https://www.wozy.co/animal-loop/assets/blog/frost-valley-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@wozyofficial">
+<link rel="icon" href="../../assets/app-icon.png">
+<link rel="alternate" type="application/rss+xml" title="Animal Loop dev diary" href="https://www.wozy.co/animal-loop/blog/feed.xml">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500&text=wOzy&display=swap" rel="stylesheet">
+<style>
+  /* wOzy home link, shared by every app page header */
+  .wz-crumb { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .wz-home { display: inline-flex; align-items: center; gap: 7px; flex: none; margin-left: -4px; padding: 4px 8px 4px 4px; border-radius: 10px; text-decoration: none; color: var(--wz-ink, #C8740A); font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 19px; font-weight: 500; letter-spacing: -0.3px; line-height: 1; transition: background .15s; }
+  .wz-home:hover { color: var(--wz-ink, #C8740A); background: var(--wz-hover, rgba(243,154,30,0.12)); text-decoration: none; }
+  .wz-home:focus-visible { outline: 2px solid #F39A1E; outline-offset: 2px; }
+  .wz-home img { width: 26px; height: 26px; display: block; }
+  .wz-sep { flex: none; width: 1.5px; height: 22px; border-radius: 1px; background: var(--wz-sep, rgba(0,0,0,0.16)); }
+  .wz-crumb > a:not(.wz-home), .wz-crumb > a:not(.wz-home) * { white-space: nowrap; }
+  @media (max-width: 560px) {
+    .wz-crumb { gap: 10px; }
+    .wz-home { padding: 4px; }
+    .wz-home span { display: none; }
+  }
+  @media (max-width: 420px) {
+    .wz-crumb > a:not(.wz-home) img, .wz-crumb > a:not(.wz-home) svg { display: none; }
+  }
+</style>
+<style>
+  /* Frost Valley post */
+  .fv-hero { background: linear-gradient(180deg, #8FB4E0 0%, #B6C3EC 30%, #D9CFF0 62%, #F3DCE0 100%); padding: 72px 24px 0; display: flex; flex-direction: column; align-items: center; gap: 48px; overflow: hidden; }
+  .fv-hero-in { width: 100%; max-width: 880px; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
+  .fv-tag { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: 4px; color: #2B1F4D; background: rgba(247,250,255,0.7); padding: 6px 14px; border-radius: 16px; }
+  .fv-tag b { color: #C8602A; font-weight: 600; }
+  .fv-hero h1 { margin: 0; font-size: clamp(38px, 6vw, 70px); line-height: 1.04; font-weight: 900; color: #2B1F4D; letter-spacing: -1.5px; text-wrap: balance; }
+  .fv-hero .dek { margin: 0; max-width: 700px; font-size: clamp(18px, 2vw, 22px); line-height: 1.5; color: #2E2154; text-wrap: pretty; }
+  .fv-byline { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 14px; font-size: 15px; font-weight: 700; color: #2E2154; }
+  .fv-byline span[aria-hidden] { opacity: .5; }
+
+  /* Phone screenshots */
+  .fv-phone { flex: none; border-radius: 26px; overflow: hidden; background: #2B1F4D; box-shadow: 0 0 0 7px #2B1F4D, 0 18px 36px rgba(43,31,77,0.24); }
+  .fv-phone img { width: 100%; height: auto; display: block; }
+  .fv-hero-phones { width: 100%; max-width: 900px; display: flex; justify-content: center; align-items: flex-start; gap: clamp(14px, 4vw, 44px); height: clamp(190px, 46vw, 400px); }
+  .fv-hero-phones .fv-phone { width: clamp(96px, 26vw, 250px); }
+  .fv-hero-phones .fv-phone:nth-child(1) { transform: rotate(-4deg); margin-top: 48px; }
+  .fv-hero-phones .fv-phone:nth-child(2) { width: clamp(112px, 30vw, 280px); }
+  .fv-hero-phones .fv-phone:nth-child(3) { transform: rotate(4deg); margin-top: 48px; }
+  .fv-shots { width: 100%; max-width: 860px; margin: 16px 0; display: flex; flex-direction: column; gap: 18px; }
+  .fv-shots .row { display: flex; justify-content: center; align-items: flex-start; gap: clamp(18px, 5vw, 48px); }
+  .fv-shots .fv-phone { width: clamp(130px, 38vw, 270px); }
+  .fv-shots .fv-phone:nth-child(1) { transform: rotate(-1.5deg); }
+  .fv-shots .fv-phone:nth-child(2) { transform: rotate(1.5deg); margin-top: 28px; }
+  .fv-shot-labels { display: flex; justify-content: center; gap: clamp(18px, 5vw, 48px); }
+  .fv-shot-labels span { width: clamp(130px, 38vw, 270px); font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: #6B6180; text-align: center; }
+
+  .fv { padding: 72px 24px 0; display: flex; flex-direction: column; align-items: center; gap: 28px; }
+  .fv-col { width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 22px; }
+  .fv-col p, .fv-col li { margin: 0; font-size: 19px; line-height: 1.7; color: #3A2F55; text-wrap: pretty; }
+  .fv-col strong { color: #2B1F4D; font-weight: 800; }
+  .fv-col ul { margin: 0; padding: 0 0 0 22px; display: flex; flex-direction: column; gap: 12px; }
+  .fv-col li { line-height: 1.65; padding-left: 4px; }
+  .fv-col h3 { margin: 18px 0 0; font-size: 26px; line-height: 1.15; font-weight: 900; color: #2B1F4D; letter-spacing: -0.4px; }
+  .fv-ch { width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 10px; }
+  .fv-ch > div { display: flex; align-items: flex-end; gap: 14px; }
+  .fv-ch .num { font-size: clamp(72px, 10vw, 104px); font-weight: 900; line-height: 0.82; letter-spacing: -4px; }
+  .fv-ch .lbl { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 2.5px; padding-bottom: 4px; }
+  .fv-ch h2 { margin: 8px 0 0; font-size: clamp(30px, 4.6vw, 44px); line-height: 1.08; font-weight: 900; color: #2B1F4D; letter-spacing: -1px; text-wrap: balance; }
+  .fv-cap { font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.5; color: #6B6180; text-align: center; }
+  .fv-quote { width: 100%; max-width: 860px; margin: 28px 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .fv-quote .mark { font-size: 110px; line-height: 0.9; height: 56px; font-weight: 900; color: #57B7E6; }
+  .fv-quote blockquote { margin: 0; font-size: clamp(25px, 3.4vw, 36px); line-height: 1.28; font-weight: 800; color: #2B1F4D; letter-spacing: -0.5px; text-wrap: balance; }
+  .fv-rule { width: 100%; max-width: 680px; position: relative; height: 44px; margin: 48px 0 24px; }
+  .fv-rule::before { content: ""; position: absolute; left: 0; right: 26px; top: 20px; border-top: 3px dotted #C8D5E4; }
+  .fv-rule::after { content: ""; position: absolute; right: 0; top: 12px; width: 18px; height: 18px; border-radius: 3px; background: repeating-conic-gradient(#2B1F4D 0% 25%, #F7EDD1 0% 50%) 0 0 / 9px 9px; box-shadow: 0 0 0 1.5px #2B1F4D; }
+  .fv-rule i { position: absolute; left: 0; top: 20px; border-top: 3px dotted #57B7E6; }
+
+  .fv-card { width: 100%; max-width: 760px; margin: 4px 0; background: #EAF3FA; border-radius: 24px; padding: 26px 30px; box-sizing: border-box; box-shadow: 0 0 0 1.5px #C8DDEE, 0 6px 0 #C8DDEE; display: flex; flex-direction: column; gap: 10px; }
+  .fv-card .k { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 2.5px; color: #2F6E9E; }
+  .fv-card p { margin: 0; font-size: clamp(20px, 2.4vw, 24px); line-height: 1.45; font-weight: 800; color: #2B1F4D; text-wrap: pretty; }
+
+  .fv-life { width: 100%; max-width: 960px; margin: 8px 0; display: flex; flex-direction: column; gap: 16px; }
+  .fv-life ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; }
+  .fv-life li { display: flex; flex-direction: column; gap: 8px; }
+  .fv-life svg { width: 100%; height: auto; display: block; border-radius: 12px; box-shadow: 0 0 0 4px #FFFDF6, 0 10px 22px rgba(43,31,77,0.16); }
+  .fv-life b { margin-top: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; color: #2B1F4D; }
+  .fv-life b span { color: #2F6E9E; }
+  .fv-life i { font-style: normal; font-size: 15px; line-height: 1.4; color: #6B6180; }
+  @media (max-width: 760px) { .fv-life ol { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fv-life li:last-child { grid-column: 1 / -1; max-width: calc(50% - 9px); } }
+
+  .fv-tracks { width: 100%; max-width: 860px; margin: 8px 0; display: flex; flex-direction: column; gap: 16px; }
+  .fv-tracks ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .fv-tracks li { position: relative; background: #FFFDF6; border-radius: 20px; padding: 14px 14px 16px; display: flex; flex-direction: column; align-items: center; gap: 4px; box-shadow: 0 0 0 1.5px #EADFC4, 0 5px 0 #EADFC4; }
+  .fv-tracks svg { width: 100%; max-width: 150px; aspect-ratio: 1; display: block; }
+  .fv-tracks .n { position: absolute; left: 12px; top: 10px; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: #2F6E9E; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; }
+  .fv-tracks b { font-size: 17px; font-weight: 900; color: #2B1F4D; text-align: center; }
+  .fv-tracks i { font-style: normal; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: .5px; color: #6B6180; }
+  @media (max-width: 560px) { .fv-tracks ol { gap: 10px; } .fv-tracks li { padding: 10px 6px 12px; border-radius: 16px; } .fv-tracks b { font-size: 14px; } .fv-tracks i { font-size: 10px; letter-spacing: 0; } .fv-tracks .n { width: 22px; height: 22px; font-size: 11px; left: 8px; top: 8px; } }
+
+  .fv-phases { width: 100%; max-width: 860px; margin: 8px 0; display: flex; flex-direction: column; gap: 16px; }
+  .fv-phases ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  .fv-phases li { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .fv-phases svg { width: 100%; height: auto; display: block; border-radius: 18px; box-shadow: 0 10px 24px rgba(43,31,77,0.18); }
+  .fv-phases span { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 2px; color: #2B1F4D; }
+  @media (max-width: 560px) { .fv-phases ol { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  .fv-hood { width: 100%; max-width: 760px; margin: 12px 0; background: #13294D; border-radius: 24px; overflow: hidden; box-shadow: 0 6px 0 #0B1A33; }
+  .fv-hood .stripe { height: 14px; background: repeating-linear-gradient(90deg, #F2873A 0 14px, #FFFFFF 14px 28px); }
+  .fv-hood .in { padding: 28px 32px 32px; display: flex; flex-direction: column; gap: 14px; }
+  .fv-hood .k { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: 2.5px; color: #6FE3B4; }
+  .fv-hood p { margin: 0; font-size: 18px; line-height: 1.65; color: #E6EDF4; text-wrap: pretty; }
+  .fv-meter { display: flex; flex-direction: column; gap: 6px; }
+  .fv-meter .row { display: flex; justify-content: space-between; gap: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #CDEEFA; }
+  .fv-meter .bar { height: 12px; border-radius: 6px; background: rgba(205,238,250,0.16); overflow: hidden; }
+  .fv-meter .bar div { height: 100%; border-radius: 6px; background: linear-gradient(90deg, #57B7E6, #A9DBF0); }
+
+  /* Progress checklist */
+  .fv-progress { width: 100%; max-width: 760px; margin: 8px 0; display: grid; grid-template-columns: 1.3fr 1fr; gap: 18px; }
+  .fv-progress section { background: #FFFDF6; border-radius: 24px; padding: 24px 26px 26px; box-shadow: 0 0 0 1.5px #EADFC4, 0 6px 0 #EADFC4; display: flex; flex-direction: column; gap: 14px; }
+  .fv-progress h3 { margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: 2.5px; }
+  .fv-progress ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .fv-progress li { position: relative; padding-left: 30px; font-size: 16px; line-height: 1.45; color: #3A2F55; }
+  .fv-progress li::before { content: ""; position: absolute; left: 0; top: 1px; width: 20px; height: 20px; border-radius: 6px; box-sizing: border-box; }
+  .fv-progress .done h3 { color: #1F7A82; }
+  .fv-progress .done li::before { background: #1F7A82 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3.2L15 6.8' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 20px no-repeat; }
+  .fv-progress .todo h3 { color: #C8602A; }
+  .fv-progress .todo li::before { border: 2px dashed #C8602A; }
+  @media (max-width: 640px) { .fv-progress { grid-template-columns: 1fr; } }
+
+  .fv-tags { width: 100%; max-width: 680px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 8px 0 0; }
+  .fv-tags div { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #3A2F55; background: #F1E6C9; padding: 5px 11px; border-radius: 12px; }
+  @media (max-width: 560px) {
+    .fv-hood .in { padding: 24px 22px 26px; } .fv-card { padding: 22px; }
+    .fv-phone { border-radius: 16px; box-shadow: 0 0 0 4px #2B1F4D, 0 12px 24px rgba(43,31,77,0.22); }
+    .fv-tag .long { display: none; }
+  }
+</style>
+<link rel="stylesheet" href="/assets/site-footer.css?v=21d15ed2">
+</head>
+<body>
+<div style="min-height: 100vh; background: #FBF5E6; color: #2B1F4D">
+
+<nav style="position: sticky; top: 0; z-index: 20; background: rgba(251,245,230,0.94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 1px 0 rgba(43,31,77,0.08)">
+  <div style="max-width: 1120px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+    <div class="wz-crumb">
+      <a class="wz-home" href="/" aria-label="wOzy home"><img src="/assets/wozy-logo.png" alt="" width="26" height="26"><span>wOzy</span></a>
+      <span class="wz-sep" aria-hidden="true"></span>
+      <a href="../../" aria-label="Animal Loop home" style="display: flex; align-items: center; gap: 12px; min-width: 0; text-decoration: none">
+      <img src="../../assets/app-icon.png" width="512" height="512" alt="Animal Loop app icon" style="width: 34px; height: 34px; border-radius: 9px; flex: none">
+      <div style="font-size: 17px; font-weight: 900; color: #2B1F4D; white-space: nowrap">Animal Loop</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: #6B6180; white-space: nowrap">/ DEV DIARY</div>
+    </a>
+    </div>
+    <a href="https://apps.apple.com/us/app/animal-loop/id6806081867" class="nav-cta" style="flex: none; display: flex; align-items: center; gap: 8px; background: #EDA11F; color: #2B1F4D; text-decoration: none; font-size: 14px; font-weight: 900; padding: 9px 16px; border-radius: 20px; box-shadow: 0 3px 0 #B47714"><span class="nav-cta-long">Download on the App Store →</span><span class="nav-cta-short">Get the game →</span></a>
+  </div>
+    <div style="max-width: 1120px; margin: 0 auto; padding: 0 24px; height: 18px; position: relative">
+      <div style="position: absolute; left: 24px; right: 44px; top: 8px; border-top: 2px dotted #D6C7A4"></div>
+      <div id="progress-fill" style="position: absolute; left: 24px; width: 0; top: 8px; border-top: 2px dotted #EDA11F"></div>
+      <div style="position: absolute; right: 24px; top: 2px; width: 14px; height: 14px; border-radius: 2px; background: repeating-conic-gradient(#2B1F4D 0% 25%, #F7EDD1 0% 50%) 0 0 / 7px 7px; box-shadow: 0 0 0 1.5px #2B1F4D"></div>
+      <div id="progress-ball" style="position: absolute; left: 24px; top: -3px; width: 20px; height: 20px; margin-left: -10px">
+        <div style="width: 56px; height: 56px; transform: scale(0.357); transform-origin: 0 0"><div style="position:relative; width:56px; height:56px"><div style="position:absolute; inset:0; border-radius:50%; background:#dfa96a; box-shadow:inset 0 0 0 3px #a9743a"></div>
+<div style="position:absolute; left:6px; top:2px; width:16px; height:16px; border-radius:50%; background:#e9bd82; box-shadow:inset 0 0 0 2px #a9743a"></div>
+<div style="position:absolute; left:34px; top:2px; width:16px; height:16px; border-radius:50%; background:#e9bd82; box-shadow:inset 0 0 0 2px #a9743a"></div>
+<div style="position:absolute; left:12px; top:24px; width:32px; height:26px; border-radius:50%; background:#f7ead3"></div>
+<div style="position:absolute; left:19px; top:30px; width:7px; height:7px; border-radius:50%; background:#33251c"></div>
+<div style="position:absolute; left:30px; top:30px; width:7px; height:7px; border-radius:50%; background:#33251c"></div>
+<div style="position:absolute; left:25px; top:40px; width:7px; height:5px; border-radius:50%; background:#b9756a"></div></div></div>
+      </div>
+    </div>
+  
+</nav>
+
+<header class="fv-hero" data-screen-label="Hero">
+  <div class="fv-hero-in">
+    <div class="fv-tag"><b>COMING SOON</b><span class="long"> · DEVELOPER DIARY</span></div>
+    <h1>Coming Soon: Frost Valley, Where the Road Breaks Behind You</h1>
+    <p class="dek">Animal Loop's fourth world isn't out yet, but it's getting close. Here's where it stands, how its cracking ice works, and why it was the hardest thing in the game to get right.</p>
+    <div class="fv-byline">
+      <span>By Sebastian Salazar de Greiff</span>
+      <span aria-hidden="true">·</span>
+      <time datetime="2026-10-23">October 23, 2026</time>
+      <span aria-hidden="true">·</span>
+      <span>8 min read</span>
+    </div>
+  </div>
+  <div class="fv-hero-phones">
+    <div class="fv-phone"><img src="../../assets/blog/frost-sack-mole.webp" width="720" height="1565" alt="Santa's Sack in Frost Valley by day: the penguin rolls over cracked ice past an igloo on a frozen lake, with a Hit the Mole prompt at the top"></div>
+    <div class="fv-phone"><img src="../../assets/blog/frost-loop-day.webp" width="720" height="1565" alt="Loop in Frost Valley on lap 5 at 221cc: the penguin weaves along the inner lane while the outer lane behind it has broken into open water"></div>
+    <div class="fv-phone"><img src="../../assets/blog/frost-snowman.webp" width="720" height="1565" alt="Snowman in Frost Valley: a tall figure-eight track over two frozen lakes, with ice lanes and switch gates"></div>
+  </div>
+</header>
+
+<article class="fv">
+
+  <div class="fv-col">
+    <p><strong>Frost Valley isn't in the game yet.</strong> It runs in my development builds, behind a switch. These screenshots are from those builds, so some details will change before it ships. But the heart of it is working, and I wanted to show it.</p>
+  </div>
+
+  <div class="fv-ch" data-screen-label="Chapter 1">
+    <div><span class="num" style="color: #2F6E9E">01</span><span class="lbl" style="color: #2F6E9E">CHAPTER ONE</span></div>
+    <h2>Every World Needs Its Own Idea</h2>
+  </div>
+
+  <div class="fv-col">
+    <p>Each world in <em>Animal Loop</em> has something only it does. Dune Flats has switch gates that flip which way you turn. Coral Shallows has bridges and knots that cross over themselves. Fern Hollow has mud and mole tunnels. A fourth world needed its own idea too: something that changes how you drive, not only how the track looks.</p>
+    <p>Snow was the obvious setting, and slippery ice was the obvious mechanic. But the whole game is one tap. The only thing you control is <em>when</em> you turn. Ice that slides you around takes that one thing away, and a one-tap game stops feeling fair the moment it feels random.</p>
+    <p>So the ice in Frost Valley doesn't change how you move. <strong>It changes the road.</strong></p>
+  </div>
+
+  <figure class="fv-quote">
+    <div class="mark" aria-hidden="true">“</div>
+    <blockquote>The ice doesn't change how you move. It changes the road.</blockquote>
+  </figure>
+
+  <div class="fv-rule" aria-hidden="true"><i style="width: 18%"></i></div>
+
+  <div class="fv-ch" data-screen-label="Chapter 2">
+    <div><span class="num" style="color: #1F7A82">02</span><span class="lbl" style="color: #1F7A82">CHAPTER TWO</span></div>
+    <h2>Ice That Remembers Every Lap</h2>
+  </div>
+
+  <div class="fv-col">
+    <p>The first time you meet it, the game explains cracking ice with one card:</p>
+  </div>
+
+  <aside class="fv-card" aria-label="The in-game explainer card for cracking ice">
+    <div class="k">CRACKING ICE</div>
+    <p>Ice cracks as you roll over it and breaks into water behind you. Fall in and you lose a heart. Broken ice stays open for a lap, then freezes back as you come round again, so pick your lane each lap.</p>
+  </aside>
+
+  <div class="fv-col">
+    <p>Under that card, every piece of ice has a small life of its own:</p>
+  </div>
+
+  <figure class="fv-life">
+    <ol aria-label="The life of one piece of ice">
+      <li><svg viewBox="0 0 120 64" role="img" aria-label="perfect ice"><rect width="120" height="64" fill="#DDE6F0"/><rect x="8" y="10" width="104" height="44" rx="3" fill="#A9DBF0" stroke="#FFFFFF" stroke-width="2.5"/><line x1="12" y1="51" x2="108" y2="51" stroke="#5E9FCB" stroke-width="1.6"/><path d="M20 20 l14 6 M52 16 l18 8 M80 34 l14 6 M28 40 l10 4" stroke="#DDF3FC" stroke-width="2.2" stroke-linecap="round"/></svg><b><span>01</span> PERFECT</b><i>Fresh, glassy ice</i></li>
+      <li><svg viewBox="0 0 120 64" role="img" aria-label="cracked ice"><rect width="120" height="64" fill="#DDE6F0"/><rect x="8" y="10" width="104" height="44" rx="3" fill="#A9DBF0" stroke="#FFFFFF" stroke-width="2.5"/><path d="M34 10 L31 22 L37 33 L33 54 M62 10 L66 25 L60 38 L64 54 M88 10 L85 30 L91 54 M8 30 L31 22 M37 33 L60 38 M66 25 L85 30 M91 40 L112 36" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linejoin="bevel"/><path d="M34 10 L31 22 L37 33 L33 54 M62 10 L66 25 L60 38 L64 54 M88 10 L85 30 L91 54 M8 30 L31 22 M37 33 L60 38 M66 25 L85 30 M91 40 L112 36" fill="none" stroke="#5E9FCB" stroke-width="1" stroke-linejoin="bevel"/></svg><b><span>02</span> CRACKED</b><i>Hit once, one hit left</i></li>
+      <li><svg viewBox="0 0 120 64" role="img" aria-label="breaking ice"><rect width="120" height="64" fill="#DDE6F0"/><rect x="8" y="10" width="58" height="44" fill="#1F4E86"/><rect x="14" y="14" width="12.9" height="14.5" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(-14 20.5 21.2)"/><rect x="14.2" y="33.1" width="12.9" height="14.5" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(5 20.7 40.3)"/><rect x="29.8" y="14" width="12.9" height="14.5" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(-18.6 36.2 21.3)"/><rect x="33.2" y="34.4" width="12.9" height="14.5" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(-13.6 39.6 41.7)"/><rect x="48.8" y="14.2" width="12.9" height="14.5" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(-19 55.3 21.5)"/><rect x="50.7" y="37" width="12.9" height="14.5" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(4 57.2 44.2)"/><rect x="66" y="10" width="46" height="44" rx="3" fill="#A9DBF0" stroke="#FFFFFF" stroke-width="2.5"/><path d="M88 10 L85 30 L91 54 M66 25 L85 30 M91 40 L112 36" fill="none" stroke="#FFFFFF" stroke-width="2.4"/><path d="M88 10 L85 30 L91 54 M66 25 L85 30 M91 40 L112 36" fill="none" stroke="#5E9FCB" stroke-width="1"/><g transform="translate(84 32)"><ellipse cx="2" cy="3" rx="11" ry="10" fill="#13294D" opacity=".25"/><circle r="10" fill="#22304A" stroke="#0E1624" stroke-width="1"/><ellipse cx="2.5" rx="6.2" ry="6" fill="#F4F7FB"/><circle cx="4.2" cy="-2.4" r="1" fill="#0E1624"/><circle cx="4.2" cy="2.4" r="1" fill="#0E1624"/><path d="M6.2 -1.4 L10.2 0 L6.2 1.4 Z" fill="#F2873A"/></g><path d="M94 32 h12 m-4 -4 l4 4 -4 4" fill="none" stroke="#2B1F4D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/></svg><b><span>03</span> BREAKING</b><i>Gives way behind you</i></li>
+      <li><svg viewBox="0 0 120 64" role="img" aria-label="open water ice"><rect width="120" height="64" fill="#DDE6F0"/><rect x="8" y="10" width="104" height="44" rx="3" fill="#1F4E86"/><path d="M14 24 q10 -4 20 0 t20 0 M60 42 q10 -4 20 0 t20 0" fill="none" stroke="#163A68" stroke-width="2" stroke-linecap="round"/><rect x="22.5" y="25.5" width="7.7" height="5.8" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(11.2 26.3 28.4)"/><rect x="16.5" y="45.1" width="7.7" height="5.8" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(-14.5 20.4 47.9)"/><rect x="49" y="25.9" width="7.7" height="5.8" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(-12.5 52.9 28.8)"/><rect x="42.6" y="41.9" width="7.7" height="5.8" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(-9.8 46.4 44.8)"/><rect x="74.2" y="23.5" width="7.7" height="5.8" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(-19.6 78.1 26.4)"/><rect x="71.1" y="40.2" width="7.7" height="5.8" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(-7.2 74.9 43.1)"/><rect x="97.2" y="23.9" width="7.7" height="5.8" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(-16 101 26.8)"/><rect x="97.3" y="37" width="7.7" height="5.8" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(1.4 101.2 39.9)"/></svg><b><span>04</span> OPEN WATER</b><i>Fall in, lose a heart</i></li>
+      <li><svg viewBox="0 0 120 64" role="img" aria-label="freezing back ice"><rect width="120" height="64" fill="#DDE6F0"/><rect x="8" y="10" width="104" height="44" rx="3" fill="#1F4E86"/><rect x="13.9" y="16.2" width="18.5" height="14.6" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(11.2 23.2 23.5)"/><rect x="12.2" y="36.7" width="18.5" height="14.6" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(-14.5 21.5 44)"/><rect x="39.6" y="16.3" width="18.5" height="14.6" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(-12.5 48.9 23.6)"/><rect x="37.8" y="35.8" width="18.5" height="14.6" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(-9.8 47 43.1)"/><rect x="65" y="15.7" width="18.5" height="14.6" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(-19.6 74.2 23)"/><rect x="64.1" y="35.3" width="18.5" height="14.6" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(-7.2 73.3 42.6)"/><rect x="89.7" y="15.8" width="18.5" height="14.6" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(-16 98.9 23.1)"/><rect x="89.7" y="34.4" width="18.5" height="14.6" rx="1.5" fill="#93CDE8" stroke="#DDF3FC" stroke-width=".8" transform="rotate(1.4 99 41.7)"/><circle cx="80.2" cy="22.9" r="1.4" fill="#DDF3FC"/><circle cx="74.1" cy="16.8" r="1.4" fill="#DDF3FC"/><circle cx="70.4" cy="39.2" r="1.4" fill="#DDF3FC"/><circle cx="91" cy="43.5" r="1.4" fill="#DDF3FC"/><circle cx="18.1" cy="15.6" r="1.4" fill="#DDF3FC"/><circle cx="20.6" cy="17" r="1.4" fill="#DDF3FC"/><circle cx="32.8" cy="47" r="1.4" fill="#DDF3FC"/><circle cx="23.4" cy="46.9" r="1.4" fill="#DDF3FC"/><circle cx="42.7" cy="19" r="1.4" fill="#DDF3FC"/><circle cx="69.4" cy="48.9" r="1.4" fill="#DDF3FC"/></svg><b><span>05</span> FREEZING BACK</b><i>A lap later, it heals</i></li>
+    </ol>
+    <figcaption class="fv-cap">One piece of two-hit ice over a race.</figcaption>
+  </figure>
+
+  <div class="fv-col">
+    <ul>
+      <li><strong>Every pass counts.</strong> When more than half of your animal rolls over a piece, it takes a hit. Only one hit counts per lap, so you can't break a piece by wobbling on it.</li>
+      <li><strong>It breaks behind you, not under you.</strong> On its last hit, the ice gives way plate by plate, each plate only once it's fully behind you.</li>
+      <li><strong>Falling in costs a heart.</strong> If more than half of your animal ends up over open water, you splash, lose a heart, and get put back on dry road.</li>
+      <li><strong>It freezes back.</strong> Broken ice stays open for a lap, then heals as you come round, the break played in reverse.</li>
+    </ul>
+
+    <h3>Two lanes on one road</h3>
+    <p>Almost every stretch of road is covered in ice, split down the middle into two lanes that run end to end with no gaps. Ride the same line every lap and you'll wear it out. The race becomes about reading which half is still good, and switching to it before your line gives way.</p>
+  </div>
+
+  <figure class="fv-shots">
+    <div class="row">
+      <div class="fv-phone"><img src="../../assets/blog/frost-loop-dusk.webp" width="720" height="1565" alt="Loop at dusk on lap 2: cracked plates on one side of the track and open water with floating ice on the other" loading="lazy"></div>
+      <div class="fv-phone"><img src="../../assets/blog/frost-loop-rescue.webp" width="720" height="1565" alt="Loop at dawn after a fall: the penguin is back on dry road by the start line, with Get Ready at the top, while a long stretch of the outer lane is open water" loading="lazy"></div>
+    </div>
+    <div class="fv-shot-labels"><span>LAP 2 · DUSK</span><span>AFTER A FALL · DAWN</span></div>
+    <figcaption class="fv-cap">Loop, the first Frost Valley track. Left: by lap 2, both lanes are worn. Right: after a fall, back on dry road.</figcaption>
+  </figure>
+
+  <div class="fv-rule" aria-hidden="true"><i style="width: 36%"></i></div>
+
+  <div class="fv-ch" data-screen-label="Chapter 3">
+    <div><span class="num" style="color: #C8602A">03</span><span class="lbl" style="color: #C8602A">CHAPTER THREE</span></div>
+    <h2>Why This Was So Hard</h2>
+  </div>
+
+  <div class="fv-col">
+    <p>On paper, cracking ice is one sentence. Making it work took more rebuilds than anything else in the game. It had to look like ice, it had to be fair, and it had to fit on a phone. Each of those fought with the others.</p>
+
+    <h3>It had to feel like ice</h3>
+    <p>The first version went in on October 21. Each piece had one picture per stage (perfect, cracked, broken), and changing stage meant fading from one picture to the next. On its last hit, water spread through the piece behind you. It worked, but it looked like a sticker being swapped, not ice breaking.</p>
+    <p>By the end of the next day it had been reworked three more times. The version in these screenshots is built the way real ice is: a layer of open water, and on top of it the cracked plates as separate blocks. Each block moves through its own stages, so a hit sends cracks rippling out from your animal, the last hit breaks each plate as you roll past it, and freezing back grows the blocks floating in the water into plates again.</p>
+
+    <h3>It had to be fair</h3>
+    <p>A road that breaks can easily become a road that cheats you. So a lot of the work went into rules you'll never notice:</p>
+    <ul>
+      <li><strong>You never drop through the ice you're on.</strong> Ice only breaks once it's fully behind you. If you fall in, it's because you rolled back onto water.</li>
+      <li><strong>The road never closes.</strong> Two lanes that can both break raise an obvious problem: what if both sides are water at once? A rule I call the <strong>freeze guard</strong> checks the road every time a piece breaks. If the water on each side would leave less than a racer's width to get through, the older water freezes back early. Left, right, left can never trap you.</li>
+      <li><strong>A rescue never drops you back in.</strong> After a fall, the game looks for the nearest checkpoint with dry road, and puts you in the middle of the dry side.</li>
+      <li><strong>Every piece gets the same lap.</strong> Freezing back is timed from each piece's own spot on the track, not from the finish line, so ice heals one lap after you broke it wherever it sits.</li>
+    </ul>
+
+    <h3>Two lanes needed a wider road</h3>
+    <p>The nine tracks started at a normal road width. Once two lanes of ice went in, each lane was too tight for your animal to steer in. Every Frost Valley road had to widen from 38 to 52, the widest in the game, and every fir, igloo and crevasse that ended up too close to the road had to move or go.</p>
+  </div>
+
+  <aside class="fv-hood">
+    <div class="stripe" aria-hidden="true"></div>
+    <div class="in">
+      <div class="k">UNDER THE HOOD</div>
+      <p>Ice turned out to be the most memory-hungry thing in the game. Every piece carries art for every stage, drawn once and kept as images so nothing is redrawn while you race, and at night the ice is tinted darker instead of drawn again. On Snowflake, the biggest track, that adds up fast.</p>
+      <div class="fv-meter" aria-label="Snowflake's ice uses 88 of its 100 MB budget at full detail">
+        <div class="row"><span>SNOWFLAKE · ICE AT FULL DETAIL</span><span>88 / 100 MB</span></div>
+        <div class="bar"><div style="width: 88%"></div></div>
+      </div>
+      <div class="fv-meter" aria-label="Snowflake's whole scene uses 191 of its 200 MB texture budget">
+        <div class="row"><span>SNOWFLAKE · WHOLE TRACK</span><span>191 / 200 MB</span></div>
+        <div class="bar"><div style="width: 95.5%"></div></div>
+      </div>
+      <p>So I added two tests that build every track at full detail and fail if any of them goes over budget. Snowflake didn't fit at first: it had to go from 54 pieces of ice to 44. When a track runs over, the fix is to take out whole pairs of ice, never to make the ice look worse.</p>
+    </div>
+  </aside>
+
+  <figure class="fv-shots">
+    <div class="row">
+      <div class="fv-phone"><img src="../../assets/blog/frost-sack-lap2.webp" width="720" height="1565" alt="Santa's Sack by day on lap 2 at 167cc: mostly clear ice, with a few cracked and broken pieces" loading="lazy"></div>
+      <div class="fv-phone"><img src="../../assets/blog/frost-sack-lap3.webp" width="720" height="1565" alt="Santa's Sack at dusk on lap 3 at 180cc: more of the ice is cracked, with broken stretches along the bottom of the track" loading="lazy"></div>
+    </div>
+    <div class="fv-shot-labels"><span>LAP 2 · 167CC</span><span>LAP 3 · 180CC</span></div>
+    <figcaption class="fv-cap">Santa's Sack, one lap apart. The track remembers every lap you've driven.</figcaption>
+  </figure>
+
+  <div class="fv-rule" aria-hidden="true"><i style="width: 56%"></i></div>
+
+  <div class="fv-ch" data-screen-label="Chapter 4">
+    <div><span class="num" style="color: #6A4C9C">04</span><span class="lbl" style="color: #6A4C9C">CHAPTER FOUR</span></div>
+    <h2>Where It Stands</h2>
+  </div>
+
+  <div class="fv-col">
+    <p>All nine tracks are laid out and playable, and this time they're named for the season.</p>
+  </div>
+
+  <figure class="fv-tracks">
+    <ol aria-label="Frost Valley's nine tracks in order">
+      <li><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M80.9 50 L80.3 44 L78.6 38.2 L75.7 32.8 L71.9 28.1 L67.2 24.3 L61.8 21.4 L56 19.7 L50 19.1 L44 19.7 L38.2 21.4 L32.8 24.3 L28.1 28.1 L24.3 32.8 L21.4 38.2 L19.7 44 L19.1 50 L19.7 56 L21.4 61.8 L24.3 67.2 L28.1 71.9 L32.8 75.7 L38.2 78.6 L44 80.3 L50 80.9 L56 80.3 L61.8 78.6 L67.2 75.7 L71.9 71.9 L75.7 67.2 L78.6 61.8 L80.3 56 Z" fill="none" stroke="#2F6E9E" stroke-width="22.5" stroke-linejoin="round"/><path d="M80.9 50 L80.3 44 L78.6 38.2 L75.7 32.8 L71.9 28.1 L67.2 24.3 L61.8 21.4 L56 19.7 L50 19.1 L44 19.7 L38.2 21.4 L32.8 24.3 L28.1 28.1 L24.3 32.8 L21.4 38.2 L19.7 44 L19.1 50 L19.7 56 L21.4 61.8 L24.3 67.2 L28.1 71.9 L32.8 75.7 L38.2 78.6 L44 80.3 L50 80.9 L56 80.3 L61.8 78.6 L67.2 75.7 L71.9 71.9 L75.7 67.2 L78.6 61.8 L80.3 56 Z" fill="none" stroke="#F4F8FC" stroke-width="20.1" stroke-linejoin="round"/><path d="M80.9 50 L80.3 44 L78.6 38.2 L75.7 32.8 L71.9 28.1 L67.2 24.3 L61.8 21.4 L56 19.7 L50 19.1 L44 19.7 L38.2 21.4 L32.8 24.3 L28.1 28.1 L24.3 32.8 L21.4 38.2 L19.7 44 L19.1 50 L19.7 56 L21.4 61.8 L24.3 67.2 L28.1 71.9 L32.8 75.7 L38.2 78.6 L44 80.3 L50 80.9 L56 80.3 L61.8 78.6 L67.2 75.7 L71.9 71.9 L75.7 67.2 L78.6 61.8 L80.3 56 Z" fill="none" stroke="#A9DBF0" stroke-width="11.1" stroke-linejoin="round" stroke-dasharray="32.2 7"/></svg><span class="n">1</span><b>Loop</b><i>16 pieces of ice</i></li>
+      <li><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 84.1 L54.2 83.9 L58.4 83.4 L62.6 82.6 L66.7 81.5 L70.7 80.1 L74.4 78.1 L77.5 75.2 L79.7 71.6 L81.2 67.7 L82.4 63.6 L83.3 59.5 L83.9 55.3 L84.1 51 L84 46.8 L83.6 42.6 L82.9 38.4 L81.9 34.3 L80.5 30.3 L78.7 26.4 L76.1 23.2 L72.6 20.7 L68.7 19.1 L64.7 17.8 L60.5 16.9 L56.3 16.2 L52.1 15.9 L47.9 15.9 L43.7 16.2 L39.5 16.9 L35.3 17.8 L31.3 19.1 L27.4 20.7 L23.9 23.2 L21.3 26.4 L19.5 30.3 L18.1 34.3 L17.1 38.4 L16.4 42.6 L16 46.8 L15.9 51 L16.1 55.3 L16.7 59.5 L17.6 63.6 L18.8 67.7 L20.3 71.6 L22.5 75.2 L25.6 78.1 L29.3 80.1 L33.3 81.5 L37.4 82.6 L41.6 83.4 L45.8 83.9 Z" fill="none" stroke="#2F6E9E" stroke-width="16.2" stroke-linejoin="round"/><path d="M50 84.1 L54.2 83.9 L58.4 83.4 L62.6 82.6 L66.7 81.5 L70.7 80.1 L74.4 78.1 L77.5 75.2 L79.7 71.6 L81.2 67.7 L82.4 63.6 L83.3 59.5 L83.9 55.3 L84.1 51 L84 46.8 L83.6 42.6 L82.9 38.4 L81.9 34.3 L80.5 30.3 L78.7 26.4 L76.1 23.2 L72.6 20.7 L68.7 19.1 L64.7 17.8 L60.5 16.9 L56.3 16.2 L52.1 15.9 L47.9 15.9 L43.7 16.2 L39.5 16.9 L35.3 17.8 L31.3 19.1 L27.4 20.7 L23.9 23.2 L21.3 26.4 L19.5 30.3 L18.1 34.3 L17.1 38.4 L16.4 42.6 L16 46.8 L15.9 51 L16.1 55.3 L16.7 59.5 L17.6 63.6 L18.8 67.7 L20.3 71.6 L22.5 75.2 L25.6 78.1 L29.3 80.1 L33.3 81.5 L37.4 82.6 L41.6 83.4 L45.8 83.9 Z" fill="none" stroke="#F4F8FC" stroke-width="13.8" stroke-linejoin="round"/><path d="M50 84.1 L54.2 83.9 L58.4 83.4 L62.6 82.6 L66.7 81.5 L70.7 80.1 L74.4 78.1 L77.5 75.2 L79.7 71.6 L81.2 67.7 L82.4 63.6 L83.3 59.5 L83.9 55.3 L84.1 51 L84 46.8 L83.6 42.6 L82.9 38.4 L81.9 34.3 L80.5 30.3 L78.7 26.4 L76.1 23.2 L72.6 20.7 L68.7 19.1 L64.7 17.8 L60.5 16.9 L56.3 16.2 L52.1 15.9 L47.9 15.9 L43.7 16.2 L39.5 16.9 L35.3 17.8 L31.3 19.1 L27.4 20.7 L23.9 23.2 L21.3 26.4 L19.5 30.3 L18.1 34.3 L17.1 38.4 L16.4 42.6 L16 46.8 L15.9 51 L16.1 55.3 L16.7 59.5 L17.6 63.6 L18.8 67.7 L20.3 71.6 L22.5 75.2 L25.6 78.1 L29.3 80.1 L33.3 81.5 L37.4 82.6 L41.6 83.4 L45.8 83.9 Z" fill="none" stroke="#A9DBF0" stroke-width="7.6" stroke-linejoin="round" stroke-dasharray="22.1 4.8"/></svg><span class="n">2</span><b>Ice Cube</b><i>26 pieces of ice</i></li>
+      <li><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 55.9 L55.2 55.7 L60.4 55.1 L65.5 54 L70.5 52.6 L75.2 50.3 L79 46.8 L81.5 42.3 L82.5 37.2 L82 32 L79.8 27.3 L76.4 23.4 L71.9 20.8 L66.8 19.7 L61.7 20.1 L56.9 22.2 L52.9 25.4 L49.2 29.2 L45.8 33.1 L42.8 37.4 L40.2 41.9 L37.9 46.5 L36 51.4 L34.5 56.4 L33.4 61.5 L33.5 66.6 L35.2 71.5 L38.3 75.7 L42.5 78.7 L47.4 80.3 L52.6 80.3 L57.5 78.7 L61.7 75.7 L64.8 71.5 L66.5 66.6 L66.6 61.5 L65.5 56.4 L64 51.4 L62.1 46.5 L59.8 41.9 L57.2 37.4 L54.2 33.1 L50.8 29.2 L47.1 25.4 L43.1 22.2 L38.3 20.1 L33.2 19.7 L28.1 20.8 L23.6 23.4 L20.2 27.3 L18 32 L17.5 37.2 L18.5 42.3 L21 46.8 L24.8 50.3 L29.5 52.6 L34.5 54 L39.6 55.1 L44.8 55.7 Z" fill="none" stroke="#2F6E9E" stroke-width="19.3" stroke-linejoin="round"/><path d="M50 55.9 L55.2 55.7 L60.4 55.1 L65.5 54 L70.5 52.6 L75.2 50.3 L79 46.8 L81.5 42.3 L82.5 37.2 L82 32 L79.8 27.3 L76.4 23.4 L71.9 20.8 L66.8 19.7 L61.7 20.1 L56.9 22.2 L52.9 25.4 L49.2 29.2 L45.8 33.1 L42.8 37.4 L40.2 41.9 L37.9 46.5 L36 51.4 L34.5 56.4 L33.4 61.5 L33.5 66.6 L35.2 71.5 L38.3 75.7 L42.5 78.7 L47.4 80.3 L52.6 80.3 L57.5 78.7 L61.7 75.7 L64.8 71.5 L66.5 66.6 L66.6 61.5 L65.5 56.4 L64 51.4 L62.1 46.5 L59.8 41.9 L57.2 37.4 L54.2 33.1 L50.8 29.2 L47.1 25.4 L43.1 22.2 L38.3 20.1 L33.2 19.7 L28.1 20.8 L23.6 23.4 L20.2 27.3 L18 32 L17.5 37.2 L18.5 42.3 L21 46.8 L24.8 50.3 L29.5 52.6 L34.5 54 L39.6 55.1 L44.8 55.7 Z" fill="none" stroke="#F4F8FC" stroke-width="16.9" stroke-linejoin="round"/><path d="M50 55.9 L55.2 55.7 L60.4 55.1 L65.5 54 L70.5 52.6 L75.2 50.3 L79 46.8 L81.5 42.3 L82.5 37.2 L82 32 L79.8 27.3 L76.4 23.4 L71.9 20.8 L66.8 19.7 L61.7 20.1 L56.9 22.2 L52.9 25.4 L49.2 29.2 L45.8 33.1 L42.8 37.4 L40.2 41.9 L37.9 46.5 L36 51.4 L34.5 56.4 L33.4 61.5 L33.5 66.6 L35.2 71.5 L38.3 75.7 L42.5 78.7 L47.4 80.3 L52.6 80.3 L57.5 78.7 L61.7 75.7 L64.8 71.5 L66.5 66.6 L66.6 61.5 L65.5 56.4 L64 51.4 L62.1 46.5 L59.8 41.9 L57.2 37.4 L54.2 33.1 L50.8 29.2 L47.1 25.4 L43.1 22.2 L38.3 20.1 L33.2 19.7 L28.1 20.8 L23.6 23.4 L20.2 27.3 L18 32 L17.5 37.2 L18.5 42.3 L21 46.8 L24.8 50.3 L29.5 52.6 L34.5 54 L39.6 55.1 L44.8 55.7 Z" fill="none" stroke="#A9DBF0" stroke-width="9.3" stroke-linejoin="round" stroke-dasharray="27.1 5.9"/></svg><span class="n">3</span><b>Ribbon Knot</b><i>6 pieces of ice</i></li>
+      <li><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M13.7 50 L13.8 52.9 L14.2 55.8 L14.8 58.7 L15.6 61.5 L16.6 64.2 L17.8 66.8 L19.3 69.3 L21 71.7 L22.8 74 L24.8 76.1 L27 78 L29.5 79.4 L32.4 80.1 L35.3 80.4 L38.2 80.5 L41.1 80.4 L44 80 L46.8 79.2 L49.2 77.6 L51 75.4 L52 72.6 L52.6 69.8 L53 66.9 L53.1 64 L53.3 61.1 L54 58.2 L55.1 55.5 L56.5 53 L58.3 50.7 L60.4 48.7 L62.7 46.9 L65.2 45.4 L67.8 44.1 L70.5 43.1 L73.4 42.5 L76.3 42.1 L79.2 42.1 L81.9 42.9 L84.2 44.7 L85.8 47.1 L86.3 50 L85.8 52.9 L84.2 55.3 L81.9 57.1 L79.2 57.9 L76.3 57.9 L73.4 57.5 L70.5 56.9 L67.8 55.9 L65.2 54.6 L62.7 53.1 L60.4 51.3 L58.3 49.3 L56.5 47 L55.1 44.5 L54 41.8 L53.3 38.9 L53.1 36 L53 33.1 L52.6 30.2 L52 27.4 L51 24.6 L49.2 22.4 L46.8 20.8 L44 20 L41.1 19.6 L38.2 19.5 L35.3 19.6 L32.4 19.9 L29.5 20.6 L27 22 L24.8 23.9 L22.8 26 L21 28.3 L19.3 30.7 L17.8 33.2 L16.6 35.8 L15.6 38.5 L14.8 41.3 L14.2 44.2 L13.8 47.1 Z" fill="none" stroke="#2F6E9E" stroke-width="11.8" stroke-linejoin="round"/><path d="M13.7 50 L13.8 52.9 L14.2 55.8 L14.8 58.7 L15.6 61.5 L16.6 64.2 L17.8 66.8 L19.3 69.3 L21 71.7 L22.8 74 L24.8 76.1 L27 78 L29.5 79.4 L32.4 80.1 L35.3 80.4 L38.2 80.5 L41.1 80.4 L44 80 L46.8 79.2 L49.2 77.6 L51 75.4 L52 72.6 L52.6 69.8 L53 66.9 L53.1 64 L53.3 61.1 L54 58.2 L55.1 55.5 L56.5 53 L58.3 50.7 L60.4 48.7 L62.7 46.9 L65.2 45.4 L67.8 44.1 L70.5 43.1 L73.4 42.5 L76.3 42.1 L79.2 42.1 L81.9 42.9 L84.2 44.7 L85.8 47.1 L86.3 50 L85.8 52.9 L84.2 55.3 L81.9 57.1 L79.2 57.9 L76.3 57.9 L73.4 57.5 L70.5 56.9 L67.8 55.9 L65.2 54.6 L62.7 53.1 L60.4 51.3 L58.3 49.3 L56.5 47 L55.1 44.5 L54 41.8 L53.3 38.9 L53.1 36 L53 33.1 L52.6 30.2 L52 27.4 L51 24.6 L49.2 22.4 L46.8 20.8 L44 20 L41.1 19.6 L38.2 19.5 L35.3 19.6 L32.4 19.9 L29.5 20.6 L27 22 L24.8 23.9 L22.8 26 L21 28.3 L19.3 30.7 L17.8 33.2 L16.6 35.8 L15.6 38.5 L14.8 41.3 L14.2 44.2 L13.8 47.1 Z" fill="none" stroke="#F4F8FC" stroke-width="9.4" stroke-linejoin="round"/><path d="M13.7 50 L13.8 52.9 L14.2 55.8 L14.8 58.7 L15.6 61.5 L16.6 64.2 L17.8 66.8 L19.3 69.3 L21 71.7 L22.8 74 L24.8 76.1 L27 78 L29.5 79.4 L32.4 80.1 L35.3 80.4 L38.2 80.5 L41.1 80.4 L44 80 L46.8 79.2 L49.2 77.6 L51 75.4 L52 72.6 L52.6 69.8 L53 66.9 L53.1 64 L53.3 61.1 L54 58.2 L55.1 55.5 L56.5 53 L58.3 50.7 L60.4 48.7 L62.7 46.9 L65.2 45.4 L67.8 44.1 L70.5 43.1 L73.4 42.5 L76.3 42.1 L79.2 42.1 L81.9 42.9 L84.2 44.7 L85.8 47.1 L86.3 50 L85.8 52.9 L84.2 55.3 L81.9 57.1 L79.2 57.9 L76.3 57.9 L73.4 57.5 L70.5 56.9 L67.8 55.9 L65.2 54.6 L62.7 53.1 L60.4 51.3 L58.3 49.3 L56.5 47 L55.1 44.5 L54 41.8 L53.3 38.9 L53.1 36 L53 33.1 L52.6 30.2 L52 27.4 L51 24.6 L49.2 22.4 L46.8 20.8 L44 20 L41.1 19.6 L38.2 19.5 L35.3 19.6 L32.4 19.9 L29.5 20.6 L27 22 L24.8 23.9 L22.8 26 L21 28.3 L19.3 30.7 L17.8 33.2 L16.6 35.8 L15.6 38.5 L14.8 41.3 L14.2 44.2 L13.8 47.1 Z" fill="none" stroke="#A9DBF0" stroke-width="5.2" stroke-linejoin="round" stroke-dasharray="15.1 3.3"/></svg><span class="n">4</span><b>Cocoa Mug</b><i>30 pieces of ice</i></li>
+      <li><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 82.9 L52.8 82.7 L55.6 82.4 L58.4 81.9 L61.1 81.2 L63.7 80.3 L66.3 79.3 L68.8 78 L71.2 76.6 L73.5 75 L75.7 73.2 L77.7 71.3 L79.6 69.2 L81.4 67 L83 64.7 L84.4 62.3 L85.6 59.7 L86.3 57 L86.4 54.2 L86.2 51.4 L85.4 48.7 L83.7 46.5 L81.5 44.8 L78.8 43.9 L76.1 43.8 L73.3 43.9 L70.5 43.6 L67.8 42.7 L65.4 41.4 L63.2 39.6 L61.2 37.6 L59.5 35.4 L58 33 L56.8 30.5 L56 27.8 L55.4 25.1 L55.6 22.3 L56.8 19.8 L59 18 L61.6 17.1 L64.4 17.4 L66.9 18.7 L68.6 20.9 L69.4 23.6 L69.6 26.4 L69.4 29.2 L69 31.9 L68.2 34.6 L67.1 37.2 L65.7 39.6 L64 41.9 L61.9 43.8 L59.6 45.3 L57 46.3 L54.2 46.8 L51.4 47.1 L48.6 47.1 L45.8 46.8 L43 46.3 L40.4 45.3 L38.1 43.8 L36 41.9 L34.3 39.6 L32.9 37.2 L31.8 34.6 L31 31.9 L30.6 29.2 L30.4 26.4 L30.6 23.6 L31.4 20.9 L33.1 18.7 L35.6 17.4 L38.4 17.1 L41 18 L43.2 19.8 L44.4 22.3 L44.6 25.1 L44 27.8 L43.2 30.5 L42 33 L40.5 35.4 L38.8 37.6 L36.8 39.6 L34.6 41.4 L32.2 42.7 L29.5 43.6 L26.7 43.9 L23.9 43.8 L21.2 43.9 L18.5 44.8 L16.3 46.5 L14.6 48.7 L13.8 51.4 L13.6 54.2 L13.7 57 L14.4 59.7 L15.6 62.3 L17 64.7 L18.6 67 L20.4 69.2 L22.3 71.3 L24.3 73.2 L26.5 75 L28.8 76.6 L31.2 78 L33.7 79.3 L36.3 80.3 L38.9 81.2 L41.6 81.9 L44.4 82.4 L47.2 82.7 Z" fill="none" stroke="#2F6E9E" stroke-width="11.5" stroke-linejoin="round"/><path d="M50 82.9 L52.8 82.7 L55.6 82.4 L58.4 81.9 L61.1 81.2 L63.7 80.3 L66.3 79.3 L68.8 78 L71.2 76.6 L73.5 75 L75.7 73.2 L77.7 71.3 L79.6 69.2 L81.4 67 L83 64.7 L84.4 62.3 L85.6 59.7 L86.3 57 L86.4 54.2 L86.2 51.4 L85.4 48.7 L83.7 46.5 L81.5 44.8 L78.8 43.9 L76.1 43.8 L73.3 43.9 L70.5 43.6 L67.8 42.7 L65.4 41.4 L63.2 39.6 L61.2 37.6 L59.5 35.4 L58 33 L56.8 30.5 L56 27.8 L55.4 25.1 L55.6 22.3 L56.8 19.8 L59 18 L61.6 17.1 L64.4 17.4 L66.9 18.7 L68.6 20.9 L69.4 23.6 L69.6 26.4 L69.4 29.2 L69 31.9 L68.2 34.6 L67.1 37.2 L65.7 39.6 L64 41.9 L61.9 43.8 L59.6 45.3 L57 46.3 L54.2 46.8 L51.4 47.1 L48.6 47.1 L45.8 46.8 L43 46.3 L40.4 45.3 L38.1 43.8 L36 41.9 L34.3 39.6 L32.9 37.2 L31.8 34.6 L31 31.9 L30.6 29.2 L30.4 26.4 L30.6 23.6 L31.4 20.9 L33.1 18.7 L35.6 17.4 L38.4 17.1 L41 18 L43.2 19.8 L44.4 22.3 L44.6 25.1 L44 27.8 L43.2 30.5 L42 33 L40.5 35.4 L38.8 37.6 L36.8 39.6 L34.6 41.4 L32.2 42.7 L29.5 43.6 L26.7 43.9 L23.9 43.8 L21.2 43.9 L18.5 44.8 L16.3 46.5 L14.6 48.7 L13.8 51.4 L13.6 54.2 L13.7 57 L14.4 59.7 L15.6 62.3 L17 64.7 L18.6 67 L20.4 69.2 L22.3 71.3 L24.3 73.2 L26.5 75 L28.8 76.6 L31.2 78 L33.7 79.3 L36.3 80.3 L38.9 81.2 L41.6 81.9 L44.4 82.4 L47.2 82.7 Z" fill="none" stroke="#F4F8FC" stroke-width="9.1" stroke-linejoin="round"/><path d="M50 82.9 L52.8 82.7 L55.6 82.4 L58.4 81.9 L61.1 81.2 L63.7 80.3 L66.3 79.3 L68.8 78 L71.2 76.6 L73.5 75 L75.7 73.2 L77.7 71.3 L79.6 69.2 L81.4 67 L83 64.7 L84.4 62.3 L85.6 59.7 L86.3 57 L86.4 54.2 L86.2 51.4 L85.4 48.7 L83.7 46.5 L81.5 44.8 L78.8 43.9 L76.1 43.8 L73.3 43.9 L70.5 43.6 L67.8 42.7 L65.4 41.4 L63.2 39.6 L61.2 37.6 L59.5 35.4 L58 33 L56.8 30.5 L56 27.8 L55.4 25.1 L55.6 22.3 L56.8 19.8 L59 18 L61.6 17.1 L64.4 17.4 L66.9 18.7 L68.6 20.9 L69.4 23.6 L69.6 26.4 L69.4 29.2 L69 31.9 L68.2 34.6 L67.1 37.2 L65.7 39.6 L64 41.9 L61.9 43.8 L59.6 45.3 L57 46.3 L54.2 46.8 L51.4 47.1 L48.6 47.1 L45.8 46.8 L43 46.3 L40.4 45.3 L38.1 43.8 L36 41.9 L34.3 39.6 L32.9 37.2 L31.8 34.6 L31 31.9 L30.6 29.2 L30.4 26.4 L30.6 23.6 L31.4 20.9 L33.1 18.7 L35.6 17.4 L38.4 17.1 L41 18 L43.2 19.8 L44.4 22.3 L44.6 25.1 L44 27.8 L43.2 30.5 L42 33 L40.5 35.4 L38.8 37.6 L36.8 39.6 L34.6 41.4 L32.2 42.7 L29.5 43.6 L26.7 43.9 L23.9 43.8 L21.2 43.9 L18.5 44.8 L16.3 46.5 L14.6 48.7 L13.8 51.4 L13.6 54.2 L13.7 57 L14.4 59.7 L15.6 62.3 L17 64.7 L18.6 67 L20.4 69.2 L22.3 71.3 L24.3 73.2 L26.5 75 L28.8 76.6 L31.2 78 L33.7 79.3 L36.3 80.3 L38.9 81.2 L41.6 81.9 L44.4 82.4 L47.2 82.7 Z" fill="none" stroke="#A9DBF0" stroke-width="5" stroke-linejoin="round" stroke-dasharray="14.6 3.2"/></svg><span class="n">5</span><b>Santa&#8217;s Sack</b><i>36 pieces of ice</i></li>
+      <li><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 12.3 L52 12.6 L53.7 13.5 L55.1 14.9 L56 16.7 L56.3 18.6 L56 20.6 L55.1 22.4 L54 24 L52.8 25.6 L51.4 27 L49.9 28.4 L48.4 29.7 L46.8 30.8 L45 31.8 L43.3 32.8 L41.7 34 L40.5 35.6 L39.7 37.4 L39.2 39.3 L39.2 41.3 L39.7 43.2 L40.5 45 L41.8 46.6 L43.3 47.8 L45.1 48.7 L46.8 49.7 L48.5 50.9 L50 52.2 L51.4 53.6 L52.6 55.2 L53.7 56.9 L54.6 58.7 L55.5 60.4 L56.7 62 L58.2 63.3 L59.7 64.6 L61 66.1 L62.1 67.8 L62.9 69.7 L63.4 71.6 L63.6 73.6 L63.5 75.6 L63.2 77.5 L62.5 79.4 L61.6 81.2 L60.5 82.8 L59.1 84.2 L57.5 85.5 L55.8 86.4 L53.9 87.2 L52 87.6 L50 87.7 L48 87.6 L46.1 87.2 L44.2 86.4 L42.5 85.5 L40.9 84.2 L39.5 82.8 L38.4 81.2 L37.5 79.4 L36.8 77.5 L36.5 75.6 L36.4 73.6 L36.6 71.6 L37.1 69.7 L37.9 67.8 L39 66.1 L40.3 64.6 L41.8 63.3 L43.3 62 L44.5 60.4 L45.4 58.7 L46.3 56.9 L47.4 55.2 L48.6 53.6 L50 52.2 L51.5 50.9 L53.2 49.7 L54.9 48.7 L56.7 47.8 L58.2 46.6 L59.5 45 L60.3 43.2 L60.8 41.3 L60.8 39.3 L60.3 37.4 L59.5 35.6 L58.3 34 L56.7 32.8 L55 31.8 L53.2 30.8 L51.6 29.7 L50.1 28.4 L48.6 27 L47.2 25.6 L46 24 L44.9 22.4 L44 20.6 L43.7 18.6 L44 16.7 L44.9 14.9 L46.3 13.5 L48 12.6 Z" fill="none" stroke="#2F6E9E" stroke-width="8.9" stroke-linejoin="round"/><path d="M50 12.3 L52 12.6 L53.7 13.5 L55.1 14.9 L56 16.7 L56.3 18.6 L56 20.6 L55.1 22.4 L54 24 L52.8 25.6 L51.4 27 L49.9 28.4 L48.4 29.7 L46.8 30.8 L45 31.8 L43.3 32.8 L41.7 34 L40.5 35.6 L39.7 37.4 L39.2 39.3 L39.2 41.3 L39.7 43.2 L40.5 45 L41.8 46.6 L43.3 47.8 L45.1 48.7 L46.8 49.7 L48.5 50.9 L50 52.2 L51.4 53.6 L52.6 55.2 L53.7 56.9 L54.6 58.7 L55.5 60.4 L56.7 62 L58.2 63.3 L59.7 64.6 L61 66.1 L62.1 67.8 L62.9 69.7 L63.4 71.6 L63.6 73.6 L63.5 75.6 L63.2 77.5 L62.5 79.4 L61.6 81.2 L60.5 82.8 L59.1 84.2 L57.5 85.5 L55.8 86.4 L53.9 87.2 L52 87.6 L50 87.7 L48 87.6 L46.1 87.2 L44.2 86.4 L42.5 85.5 L40.9 84.2 L39.5 82.8 L38.4 81.2 L37.5 79.4 L36.8 77.5 L36.5 75.6 L36.4 73.6 L36.6 71.6 L37.1 69.7 L37.9 67.8 L39 66.1 L40.3 64.6 L41.8 63.3 L43.3 62 L44.5 60.4 L45.4 58.7 L46.3 56.9 L47.4 55.2 L48.6 53.6 L50 52.2 L51.5 50.9 L53.2 49.7 L54.9 48.7 L56.7 47.8 L58.2 46.6 L59.5 45 L60.3 43.2 L60.8 41.3 L60.8 39.3 L60.3 37.4 L59.5 35.6 L58.3 34 L56.7 32.8 L55 31.8 L53.2 30.8 L51.6 29.7 L50.1 28.4 L48.6 27 L47.2 25.6 L46 24 L44.9 22.4 L44 20.6 L43.7 18.6 L44 16.7 L44.9 14.9 L46.3 13.5 L48 12.6 Z" fill="none" stroke="#F4F8FC" stroke-width="6.5" stroke-linejoin="round"/><path d="M50 12.3 L52 12.6 L53.7 13.5 L55.1 14.9 L56 16.7 L56.3 18.6 L56 20.6 L55.1 22.4 L54 24 L52.8 25.6 L51.4 27 L49.9 28.4 L48.4 29.7 L46.8 30.8 L45 31.8 L43.3 32.8 L41.7 34 L40.5 35.6 L39.7 37.4 L39.2 39.3 L39.2 41.3 L39.7 43.2 L40.5 45 L41.8 46.6 L43.3 47.8 L45.1 48.7 L46.8 49.7 L48.5 50.9 L50 52.2 L51.4 53.6 L52.6 55.2 L53.7 56.9 L54.6 58.7 L55.5 60.4 L56.7 62 L58.2 63.3 L59.7 64.6 L61 66.1 L62.1 67.8 L62.9 69.7 L63.4 71.6 L63.6 73.6 L63.5 75.6 L63.2 77.5 L62.5 79.4 L61.6 81.2 L60.5 82.8 L59.1 84.2 L57.5 85.5 L55.8 86.4 L53.9 87.2 L52 87.6 L50 87.7 L48 87.6 L46.1 87.2 L44.2 86.4 L42.5 85.5 L40.9 84.2 L39.5 82.8 L38.4 81.2 L37.5 79.4 L36.8 77.5 L36.5 75.6 L36.4 73.6 L36.6 71.6 L37.1 69.7 L37.9 67.8 L39 66.1 L40.3 64.6 L41.8 63.3 L43.3 62 L44.5 60.4 L45.4 58.7 L46.3 56.9 L47.4 55.2 L48.6 53.6 L50 52.2 L51.5 50.9 L53.2 49.7 L54.9 48.7 L56.7 47.8 L58.2 46.6 L59.5 45 L60.3 43.2 L60.8 41.3 L60.8 39.3 L60.3 37.4 L59.5 35.6 L58.3 34 L56.7 32.8 L55 31.8 L53.2 30.8 L51.6 29.7 L50.1 28.4 L48.6 27 L47.2 25.6 L46 24 L44.9 22.4 L44 20.6 L43.7 18.6 L44 16.7 L44.9 14.9 L46.3 13.5 L48 12.6 Z" fill="none" stroke="#A9DBF0" stroke-width="3.6" stroke-linejoin="round" stroke-dasharray="10.4 2.3"/></svg><span class="n">6</span><b>Snowman</b><i>32 pieces of ice</i></li>
+      <li><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 15.7 L46.5 16.1 L43.3 17.4 L40.4 19.3 L38 21.8 L36 24.7 L34.6 27.9 L33.7 31.3 L33.3 34.8 L33.2 38.3 L33.3 41.7 L33.2 45.2 L32 48.5 L30 51.3 L27.8 54.1 L25.9 57 L24.3 60.1 L23.2 63.4 L22.5 66.8 L22.5 70.3 L23.1 73.7 L24.4 77 L26.5 79.8 L29.1 82.1 L32.3 83.6 L35.7 84.3 L39.2 84.3 L42.6 83.6 L45.8 82.2 L48.7 80.4 L51.4 78.1 L53.7 75.5 L55.8 72.7 L57.8 69.8 L60 67.1 L63 65.4 L66.4 64.4 L69.7 63.4 L73 62.1 L76.1 60.5 L78.9 58.4 L81.3 55.9 L83.3 53 L84.7 49.8 L85.3 46.4 L85.2 42.9 L84.2 39.6 L82.4 36.6 L80 34.1 L77.1 32.2 L73.8 30.9 L70.4 30.2 L66.9 30.1 L63.4 30.4 L60 31.3 L56.7 32.4 L53.4 33.5 L50 34.2 L46.6 33.5 L43.3 32.4 L40 31.3 L36.6 30.4 L33.1 30.1 L29.6 30.2 L26.2 30.9 L22.9 32.2 L20 34.1 L17.6 36.6 L15.8 39.6 L14.8 42.9 L14.7 46.4 L15.3 49.8 L16.7 53 L18.7 55.9 L21.1 58.4 L23.9 60.5 L27 62.1 L30.3 63.4 L33.6 64.4 L37 65.4 L40 67.1 L42.2 69.8 L44.2 72.7 L46.3 75.5 L48.6 78.1 L51.3 80.4 L54.2 82.2 L57.4 83.6 L60.8 84.3 L64.3 84.3 L67.7 83.6 L70.9 82.1 L73.5 79.8 L75.6 77 L76.9 73.7 L77.5 70.3 L77.5 66.8 L76.8 63.4 L75.7 60.1 L74.1 57 L72.2 54.1 L70 51.3 L68 48.5 L66.8 45.2 L66.7 41.7 L66.8 38.3 L66.7 34.8 L66.3 31.3 L65.4 27.9 L64 24.7 L62 21.8 L59.6 19.3 L56.7 17.4 L53.5 16.1 Z" fill="none" stroke="#2F6E9E" stroke-width="13.7" stroke-linejoin="round"/><path d="M50 15.7 L46.5 16.1 L43.3 17.4 L40.4 19.3 L38 21.8 L36 24.7 L34.6 27.9 L33.7 31.3 L33.3 34.8 L33.2 38.3 L33.3 41.7 L33.2 45.2 L32 48.5 L30 51.3 L27.8 54.1 L25.9 57 L24.3 60.1 L23.2 63.4 L22.5 66.8 L22.5 70.3 L23.1 73.7 L24.4 77 L26.5 79.8 L29.1 82.1 L32.3 83.6 L35.7 84.3 L39.2 84.3 L42.6 83.6 L45.8 82.2 L48.7 80.4 L51.4 78.1 L53.7 75.5 L55.8 72.7 L57.8 69.8 L60 67.1 L63 65.4 L66.4 64.4 L69.7 63.4 L73 62.1 L76.1 60.5 L78.9 58.4 L81.3 55.9 L83.3 53 L84.7 49.8 L85.3 46.4 L85.2 42.9 L84.2 39.6 L82.4 36.6 L80 34.1 L77.1 32.2 L73.8 30.9 L70.4 30.2 L66.9 30.1 L63.4 30.4 L60 31.3 L56.7 32.4 L53.4 33.5 L50 34.2 L46.6 33.5 L43.3 32.4 L40 31.3 L36.6 30.4 L33.1 30.1 L29.6 30.2 L26.2 30.9 L22.9 32.2 L20 34.1 L17.6 36.6 L15.8 39.6 L14.8 42.9 L14.7 46.4 L15.3 49.8 L16.7 53 L18.7 55.9 L21.1 58.4 L23.9 60.5 L27 62.1 L30.3 63.4 L33.6 64.4 L37 65.4 L40 67.1 L42.2 69.8 L44.2 72.7 L46.3 75.5 L48.6 78.1 L51.3 80.4 L54.2 82.2 L57.4 83.6 L60.8 84.3 L64.3 84.3 L67.7 83.6 L70.9 82.1 L73.5 79.8 L75.6 77 L76.9 73.7 L77.5 70.3 L77.5 66.8 L76.8 63.4 L75.7 60.1 L74.1 57 L72.2 54.1 L70 51.3 L68 48.5 L66.8 45.2 L66.7 41.7 L66.8 38.3 L66.7 34.8 L66.3 31.3 L65.4 27.9 L64 24.7 L62 21.8 L59.6 19.3 L56.7 17.4 L53.5 16.1 Z" fill="none" stroke="#F4F8FC" stroke-width="11.3" stroke-linejoin="round"/><path d="M50 15.7 L46.5 16.1 L43.3 17.4 L40.4 19.3 L38 21.8 L36 24.7 L34.6 27.9 L33.7 31.3 L33.3 34.8 L33.2 38.3 L33.3 41.7 L33.2 45.2 L32 48.5 L30 51.3 L27.8 54.1 L25.9 57 L24.3 60.1 L23.2 63.4 L22.5 66.8 L22.5 70.3 L23.1 73.7 L24.4 77 L26.5 79.8 L29.1 82.1 L32.3 83.6 L35.7 84.3 L39.2 84.3 L42.6 83.6 L45.8 82.2 L48.7 80.4 L51.4 78.1 L53.7 75.5 L55.8 72.7 L57.8 69.8 L60 67.1 L63 65.4 L66.4 64.4 L69.7 63.4 L73 62.1 L76.1 60.5 L78.9 58.4 L81.3 55.9 L83.3 53 L84.7 49.8 L85.3 46.4 L85.2 42.9 L84.2 39.6 L82.4 36.6 L80 34.1 L77.1 32.2 L73.8 30.9 L70.4 30.2 L66.9 30.1 L63.4 30.4 L60 31.3 L56.7 32.4 L53.4 33.5 L50 34.2 L46.6 33.5 L43.3 32.4 L40 31.3 L36.6 30.4 L33.1 30.1 L29.6 30.2 L26.2 30.9 L22.9 32.2 L20 34.1 L17.6 36.6 L15.8 39.6 L14.8 42.9 L14.7 46.4 L15.3 49.8 L16.7 53 L18.7 55.9 L21.1 58.4 L23.9 60.5 L27 62.1 L30.3 63.4 L33.6 64.4 L37 65.4 L40 67.1 L42.2 69.8 L44.2 72.7 L46.3 75.5 L48.6 78.1 L51.3 80.4 L54.2 82.2 L57.4 83.6 L60.8 84.3 L64.3 84.3 L67.7 83.6 L70.9 82.1 L73.5 79.8 L75.6 77 L76.9 73.7 L77.5 70.3 L77.5 66.8 L76.8 63.4 L75.7 60.1 L74.1 57 L72.2 54.1 L70 51.3 L68 48.5 L66.8 45.2 L66.7 41.7 L66.8 38.3 L66.7 34.8 L66.3 31.3 L65.4 27.9 L64 24.7 L62 21.8 L59.6 19.3 L56.7 17.4 L53.5 16.1 Z" fill="none" stroke="#A9DBF0" stroke-width="6.2" stroke-linejoin="round" stroke-dasharray="18.1 4"/></svg><span class="n">7</span><b>Star Knot</b><i>8 pieces of ice</i></li>
+      <li><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 87.2 L52.3 86.7 L54.3 85.4 L55.6 83.5 L56.1 81.2 L56.1 78.8 L56.8 76.5 L58.2 74.7 L60.2 73.4 L62.5 73 L64.9 72.9 L67.2 72.4 L69.2 71.2 L70.8 69.5 L71.9 67.4 L72.3 65.1 L72 62.8 L71.1 60.6 L69.9 58.6 L68.4 56.7 L66.9 54.9 L65.2 53.3 L63.3 51.8 L61.4 50.4 L59.4 49.1 L57.6 47.6 L56.3 45.6 L55.5 43.4 L55.3 41.1 L55.7 38.7 L56.6 36.6 L58.1 34.7 L59.8 33.1 L61.2 31.2 L62.2 29 L62.7 26.7 L62.8 24.4 L62.4 22.1 L61.5 19.9 L60.3 17.9 L58.6 16.1 L56.8 14.7 L54.6 13.7 L52.4 13.1 L50 12.8 L47.6 13.1 L45.4 13.7 L43.2 14.7 L41.4 16.1 L39.7 17.9 L38.5 19.9 L37.6 22.1 L37.2 24.4 L37.3 26.7 L37.8 29 L38.8 31.2 L40.2 33.1 L41.9 34.7 L43.4 36.6 L44.3 38.7 L44.7 41.1 L44.5 43.4 L43.7 45.6 L42.4 47.6 L40.6 49.1 L38.6 50.4 L36.7 51.8 L34.8 53.3 L33.1 54.9 L31.6 56.7 L30.1 58.6 L28.9 60.6 L28 62.8 L27.7 65.1 L28.1 67.4 L29.2 69.5 L30.8 71.2 L32.8 72.4 L35.1 72.9 L37.5 73 L39.8 73.4 L41.8 74.7 L43.2 76.5 L43.9 78.8 L43.9 81.2 L44.4 83.5 L45.7 85.4 L47.7 86.7 Z" fill="none" stroke="#2F6E9E" stroke-width="10.1" stroke-linejoin="round"/><path d="M50 87.2 L52.3 86.7 L54.3 85.4 L55.6 83.5 L56.1 81.2 L56.1 78.8 L56.8 76.5 L58.2 74.7 L60.2 73.4 L62.5 73 L64.9 72.9 L67.2 72.4 L69.2 71.2 L70.8 69.5 L71.9 67.4 L72.3 65.1 L72 62.8 L71.1 60.6 L69.9 58.6 L68.4 56.7 L66.9 54.9 L65.2 53.3 L63.3 51.8 L61.4 50.4 L59.4 49.1 L57.6 47.6 L56.3 45.6 L55.5 43.4 L55.3 41.1 L55.7 38.7 L56.6 36.6 L58.1 34.7 L59.8 33.1 L61.2 31.2 L62.2 29 L62.7 26.7 L62.8 24.4 L62.4 22.1 L61.5 19.9 L60.3 17.9 L58.6 16.1 L56.8 14.7 L54.6 13.7 L52.4 13.1 L50 12.8 L47.6 13.1 L45.4 13.7 L43.2 14.7 L41.4 16.1 L39.7 17.9 L38.5 19.9 L37.6 22.1 L37.2 24.4 L37.3 26.7 L37.8 29 L38.8 31.2 L40.2 33.1 L41.9 34.7 L43.4 36.6 L44.3 38.7 L44.7 41.1 L44.5 43.4 L43.7 45.6 L42.4 47.6 L40.6 49.1 L38.6 50.4 L36.7 51.8 L34.8 53.3 L33.1 54.9 L31.6 56.7 L30.1 58.6 L28.9 60.6 L28 62.8 L27.7 65.1 L28.1 67.4 L29.2 69.5 L30.8 71.2 L32.8 72.4 L35.1 72.9 L37.5 73 L39.8 73.4 L41.8 74.7 L43.2 76.5 L43.9 78.8 L43.9 81.2 L44.4 83.5 L45.7 85.4 L47.7 86.7 Z" fill="none" stroke="#F4F8FC" stroke-width="7.7" stroke-linejoin="round"/><path d="M50 87.2 L52.3 86.7 L54.3 85.4 L55.6 83.5 L56.1 81.2 L56.1 78.8 L56.8 76.5 L58.2 74.7 L60.2 73.4 L62.5 73 L64.9 72.9 L67.2 72.4 L69.2 71.2 L70.8 69.5 L71.9 67.4 L72.3 65.1 L72 62.8 L71.1 60.6 L69.9 58.6 L68.4 56.7 L66.9 54.9 L65.2 53.3 L63.3 51.8 L61.4 50.4 L59.4 49.1 L57.6 47.6 L56.3 45.6 L55.5 43.4 L55.3 41.1 L55.7 38.7 L56.6 36.6 L58.1 34.7 L59.8 33.1 L61.2 31.2 L62.2 29 L62.7 26.7 L62.8 24.4 L62.4 22.1 L61.5 19.9 L60.3 17.9 L58.6 16.1 L56.8 14.7 L54.6 13.7 L52.4 13.1 L50 12.8 L47.6 13.1 L45.4 13.7 L43.2 14.7 L41.4 16.1 L39.7 17.9 L38.5 19.9 L37.6 22.1 L37.2 24.4 L37.3 26.7 L37.8 29 L38.8 31.2 L40.2 33.1 L41.9 34.7 L43.4 36.6 L44.3 38.7 L44.7 41.1 L44.5 43.4 L43.7 45.6 L42.4 47.6 L40.6 49.1 L38.6 50.4 L36.7 51.8 L34.8 53.3 L33.1 54.9 L31.6 56.7 L30.1 58.6 L28.9 60.6 L28 62.8 L27.7 65.1 L28.1 67.4 L29.2 69.5 L30.8 71.2 L32.8 72.4 L35.1 72.9 L37.5 73 L39.8 73.4 L41.8 74.7 L43.2 76.5 L43.9 78.8 L43.9 81.2 L44.4 83.5 L45.7 85.4 L47.7 86.7 Z" fill="none" stroke="#A9DBF0" stroke-width="4.2" stroke-linejoin="round" stroke-dasharray="12.3 2.7"/></svg><span class="n">8</span><b>Bell</b><i>38 pieces of ice</i></li>
+      <li><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 87.7 L52 87.4 L53.8 86.6 L55.3 85.2 L56.4 83.5 L56.9 81.6 L56.9 79.6 L56.9 77.5 L57 75.5 L57.6 73.6 L58.7 71.9 L60.4 70.8 L62.3 70.1 L64.3 70.2 L66.2 70.8 L68 71.8 L69.7 72.8 L71.5 73.7 L73.5 74 L75.5 73.8 L77.3 73 L78.9 71.7 L80 70 L80.5 68.1 L80.5 66.1 L79.9 64.1 L78.8 62.5 L77.3 61.2 L75.5 60.2 L73.8 59.2 L72.1 58 L70.9 56.4 L70.3 54.5 L70.3 52.5 L70.9 50.6 L72.1 48.9 L73.7 47.8 L75.4 46.8 L77.2 45.7 L78.8 44.5 L79.9 42.8 L80.5 40.9 L80.6 38.9 L80 37 L78.9 35.2 L77.4 33.9 L75.6 33.1 L73.6 32.8 L71.6 33.1 L69.8 34 L68 35 L66.3 36 L64.5 36.9 L62.5 37.5 L60.5 37.8 L58.5 37.7 L56.5 37.4 L54.6 36.8 L52.8 35.9 L51.1 34.8 L49.6 33.4 L48.3 31.9 L47.1 30.3 L46.1 28.5 L45.3 26.7 L44.6 24.8 L44.1 22.8 L43.8 20.8 L43.7 18.8 L44 16.8 L44.8 15 L46.2 13.5 L48 12.6 L50 12.3 L52 12.6 L53.8 13.5 L55.2 15 L56 16.8 L56.3 18.8 L56.2 20.8 L55.9 22.8 L55.4 24.8 L54.7 26.7 L53.9 28.5 L52.9 30.3 L51.7 31.9 L50.4 33.4 L48.9 34.8 L47.2 35.9 L45.4 36.8 L43.5 37.4 L41.5 37.7 L39.5 37.8 L37.5 37.5 L35.5 36.9 L33.7 36 L32 35 L30.2 34 L28.4 33.1 L26.4 32.8 L24.4 33.1 L22.6 33.9 L21.1 35.2 L20 37 L19.4 38.9 L19.5 40.9 L20.1 42.8 L21.2 44.5 L22.8 45.7 L24.6 46.8 L26.3 47.8 L27.9 48.9 L29.1 50.6 L29.7 52.5 L29.7 54.5 L29.1 56.4 L27.9 58 L26.2 59.2 L24.5 60.2 L22.7 61.2 L21.2 62.5 L20.1 64.1 L19.5 66.1 L19.5 68.1 L20 70 L21.1 71.7 L22.6 73 L24.5 73.8 L26.5 74 L28.5 73.7 L30.3 72.8 L32 71.8 L33.8 70.8 L35.7 70.2 L37.7 70.1 L39.6 70.8 L41.3 71.9 L42.4 73.6 L43 75.5 L43.1 77.5 L43.1 79.6 L43.1 81.6 L43.6 83.5 L44.7 85.2 L46.2 86.6 L48 87.4 Z" fill="none" stroke="#2F6E9E" stroke-width="9" stroke-linejoin="round"/><path d="M50 87.7 L52 87.4 L53.8 86.6 L55.3 85.2 L56.4 83.5 L56.9 81.6 L56.9 79.6 L56.9 77.5 L57 75.5 L57.6 73.6 L58.7 71.9 L60.4 70.8 L62.3 70.1 L64.3 70.2 L66.2 70.8 L68 71.8 L69.7 72.8 L71.5 73.7 L73.5 74 L75.5 73.8 L77.3 73 L78.9 71.7 L80 70 L80.5 68.1 L80.5 66.1 L79.9 64.1 L78.8 62.5 L77.3 61.2 L75.5 60.2 L73.8 59.2 L72.1 58 L70.9 56.4 L70.3 54.5 L70.3 52.5 L70.9 50.6 L72.1 48.9 L73.7 47.8 L75.4 46.8 L77.2 45.7 L78.8 44.5 L79.9 42.8 L80.5 40.9 L80.6 38.9 L80 37 L78.9 35.2 L77.4 33.9 L75.6 33.1 L73.6 32.8 L71.6 33.1 L69.8 34 L68 35 L66.3 36 L64.5 36.9 L62.5 37.5 L60.5 37.8 L58.5 37.7 L56.5 37.4 L54.6 36.8 L52.8 35.9 L51.1 34.8 L49.6 33.4 L48.3 31.9 L47.1 30.3 L46.1 28.5 L45.3 26.7 L44.6 24.8 L44.1 22.8 L43.8 20.8 L43.7 18.8 L44 16.8 L44.8 15 L46.2 13.5 L48 12.6 L50 12.3 L52 12.6 L53.8 13.5 L55.2 15 L56 16.8 L56.3 18.8 L56.2 20.8 L55.9 22.8 L55.4 24.8 L54.7 26.7 L53.9 28.5 L52.9 30.3 L51.7 31.9 L50.4 33.4 L48.9 34.8 L47.2 35.9 L45.4 36.8 L43.5 37.4 L41.5 37.7 L39.5 37.8 L37.5 37.5 L35.5 36.9 L33.7 36 L32 35 L30.2 34 L28.4 33.1 L26.4 32.8 L24.4 33.1 L22.6 33.9 L21.1 35.2 L20 37 L19.4 38.9 L19.5 40.9 L20.1 42.8 L21.2 44.5 L22.8 45.7 L24.6 46.8 L26.3 47.8 L27.9 48.9 L29.1 50.6 L29.7 52.5 L29.7 54.5 L29.1 56.4 L27.9 58 L26.2 59.2 L24.5 60.2 L22.7 61.2 L21.2 62.5 L20.1 64.1 L19.5 66.1 L19.5 68.1 L20 70 L21.1 71.7 L22.6 73 L24.5 73.8 L26.5 74 L28.5 73.7 L30.3 72.8 L32 71.8 L33.8 70.8 L35.7 70.2 L37.7 70.1 L39.6 70.8 L41.3 71.9 L42.4 73.6 L43 75.5 L43.1 77.5 L43.1 79.6 L43.1 81.6 L43.6 83.5 L44.7 85.2 L46.2 86.6 L48 87.4 Z" fill="none" stroke="#F4F8FC" stroke-width="6.6" stroke-linejoin="round"/><path d="M50 87.7 L52 87.4 L53.8 86.6 L55.3 85.2 L56.4 83.5 L56.9 81.6 L56.9 79.6 L56.9 77.5 L57 75.5 L57.6 73.6 L58.7 71.9 L60.4 70.8 L62.3 70.1 L64.3 70.2 L66.2 70.8 L68 71.8 L69.7 72.8 L71.5 73.7 L73.5 74 L75.5 73.8 L77.3 73 L78.9 71.7 L80 70 L80.5 68.1 L80.5 66.1 L79.9 64.1 L78.8 62.5 L77.3 61.2 L75.5 60.2 L73.8 59.2 L72.1 58 L70.9 56.4 L70.3 54.5 L70.3 52.5 L70.9 50.6 L72.1 48.9 L73.7 47.8 L75.4 46.8 L77.2 45.7 L78.8 44.5 L79.9 42.8 L80.5 40.9 L80.6 38.9 L80 37 L78.9 35.2 L77.4 33.9 L75.6 33.1 L73.6 32.8 L71.6 33.1 L69.8 34 L68 35 L66.3 36 L64.5 36.9 L62.5 37.5 L60.5 37.8 L58.5 37.7 L56.5 37.4 L54.6 36.8 L52.8 35.9 L51.1 34.8 L49.6 33.4 L48.3 31.9 L47.1 30.3 L46.1 28.5 L45.3 26.7 L44.6 24.8 L44.1 22.8 L43.8 20.8 L43.7 18.8 L44 16.8 L44.8 15 L46.2 13.5 L48 12.6 L50 12.3 L52 12.6 L53.8 13.5 L55.2 15 L56 16.8 L56.3 18.8 L56.2 20.8 L55.9 22.8 L55.4 24.8 L54.7 26.7 L53.9 28.5 L52.9 30.3 L51.7 31.9 L50.4 33.4 L48.9 34.8 L47.2 35.9 L45.4 36.8 L43.5 37.4 L41.5 37.7 L39.5 37.8 L37.5 37.5 L35.5 36.9 L33.7 36 L32 35 L30.2 34 L28.4 33.1 L26.4 32.8 L24.4 33.1 L22.6 33.9 L21.1 35.2 L20 37 L19.4 38.9 L19.5 40.9 L20.1 42.8 L21.2 44.5 L22.8 45.7 L24.6 46.8 L26.3 47.8 L27.9 48.9 L29.1 50.6 L29.7 52.5 L29.7 54.5 L29.1 56.4 L27.9 58 L26.2 59.2 L24.5 60.2 L22.7 61.2 L21.2 62.5 L20.1 64.1 L19.5 66.1 L19.5 68.1 L20 70 L21.1 71.7 L22.6 73 L24.5 73.8 L26.5 74 L28.5 73.7 L30.3 72.8 L32 71.8 L33.8 70.8 L35.7 70.2 L37.7 70.1 L39.6 70.8 L41.3 71.9 L42.4 73.6 L43 75.5 L43.1 77.5 L43.1 79.6 L43.1 81.6 L43.6 83.5 L44.7 85.2 L46.2 86.6 L48 87.4 Z" fill="none" stroke="#A9DBF0" stroke-width="3.6" stroke-linejoin="round" stroke-dasharray="10.5 2.3"/></svg><span class="n">9</span><b>Snowflake</b><i>44 pieces of ice</i></li>
+    </ol>
+    <figcaption class="fv-cap">All nine tracks in ladder order, outlines taken from the game's track files.</figcaption>
+  </figure>
+
+  <div class="fv-col">
+    <p>The ladder gets harder in several ways at once:</p>
+    <ul>
+      <li><strong>Longer laps.</strong> Loop is less than a quarter of the length of Snowflake.</li>
+      <li><strong>Thinner ice.</strong> On the early tracks, ice takes two hits before it breaks. By Bell, most of it breaks on the first, and on Snowflake every piece does.</li>
+      <li><strong>Ice that's already gone.</strong> From Cocoa Mug on, some tracks start with stretches already cracked or open.</li>
+      <li><strong>Slower healing.</strong> On Snowflake, broken ice stays open for two laps instead of one.</li>
+      <li><strong>Mole tunnels.</strong> The first four tracks have none. From Santa's Sack on, every track has one: hit the mole and it digs you a shortcut.</li>
+      <li><strong>Switch gates.</strong> The first three tracks have none. Star Knot and Snowflake have ten each.</li>
+    </ul>
+    <p>Across the nine tracks there are 236 pieces of ice. Placing them by hand wasn't realistic, so a small script lays the two lanes along every stretch where ice is allowed, clear of the start line, the switch gates, the tunnels and the crossings. Then I tune each track in the Level Creator, which got a new ICE tool for it: drag a piece's ends, keep its partner in the other lane lined up, choose whether it starts intact, cracked or broken, and get checks that stop a play-test if a piece breaks the rules.</p>
+  </div>
+
+  <div class="fv-progress" aria-label="Frost Valley progress">
+    <section class="done">
+      <h3>WORKING NOW</h3>
+      <ul>
+        <li>Cracking ice: hits, breaking, falls and freezing back</li>
+        <li>The freeze guard and dry-road rescues</li>
+        <li>All nine tracks, with ice, tunnels and switch gates</li>
+        <li>The ICE tool in the Level Creator</li>
+        <li>Snow colors from dawn to night, and the aurora</li>
+        <li>Firs, igloos, crevasses and snow angels</li>
+        <li>Frost Valley's own music</li>
+        <li>The Penguin, redrawn</li>
+        <li>Memory tests for every track</li>
+      </ul>
+    </section>
+    <section class="todo">
+      <h3>STILL TO DO</h3>
+      <ul>
+        <li>Balancing the ice ladder, track by track</li>
+        <li>Game Center leaderboard and achievement</li>
+        <li>Frost Valley's app icon</li>
+        <li>Polish from play-testing</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="fv-rule" aria-hidden="true"><i style="width: 76%"></i></div>
+
+  <div class="fv-ch" data-screen-label="Chapter 5">
+    <div><span class="num" style="color: #2F6E9E">05</span><span class="lbl" style="color: #2F6E9E">CHAPTER FIVE</span></div>
+    <h2>Snow Is Only White at Noon</h2>
+  </div>
+
+  <div class="fv-col">
+    <p>The hard part of drawing a snow world is that white is boring, and real snow is almost never just white. It takes the color of the sky. So Frost Valley's snow follows the game's day/night cycle: <strong>pink at dawn, white only at noon, lilac at dusk and navy at night.</strong> The one warm color that holds all day is the orange of the track's border markers. You can see it in the screenshots above.</p>
+  </div>
+
+  <figure class="fv-phases">
+    <ol aria-label="The Loop track through the day">
+      <li><svg viewBox="0 0 100 100" role="img" aria-label="The Loop track at dawn"><rect width="100" height="100" fill="#F3DCE0"/><path d="M-5 8 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#FFF1F3" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M-5 25 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#D2A9BE" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M-5 42 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#FFF1F3" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M-5 59 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#D2A9BE" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M-5 76 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#FFF1F3" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M-5 93 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#D2A9BE" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M71.1 50 L70.7 45.9 L69.5 41.9 L67.6 38.3 L64.9 35.1 L61.7 32.4 L58.1 30.5 L54.1 29.3 L50 28.9 L45.9 29.3 L41.9 30.5 L38.3 32.4 L35.1 35.1 L32.4 38.3 L30.5 41.9 L29.3 45.9 L28.9 50 L29.3 54.1 L30.5 58.1 L32.4 61.7 L35.1 64.9 L38.3 67.6 L41.9 69.5 L45.9 70.7 L50 71.1 L54.1 70.7 L58.1 69.5 L61.7 67.6 L64.9 64.9 L67.6 61.7 L69.5 58.1 L70.7 54.1 Z" fill="#B8CBE8"/><path d="M71.1 50 L70.7 45.9 L69.5 41.9 L67.6 38.3 L64.9 35.1 L61.7 32.4 L58.1 30.5 L54.1 29.3 L50 28.9 L45.9 29.3 L41.9 30.5 L38.3 32.4 L35.1 35.1 L32.4 38.3 L30.5 41.9 L29.3 45.9 L28.9 50 L29.3 54.1 L30.5 58.1 L32.4 61.7 L35.1 64.9 L38.3 67.6 L41.9 69.5 L45.9 70.7 L50 71.1 L54.1 70.7 L58.1 69.5 L61.7 67.6 L64.9 64.9 L67.6 61.7 L69.5 58.1 L70.7 54.1 Z" fill="none" stroke="#FFF3F2" stroke-width="18.7" stroke-linejoin="round"/><path d="M71.1 50 L70.7 45.9 L69.5 41.9 L67.6 38.3 L64.9 35.1 L61.7 32.4 L58.1 30.5 L54.1 29.3 L50 28.9 L45.9 29.3 L41.9 30.5 L38.3 32.4 L35.1 35.1 L32.4 38.3 L30.5 41.9 L29.3 45.9 L28.9 50 L29.3 54.1 L30.5 58.1 L32.4 61.7 L35.1 64.9 L38.3 67.6 L41.9 69.5 L45.9 70.7 L50 71.1 L54.1 70.7 L58.1 69.5 L61.7 67.6 L64.9 64.9 L67.6 61.7 L69.5 58.1 L70.7 54.1 Z" fill="none" stroke="#F59A5E" stroke-width="18.7" stroke-linejoin="round" stroke-dasharray="3.2 3.2"/><path d="M71.1 50 L70.7 45.9 L69.5 41.9 L67.6 38.3 L64.9 35.1 L61.7 32.4 L58.1 30.5 L54.1 29.3 L50 28.9 L45.9 29.3 L41.9 30.5 L38.3 32.4 L35.1 35.1 L32.4 38.3 L30.5 41.9 L29.3 45.9 L28.9 50 L29.3 54.1 L30.5 58.1 L32.4 61.7 L35.1 64.9 L38.3 67.6 L41.9 69.5 L45.9 70.7 L50 71.1 L54.1 70.7 L58.1 69.5 L61.7 67.6 L64.9 64.9 L67.6 61.7 L69.5 58.1 L70.7 54.1 Z" fill="none" stroke="#E4D8E2" stroke-width="13.7" stroke-linejoin="round"/></svg><span>DAWN</span></li>
+      <li><svg viewBox="0 0 100 100" role="img" aria-label="The Loop track at noon"><rect width="100" height="100" fill="#E6EDF4"/><path d="M-5 8 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M-5 25 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#B3C3DA" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M-5 42 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M-5 59 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#B3C3DA" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M-5 76 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M-5 93 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#B3C3DA" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M71.1 50 L70.7 45.9 L69.5 41.9 L67.6 38.3 L64.9 35.1 L61.7 32.4 L58.1 30.5 L54.1 29.3 L50 28.9 L45.9 29.3 L41.9 30.5 L38.3 32.4 L35.1 35.1 L32.4 38.3 L30.5 41.9 L29.3 45.9 L28.9 50 L29.3 54.1 L30.5 58.1 L32.4 61.7 L35.1 64.9 L38.3 67.6 L41.9 69.5 L45.9 70.7 L50 71.1 L54.1 70.7 L58.1 69.5 L61.7 67.6 L64.9 64.9 L67.6 61.7 L69.5 58.1 L70.7 54.1 Z" fill="#A6D6EA"/><path d="M71.1 50 L70.7 45.9 L69.5 41.9 L67.6 38.3 L64.9 35.1 L61.7 32.4 L58.1 30.5 L54.1 29.3 L50 28.9 L45.9 29.3 L41.9 30.5 L38.3 32.4 L35.1 35.1 L32.4 38.3 L30.5 41.9 L29.3 45.9 L28.9 50 L29.3 54.1 L30.5 58.1 L32.4 61.7 L35.1 64.9 L38.3 67.6 L41.9 69.5 L45.9 70.7 L50 71.1 L54.1 70.7 L58.1 69.5 L61.7 67.6 L64.9 64.9 L67.6 61.7 L69.5 58.1 L70.7 54.1 Z" fill="none" stroke="#FFFFFF" stroke-width="18.7" stroke-linejoin="round"/><path d="M71.1 50 L70.7 45.9 L69.5 41.9 L67.6 38.3 L64.9 35.1 L61.7 32.4 L58.1 30.5 L54.1 29.3 L50 28.9 L45.9 29.3 L41.9 30.5 L38.3 32.4 L35.1 35.1 L32.4 38.3 L30.5 41.9 L29.3 45.9 L28.9 50 L29.3 54.1 L30.5 58.1 L32.4 61.7 L35.1 64.9 L38.3 67.6 L41.9 69.5 L45.9 70.7 L50 71.1 L54.1 70.7 L58.1 69.5 L61.7 67.6 L64.9 64.9 L67.6 61.7 L69.5 58.1 L70.7 54.1 Z" fill="none" stroke="#F2873A" stroke-width="18.7" stroke-linejoin="round" stroke-dasharray="3.2 3.2"/><path d="M71.1 50 L70.7 45.9 L69.5 41.9 L67.6 38.3 L64.9 35.1 L61.7 32.4 L58.1 30.5 L54.1 29.3 L50 28.9 L45.9 29.3 L41.9 30.5 L38.3 32.4 L35.1 35.1 L32.4 38.3 L30.5 41.9 L29.3 45.9 L28.9 50 L29.3 54.1 L30.5 58.1 L32.4 61.7 L35.1 64.9 L38.3 67.6 L41.9 69.5 L45.9 70.7 L50 71.1 L54.1 70.7 L58.1 69.5 L61.7 67.6 L64.9 64.9 L67.6 61.7 L69.5 58.1 L70.7 54.1 Z" fill="none" stroke="#DDE6F0" stroke-width="13.7" stroke-linejoin="round"/></svg><span>NOON</span></li>
+      <li><svg viewBox="0 0 100 100" role="img" aria-label="The Loop track at dusk"><rect width="100" height="100" fill="#CFC6E8"/><path d="M-5 8 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#EEE6FF" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M-5 25 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#8475B8" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M-5 42 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#EEE6FF" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M-5 59 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#8475B8" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M-5 76 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#EEE6FF" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M-5 93 q 27 -2.5 55 0 t 55 0" fill="none" stroke="#8475B8" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/><path d="M71.1 50 L70.7 45.9 L69.5 41.9 L67.6 38.3 L64.9 35.1 L61.7 32.4 L58.1 30.5 L54.1 29.3 L50 28.9 L45.9 29.3 L41.9 30.5 L38.3 32.4 L35.1 35.1 L32.4 38.3 L30.5 41.9 L29.3 45.9 L28.9 50 L29.3 54.1 L30.5 58.1 L32.4 61.7 L35.1 64.9 L38.3 67.6 L41.9 69.5 L45.9 70.7 L50 71.1 L54.1 70.7 L58.1 69.5 L61.7 67.6 L64.9 64.9 L67.6 61.7 L69.5 58.1 L70.7 54.1 Z" fill="#8C9FD6"/><path d="M71.1 50 L70.7 45.9 L69.5 41.9 L67.6 38.3 L64.9 35.1 L61.7 32.4 L58.1 30.5 L54.1 29.3 L50 28.9 L45.9 29.3 L41.9 30.5 L38.3 32.4 L35.1 35.1 L32.4 38.3 L30.5 41.9 L29.3 45.9 L28.9 50 L29.3 54.1 L30.5 58.1 L32.4 61.7 L35.1 64.9 L38.3 67.6 L41.9 69.5 L45.9 70.7 L50 71.1 L54.1 70.7 L58.1 69.5 L61.7 67.6 L64.9 64.9 L67.6 61.7 L69.5 58.1 L70.7 54.1 Z" fill="none" stroke="#ECE5F8" stroke-width="18.7" stroke-linejoin="round"/><path d="M71.1 50 L70.7 45.9 L69.5 41.9 L67.6 38.3 L64.9 35.1 L61.7 32.4 L58.1 30.5 L54.1 29.3 L50 28.9 L45.9 29.3 L41.9 30.5 L38.3 32.4 L35.1 35.1 L32.4 38.3 L30.5 41.9 L29.3 45.9 L28.9 50 L29.3 54.1 L30.5 58.1 L32.4 61.7 L35.1 64.9 L38.3 67.6 L41.9 69.5 L45.9 70.7 L50 71.1 L54.1 70.7 L58.1 69.5 L61.7 67.6 L64.9 64.9 L67.6 61.7 L69.5 58.1 L70.7 54.1 Z" fill="none" stroke="#E0764A" stroke-width="18.7" stroke-linejoin="round" stroke-dasharray="3.2 3.2"/><path d="M71.1 50 L70.7 45.9 L69.5 41.9 L67.6 38.3 L64.9 35.1 L61.7 32.4 L58.1 30.5 L54.1 29.3 L50 28.9 L45.9 29.3 L41.9 30.5 L38.3 32.4 L35.1 35.1 L32.4 38.3 L30.5 41.9 L29.3 45.9 L28.9 50 L29.3 54.1 L30.5 58.1 L32.4 61.7 L35.1 64.9 L38.3 67.6 L41.9 69.5 L45.9 70.7 L50 71.1 L54.1 70.7 L58.1 69.5 L61.7 67.6 L64.9 64.9 L67.6 61.7 L69.5 58.1 L70.7 54.1 Z" fill="none" stroke="#B9B4D6" stroke-width="13.7" stroke-linejoin="round"/></svg><span>DUSK</span></li>
+      <li><svg viewBox="0 0 100 100" role="img" aria-label="The Loop track at night"><rect width="100" height="100" fill="#1B2B46"/><path d="M-5 8 q 27 -6 55 0 t 55 0" fill="none" stroke="#6FE3B4" stroke-width="7" stroke-linecap="round" opacity="0.55"/><path d="M-5 25 q 27 -6 55 0 t 55 0" fill="none" stroke="#8A3C9E" stroke-width="7" stroke-linecap="round" opacity="0.55"/><path d="M-5 42 q 27 -6 55 0 t 55 0" fill="none" stroke="#6FE3B4" stroke-width="7" stroke-linecap="round" opacity="0.55"/><path d="M-5 59 q 27 -6 55 0 t 55 0" fill="none" stroke="#8A3C9E" stroke-width="7" stroke-linecap="round" opacity="0.55"/><path d="M-5 76 q 27 -6 55 0 t 55 0" fill="none" stroke="#6FE3B4" stroke-width="7" stroke-linecap="round" opacity="0.55"/><path d="M-5 93 q 27 -6 55 0 t 55 0" fill="none" stroke="#8A3C9E" stroke-width="7" stroke-linecap="round" opacity="0.55"/><path d="M71.1 50 L70.7 45.9 L69.5 41.9 L67.6 38.3 L64.9 35.1 L61.7 32.4 L58.1 30.5 L54.1 29.3 L50 28.9 L45.9 29.3 L41.9 30.5 L38.3 32.4 L35.1 35.1 L32.4 38.3 L30.5 41.9 L29.3 45.9 L28.9 50 L29.3 54.1 L30.5 58.1 L32.4 61.7 L35.1 64.9 L38.3 67.6 L41.9 69.5 L45.9 70.7 L50 71.1 L54.1 70.7 L58.1 69.5 L61.7 67.6 L64.9 64.9 L67.6 61.7 L69.5 58.1 L70.7 54.1 Z" fill="#14405A"/><path d="M71.1 50 L70.7 45.9 L69.5 41.9 L67.6 38.3 L64.9 35.1 L61.7 32.4 L58.1 30.5 L54.1 29.3 L50 28.9 L45.9 29.3 L41.9 30.5 L38.3 32.4 L35.1 35.1 L32.4 38.3 L30.5 41.9 L29.3 45.9 L28.9 50 L29.3 54.1 L30.5 58.1 L32.4 61.7 L35.1 64.9 L38.3 67.6 L41.9 69.5 L45.9 70.7 L50 71.1 L54.1 70.7 L58.1 69.5 L61.7 67.6 L64.9 64.9 L67.6 61.7 L69.5 58.1 L70.7 54.1 Z" fill="none" stroke="#8E9CC8" stroke-width="18.7" stroke-linejoin="round"/><path d="M71.1 50 L70.7 45.9 L69.5 41.9 L67.6 38.3 L64.9 35.1 L61.7 32.4 L58.1 30.5 L54.1 29.3 L50 28.9 L45.9 29.3 L41.9 30.5 L38.3 32.4 L35.1 35.1 L32.4 38.3 L30.5 41.9 L29.3 45.9 L28.9 50 L29.3 54.1 L30.5 58.1 L32.4 61.7 L35.1 64.9 L38.3 67.6 L41.9 69.5 L45.9 70.7 L50 71.1 L54.1 70.7 L58.1 69.5 L61.7 67.6 L64.9 64.9 L67.6 61.7 L69.5 58.1 L70.7 54.1 Z" fill="none" stroke="#C9663E" stroke-width="18.7" stroke-linejoin="round" stroke-dasharray="3.2 3.2"/><path d="M71.1 50 L70.7 45.9 L69.5 41.9 L67.6 38.3 L64.9 35.1 L61.7 32.4 L58.1 30.5 L54.1 29.3 L50 28.9 L45.9 29.3 L41.9 30.5 L38.3 32.4 L35.1 35.1 L32.4 38.3 L30.5 41.9 L29.3 45.9 L28.9 50 L29.3 54.1 L30.5 58.1 L32.4 61.7 L35.1 64.9 L38.3 67.6 L41.9 69.5 L45.9 70.7 L50 71.1 L54.1 70.7 L58.1 69.5 L61.7 67.6 L64.9 64.9 L67.6 61.7 L69.5 58.1 L70.7 54.1 Z" fill="none" stroke="#4A5578" stroke-width="13.7" stroke-linejoin="round"/></svg><span>NIGHT</span></li>
+    </ol>
+    <figcaption class="fv-cap">Loop through the day, in Frost Valley's real palette.</figcaption>
+  </figure>
+
+  <div class="fv-col">
+    <p>At night, the wind streaks across the snowfield turn into aurora curtains, green with a magenta fringe, and the lit side of every snowbank glows aurora green. For most of its development this world was called Aurora Drift. The name changed. The aurora stayed.</p>
+    <p>Frost Valley gets its own music, too. The music in <em>Animal Loop</em> is played live as you race, and each world has its own instruments. Here, a music box carries the melody over a warm pad, with an acoustic bass underneath.</p>
+
+    <h3>A penguin at the finish</h3>
+    <p>Every world ends in a Grand Prix against its rival animal: the Armadillo in Dune Flats, the Puffer in Coral Shallows, the Ladybug in Fern Hollow. Frost Valley's rival is the <strong>Penguin</strong>, a toboggan racer, and it's the one rolling through every screenshot here. Beat it across all nine tracks and it joins your roster.</p>
+  </div>
+
+</article>
+
+<article class="fv" data-screen-label="Closing" style="padding-top: 88px">
+  <div class="fv-ch">
+    <div><span class="lbl" style="color: #8C3D47">CLOSING</span></div>
+    <h2>Coming Soon</h2>
+  </div>
+
+  <div class="fv-col">
+    <p>There's no date yet. I want the step from Fern Hollow to Frost Valley to feel like the next step, not a wall, and that means more time on the ice ladder before it ships.</p>
+    <p>If you want to know the moment it lands, <a href="../feed.xml">subscribe to the dev diary</a> or <a href="https://x.com/wozyofficial">follow @wozyofficial on X</a>. And if you have thoughts on the ice, I'd love to hear them. <a href="/contact/?app=animal-loop">Send me a message</a>.</p>
+  </div>
+
+  <section data-screen-label="CTA" style="width: 100%; max-width: 1040px; margin: 24px 0 0; background: linear-gradient(180deg, #8E80D8 0%, #C996C8 55%, #F8C6B6 100%); border-radius: 32px; padding: 64px 28px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center">
+    <img src="../../assets/app-icon.png" width="512" height="512" alt="Animal Loop app icon" style="width: 104px; height: 104px; border-radius: 24px; box-shadow: 0 6px 0 rgba(43,31,77,0.25)">
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <h2 style="margin: 0; font-size: clamp(38px, 6vw, 60px); line-height: 1; font-weight: 900; color: #2B1F4D; letter-spacing: -1.5px">Animal Loop</h2>
+      <div style="font-size: 21px; font-weight: 800; color: #2E2154">Free on the App Store</div>
+    </div>
+    <a href="https://apps.apple.com/us/app/animal-loop/id6806081867" aria-label="Download on the App Store" style="display: inline-flex; align-items: center; gap: 10px; height: 58px; padding: 0 20px 0 16px; border-radius: 13px; background: #000; color: #fff; text-decoration: none; box-shadow: inset 0 0 0 1.5px #A6A6A6, 0 4px 0 rgba(23,19,32,0.35); font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif; "><svg viewBox="0 0 384 512" width="26" height="32" aria-hidden="true" style="flex: none"><path fill="#fff" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span style="display: flex; flex-direction: column; align-items: flex-start; line-height: 1; text-align: left"><span style="font-size: 11px; font-weight: 500; letter-spacing: 0.2px">Download on the</span><span style="font-size: 25px; font-weight: 600; letter-spacing: -0.6px; margin-top: 3px">App Store</span></span></a>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; font-size: 15px; font-weight: 800">
+      <a href="../../" style="color: #2B1F4D">Website</a>
+      <span style="color: #2E2154; opacity: 0.5">·</span>
+      <a href="/contact/?app=animal-loop" style="color: #2B1F4D">Support</a>
+      <span style="color: #2E2154; opacity: 0.5">·</span>
+      <a href="https://www.wozy.co/" style="color: #2B1F4D">wOzy</a>
+    </div>
+  </section>
+
+  <div class="fv-tags">
+    <div>#indie game dev</div>
+    <div>#iOS game</div>
+    <div>#SpriteKit</div>
+    <div>#game mechanics</div>
+    <div>#level design</div>
+    <div>#coming soon</div>
+    <div>#devlog</div>
+  </div>
+</article>
+
+<!-- site-footer -->
+<footer class="sf">
+  <div class="sf-in">
+    <div class="sf-grid" style="--sf-cols: 4">
+      <div class="sf-brand">
+        <a class="sf-logo" href="/animal-loop/"><img src="/animal-loop/assets/app-icon.png" alt="" width="36" height="36"><span>Animal Loop</span></a>
+        <p>The one-tap racing game for iPhone, iPad and Mac.</p>
+      </div>
+      <nav class="sf-col" aria-label="Apps">
+        <h2 class="sf-h">Apps</h2>
+        <ul>
+          <li><a href="/animal-loop/">Animal Loop</a></li>
+          <li><a href="/tictoefury/">TicToe Fury</a></li>
+          <li><a href="https://www.odyz.app/">Odyz</a></li>
+          <li><a href="/dapply/">Dapply</a></li>
+          <li><a href="/">About wOzy</a></li>
+        </ul>
+      </nav>
+      <nav class="sf-col" aria-label="Animal Loop">
+        <h2 class="sf-h">Animal Loop</h2>
+        <ul>
+          <li><a href="/animal-loop/">The game</a></li>
+          <li><a href="/animal-loop/blog/">Dev diary</a></li>
+          <li><a href="/animal-loop/press/">Press kit</a></li>
+          <li><a href="https://apps.apple.com/us/app/animal-loop/id6806081867">Download on the App Store</a></li>
+        </ul>
+      </nav>
+      <nav class="sf-col" aria-label="Help">
+        <h2 class="sf-h">Help</h2>
+        <ul>
+          <li><a href="/animal-loop/help/what-is-a-grand-prix/">What is a Grand Prix?</a></li>
+          <li><a href="/animal-loop/help/how-to-play-with-friends/">How to play with friends</a></li>
+          <li><a href="/contact/?app=animal-loop">Contact support</a></li>
+        </ul>
+      </nav>
+      <nav class="sf-col" aria-label="Compare">
+        <h2 class="sf-h">Compare</h2>
+        <ul>
+          <li><a href="/animal-loop/compare/">Animal Loop vs other racing games</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="sf-bottom">
+      <p>© 2026 wOzy Technologies LLC. wOzy and the wOzy logo are trademarks of wOzy.</p>
+      <p class="sf-links"><a href="/animal-loop/privacy/">Privacy Policy</a> <a href="/animal-loop/terms/">Terms of Use</a> <a href="https://x.com/wozyofficial">X</a></p>
+    </div>
+  </div>
+</footer>
+<!-- /site-footer -->
+</div>
+<script src="../../assets/al.js?v=3" defer></script>
+</body>
+</html>
