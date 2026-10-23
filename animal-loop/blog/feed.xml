@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Newest post first. When adding a post, add an <item> here, update lastBuildDate,
-     and add the post to blog/index.html, sitemap.xml and llms.txt. -->
+<!-- Written by .github/scripts/blog.py: every <item> and lastBuildDate come from the posts. -->
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>Animal Loop dev diary</title>
@@ -24,7 +23,7 @@
       <category>Game development</category>
       <category>iOS</category>
       <category>Game mechanics</category>
-      <description><![CDATA[<p>A first look at Animal Loop's fourth world: where it stands, how its cracking ice works, and why it was the hardest thing in the game to get right.</p><p><img src="https://www.wozy.co/animal-loop/assets/blog/frost-valley-og.jpg" alt="Frost Valley, coming soon to Animal Loop" width="1200" height="630"></p><p><a href="https://www.wozy.co/animal-loop/blog/building-frost-valley/">Read the full post</a></p>]]></description>
+      <description><![CDATA[<p>A first look at Animal Loop's fourth world: where it stands, how its cracking ice works, and why it was the hardest thing in the game to get right.</p><p><img src="https://www.wozy.co/animal-loop/assets/blog/frost-valley-og.jpg" alt="Coming Soon: Frost Valley, Where the Road Breaks Behind You" width="1200" height="630"></p><p><a href="https://www.wozy.co/animal-loop/blog/building-frost-valley/">Read the full post</a></p>]]></description>
     </item>
 
     <item>
@@ -36,7 +35,7 @@
       <category>Game update</category>
       <category>iOS</category>
       <category>Seasonal event</category>
-      <description><![CDATA[<p>The Thanksgiving update brings Animal Loop's first seasonal racer. Race on 15 days in November and Turkey joins your crew.</p><p><img src="https://www.wozy.co/animal-loop/assets/blog/turkey-og.jpg" alt="Meet Turkey" width="1200" height="630"></p><p><a href="https://www.wozy.co/animal-loop/blog/meet-turkey/">Read the full post</a></p>]]></description>
+      <description><![CDATA[<p>The Thanksgiving update brings Animal Loop's first seasonal racer. Race on 15 days in November and Turkey joins your crew.</p><p><img src="https://www.wozy.co/animal-loop/assets/blog/turkey-og.jpg" alt="Meet Turkey, the Racer Who Only Comes Around in November" width="1200" height="630"></p><p><a href="https://www.wozy.co/animal-loop/blog/meet-turkey/">Read the full post</a></p>]]></description>
     </item>
 
     <item>
@@ -48,7 +47,7 @@
       <category>Game development</category>
       <category>iOS</category>
       <category>Level design</category>
-      <description><![CDATA[<p>How a shelved idea from the first iPad days became Animal Loop, and why I ended up writing my own track simulator and level editor to make it.</p><p><img src="https://www.wozy.co/animal-loop/assets/og.jpg" alt="Animal Loop" width="1200" height="630"></p><p><a href="https://www.wozy.co/animal-loop/blog/building-animal-loop/">Read the full post</a></p>]]></description>
+      <description><![CDATA[<p>How a shelved idea from the first iPad days became Animal Loop, and why I ended up writing my own track simulator and level editor to make it.</p><p><img src="https://www.wozy.co/animal-loop/assets/og.jpg" alt="One Tap, Twenty-Seven Tracks, and a Simulation Engine I Never Planned to Build" width="1200" height="630"></p><p><a href="https://www.wozy.co/animal-loop/blog/building-animal-loop/">Read the full post</a></p>]]></description>
     </item>
   </channel>
 </rss>

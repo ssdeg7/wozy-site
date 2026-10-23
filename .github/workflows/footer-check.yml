@@ -1,7 +1,8 @@
 name: Footer check
 
 # Fails when a page's footer doesn't match what .github/scripts/site-footer.py
-# would write, for example after adding a help page without re-running it.
+# would write, for example after adding a help page without re-running it, or
+# when the dev diary's lists don't match what .github/scripts/blog.py would write.
 on:
   push:
     branches: [main]
@@ -19,3 +20,4 @@ jobs:
         with:
           python-version: "3.12"
       - run: python3 .github/scripts/site-footer.py --check
+      - run: python3 .github/scripts/blog.py --check

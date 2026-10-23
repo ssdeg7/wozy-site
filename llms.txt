@@ -12,8 +12,8 @@
 ## Writing
 
 - [Animal Loop dev diary](https://www.wozy.co/animal-loop/blog/): All posts on how Animal Loop is designed and built. RSS feed: https://www.wozy.co/animal-loop/blog/feed.xml
+- [Building Frost Valley](https://www.wozy.co/animal-loop/blog/building-frost-valley/): Coming-soon developer diary on Animal Loop's fourth world, Frost Valley: how its cracking ice works (it breaks behind the racer and freezes back slowly as you race), why it was hard to build (fairness rules, wider roads, memory budgets), progress on its nine tracks, and its rival, the Penguin.
 - [Meet Turkey](https://www.wozy.co/animal-loop/blog/meet-turkey/): The Thanksgiving update brings Animal Loop's first seasonal racer, Turkey. Race on 15 different days in November (any race counts, one per day, days add up every year) to unlock it; the title screen also changes with the seasons.
-- [Building Frost Valley](https://www.wozy.co/animal-loop/blog/building-frost-valley/): Coming-soon developer diary on Animal Loop's fourth world, Frost Valley: how its cracking ice works (it breaks behind the racer and freezes back a lap later), why it was hard to build (fairness rules, wider roads, memory budgets), progress on its nine tracks, and its rival, the Penguin.
 - [Building Animal Loop](https://www.wozy.co/animal-loop/blog/building-animal-loop/): Developer diary on how a shelved iPad-era idea became Animal Loop, and the custom track simulator, track analyzer and level editor built to design and balance its 27 tracks.
 
 ## Help
