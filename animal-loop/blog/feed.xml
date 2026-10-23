@@ -8,7 +8,7 @@
     <atom:link href="https://www.wozy.co/animal-loop/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Behind-the-scenes posts on designing, building and balancing Animal Loop, a one-tap animal racing game for iPhone and iPad, by the indie studio wOzy.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 06 Nov 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 23 Oct 2026 00:00:00 GMT</lastBuildDate>
     <image>
       <url>https://www.wozy.co/animal-loop/assets/app-icon.png</url>
       <title>Animal Loop dev diary</title>
@@ -16,15 +16,15 @@
     </image>
 
     <item>
-      <title>Frost Valley: Building a World Where the Road Breaks Behind You</title>
+      <title>Coming Soon: Frost Valley, Where the Road Breaks Behind You</title>
       <link>https://www.wozy.co/animal-loop/blog/building-frost-valley/</link>
       <guid isPermaLink="true">https://www.wozy.co/animal-loop/blog/building-frost-valley/</guid>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
       <dc:creator>Sebastián Salazar de Greiff</dc:creator>
       <category>Game development</category>
       <category>iOS</category>
       <category>Game mechanics</category>
-      <description><![CDATA[<p>Animal Loop's fourth world is taking shape: nine snowy tracks, a penguin rival, and ice that cracks behind you and freezes back a lap later.</p><p><img src="https://www.wozy.co/animal-loop/assets/blog/frost-valley-og.jpg" alt="The Ice Cube track in Frost Valley" width="1200" height="630"></p><p><a href="https://www.wozy.co/animal-loop/blog/building-frost-valley/">Read the full post</a></p>]]></description>
+      <description><![CDATA[<p>A first look at Animal Loop's fourth world: where it stands, how its cracking ice works, and why it was the hardest thing in the game to get right.</p><p><img src="https://www.wozy.co/animal-loop/assets/blog/frost-valley-og.jpg" alt="Frost Valley, coming soon to Animal Loop" width="1200" height="630"></p><p><a href="https://www.wozy.co/animal-loop/blog/building-frost-valley/">Read the full post</a></p>]]></description>
     </item>
 
     <item>
