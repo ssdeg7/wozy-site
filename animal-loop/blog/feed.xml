@@ -8,7 +8,7 @@
     <atom:link href="https://www.wozy.co/animal-loop/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Behind-the-scenes posts on designing, building and balancing Animal Loop, a one-tap animal racing game for iPhone and iPad, by the indie studio wOzy.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 23 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 15 Nov 2026 00:00:00 GMT</lastBuildDate>
     <image>
       <url>https://www.wozy.co/animal-loop/assets/app-icon.png</url>
       <title>Animal Loop dev diary</title>
@@ -19,12 +19,24 @@
       <title>Coming Soon: Frost Valley, Where the Road Breaks Behind You</title>
       <link>https://www.wozy.co/animal-loop/blog/building-frost-valley/</link>
       <guid isPermaLink="true">https://www.wozy.co/animal-loop/blog/building-frost-valley/</guid>
-      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
+      <pubDate>Sun, 15 Nov 2026 00:00:00 GMT</pubDate>
       <dc:creator>Sebastián Salazar de Greiff</dc:creator>
       <category>Game development</category>
       <category>iOS</category>
       <category>Game mechanics</category>
       <description><![CDATA[<p>A first look at Animal Loop's fourth world: where it stands, how its cracking ice works, and why it was the hardest thing in the game to get right.</p><p><img src="https://www.wozy.co/animal-loop/assets/blog/frost-valley-og.jpg" alt="Frost Valley, coming soon to Animal Loop" width="1200" height="630"></p><p><a href="https://www.wozy.co/animal-loop/blog/building-frost-valley/">Read the full post</a></p>]]></description>
+    </item>
+
+    <item>
+      <title>Meet Turkey, the Racer Who Only Comes Around in November</title>
+      <link>https://www.wozy.co/animal-loop/blog/meet-turkey/</link>
+      <guid isPermaLink="true">https://www.wozy.co/animal-loop/blog/meet-turkey/</guid>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
+      <dc:creator>Sebastián Salazar de Greiff</dc:creator>
+      <category>Game update</category>
+      <category>iOS</category>
+      <category>Seasonal event</category>
+      <description><![CDATA[<p>The Thanksgiving update brings Animal Loop's first seasonal racer. Race on 15 days in November and Turkey joins your crew.</p><p><img src="https://www.wozy.co/animal-loop/assets/blog/turkey-og.jpg" alt="Meet Turkey" width="1200" height="630"></p><p><a href="https://www.wozy.co/animal-loop/blog/meet-turkey/">Read the full post</a></p>]]></description>
     </item>
 
     <item>
